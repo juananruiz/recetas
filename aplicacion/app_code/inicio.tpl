@@ -1,0 +1,2 @@
+<!-- Novedades -->
+{$pagina->contenido}
