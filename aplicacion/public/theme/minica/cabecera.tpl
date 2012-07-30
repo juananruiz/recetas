@@ -60,16 +60,14 @@
 		switcher5.php : controls the theme - dark by default.					(eg. styles/theme/switcher1.php?default=theme_light.css)
 		
 		-->
-		
+<!--		
 		<link rel="stylesheet" type="text/css" href="theme/minica/styles/theme/switcher.css" media="screen">
-		<!--<link rel="stylesheet" type="text/css" href="theme/minica/styles/theme/switcher1.php?default=layout_fixed.css" media="screen" > -->
 		<link rel="stylesheet" type="text/css" href="theme/minica/styles/theme/switcher2.php?default=switcher.css" media="screen" >
 		<link rel="stylesheet" type="text/css" href="theme/minica/styles/theme/switcher3.php?default=theme_red.css" media="screen" >
-		<link rel="stylesheet" type="text/css" href="theme/minica/styles/theme/switcher4.php?default=bg_hemerocallis.css" media="screen" >
-		<link rel="stylesheet" type="text/css" href="theme/minica/styles/theme/switcher5.php?default=switcher.css" media="screen" >
-		
+		<link rel="stylesheet" type="text/css" href="theme/minica/styles/theme/switcher5.php?default=theme_light.css" media="screen" >
 		<link rel="stylesheet" type="text/css" href="theme/minica/styles/colours.css">
 		<link rel="stylesheet" type="text/css" href="theme/minica/styles/ie.css">
+-->
 		
 	<!-- Scripts -->
 
