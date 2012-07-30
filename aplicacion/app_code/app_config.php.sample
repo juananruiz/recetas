@@ -17,11 +17,11 @@ define('CC_DB_CLAVE','adelgazacierto');//escriba la clave del usuario.
 define('CC_DB_DATABASE','comerbien');//escriba la BD.
 
 // Tema que vamos a utilizar para definir la apariencia del sitio
-define('CC_THEME', 'adminica');
+define('CC_THEME', 'minica');
 
 // Que tipo de autenticación va a uilizarse (login_sso ó login_basico).
 define('CC_TIPO_LOGIN','login_basico');
 
 //Directorios
-define('CC_DIR_BASE','/Users/juanan/www/comerbien/aplicacion/');
+define('CC_DIR_BASE','/Users/juanan/www/recetas/aplicacion/');
 ?>

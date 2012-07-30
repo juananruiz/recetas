@@ -1,3 +1,5 @@
+*.swp
+*.swo
 templates_c/*
 cache/*
 app_code/app_config.php
