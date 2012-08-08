@@ -46,18 +46,6 @@
           </div>
         </div>
         -->
-			  <fieldset class="label_side">
-          <label>Preparación</label>
-          <div>
-            <textarea  class="autogrow" name="preparacion"></textarea>
-          </div>
-			  </fieldset>   
-			  <fieldset class="label_side">
-          <label>Variantes</label>
-          <div>
-					<textarea class="autogrow" name="variantes"></textarea>
-				</div>
-			  </fieldset>      
 			   
 			  <div class="button_bar clearfix">
 					<button class="green" type="submit" value="Grabar" name="proceso_submit">
