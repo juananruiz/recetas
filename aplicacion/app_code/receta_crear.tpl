@@ -10,16 +10,9 @@
       </div>
 			<form method="post" action="index.php?page=receta_grabar" class="validate_form">
 			  <fieldset class="label_side">
-				<label>Nombre largo</label>
+				<label>Nombre</label>
 				<div>
-					<input type="text" name="nombre_largo" class="required" />
-					<div class="required_tag"></div>
-				</div>
-			  </fieldset> 
-			  <fieldset class="label_side">
-				<label>Nombre corto</label>
-				<div>
-					<input type="text" name="nombre_corto" class="required" />
+					<input type="text" name="nombre_es" class="required" />
 					<div class="required_tag"></div>
 				</div>
 			  </fieldset> 

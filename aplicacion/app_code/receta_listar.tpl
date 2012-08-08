@@ -15,7 +15,7 @@
     <tbody>
       {foreach $recetas as $receta}
         <tr class="gradeX">
-          <td>{$receta->nombre_largo}</td>
+          <td>{$receta->nombre_es}</td>
           <td><a href="index.php?page=receta_mostrar&id_receta={$receta->id}">Mostrar</a></td>
         </tr>
       {/foreach}

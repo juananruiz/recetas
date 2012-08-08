@@ -100,7 +100,7 @@ a.logo span {
 }
 
 a.logo {
-/* 	background: url(../images/adminica_logo_black-trans.png) no-repeat; */
+/* 	background: url(../images/logo.png) no-repeat; */
 	display: block;
 	height: 130px;
 	width: 180px;
@@ -369,8 +369,8 @@ Main Container
 div.main_container {
 	margin: 20px 20px 20px 20px;
 	*top: 10px;
-	background: #eee url(../images/grey_noise.png) repeat;
-	background-color: #e5e8ea;
+  *background: #eee url(../images/grey_noise.png) repeat;
+	background-color: #fff;
 	padding: 20px 10px 5px;
 	width: auto;
 	position: relative;
@@ -440,18 +440,24 @@ div.main_container p > a:hover {
 	border: 0 !important;
 }
 
+/*------Logo--------*/
+#logo {
+  float: left;
+  margin: 0px 15px;
+}
 /*------Navigation --------*/
 #nav_top {
-	margin: -20px -10px 20px;
+	margin: 20px 10px;
 	display: block;
 	border-bottom: 0px solid #fff;
 	position: relative;
 	z-index: 500;
 	letter-spacing: 0;	
+  float: right;
 }
 
 #nav_top ul {
-	margin: 0px;
+	margin: 10px 10px;
 	padding: 0;
 	border-bottom: 0px solid #aaa;
 }
@@ -474,18 +480,19 @@ div.main_container p > a:hover {
 	width: 0;
 	height: 34px;
 	padding: 0;
+	padding: 0px 10px 0px 10px;
 	border-right: none;
 }
 
 #nav_top ul li a {
 	border-right: 1px solid #aaa;
 	border-left: 1px solid #fff;
-	padding: 0px 0px 0px 0px;
+	padding: 0px 10px 0px 10px;
 	display: inline-block;
 	float: left;
 	margin-bottom: 0px;
-	line-height: 32px;
-	height: 32px;
+	line-height: 28px;
+	height: 28px;
 	white-space: nowrap;
 	text-decoration: none;
 	text-indent: 0;
@@ -506,7 +513,7 @@ div.main_container p > a:hover {
 #nav_top ul li a img {
 	float: left;
 	margin: 0 -5px 0 5px;
-	padding: 4px 0px 0 0;
+	padding: 2px 0px 0 0;
 }
 
 #nav_top ul li.icon_only a img {
@@ -527,7 +534,8 @@ div.main_container p > a:hover {
 	padding-bottom: 1px;
 	background-color: #4c5766;
 	margin-left: -1px;
-	padding-left: 1px;
+	padding-left: 11px;
+  padding-right: 10px;
 
 	-webkit-box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3);
 	-moz-box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3);
@@ -866,12 +874,12 @@ div.main_container .box h2.box_head {
 	margin-bottom: 10px;
 	margin-top: 0px;
 	font-weight: bold;
-	background-image: url("../images/trans_black_less.png");
-	border: 1px solid #fff;
-	border-left: 1px solid #f8f8f8;
-	border-right: 1px solid #f8f8f8;
-	line-height: 30px;
-	text-indent: 0px;
+  border: 2px solid #FCCC2E;
+  border-left: fccc2e;
+  border-right: 2px solid #FCCC2E;
+  line-height: 30px;
+  text-indent: 0px;
+  background: #FDE597;
 }
 
 /*-----End of Main Container -------*/
@@ -1266,7 +1274,7 @@ fieldset > div > label input[type=radio],fieldset > div > label input[type=check
 	border: 1px solid #999;
 	padding: 5px;
 	padding-left: 5px;
-	margin-bottom: 10px;
+	margin: 10px;
 	color: #fff;
 	text-shadow: 0 1px 1px #000;
 }
@@ -2511,7 +2519,7 @@ Login Box
 }
 
 #login_box a#login_logo {
-	background: transparent url("../images/adminica_logo_black-trans.png") 0 -15px no-repeat;
+	background: transparent url("../images/logo.png") 0 -15px no-repeat;
 	position: relative;
 	display: block;
 	height: 67px;
@@ -2654,6 +2662,9 @@ ul.breadcrumb > li:last-child {
 	-webkit-border-top-left-radius: 3px;
 	-moz-border-radius-topleft: 3px;
 	border-top-left-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	border-bottom-left-radius: 3px;
 }
 
 .round_nnyn, #nav_top ul li:last-child a, #nav_top ul li:last-child{
@@ -2663,6 +2674,9 @@ ul.breadcrumb > li:last-child {
 	-webkit-border-bottom-right-radius: 3px;
 	-moz-border-radius-bottomright: 3px;
 	border-bottom-right-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-moz-border-radius-topright: 3px;
+	border-top-right-radius: 3px;
 }
 
 .round_nynn .fc thead tr th.fc-last, .ui-multiselect .available .ui-widget-header  {

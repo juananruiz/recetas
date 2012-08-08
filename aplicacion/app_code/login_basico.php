@@ -8,7 +8,7 @@
 //---------------------------------------------------------------------------------------------------
 global $smarty;
 global $plantilla;
-$smarty->assign('_nombre_pagina' , 'Accede a tu perfil');
+$smarty->assign('_nombre_pagina' , 'Inicio de sesión');
 
 // Comprueba que viene del formulario
 if (isset($_POST['acceso']))
@@ -24,8 +24,10 @@ if (isset($_POST['acceso']))
 		{
 			$_SESSION['usuario'] = $usuario;
 			// Registra la entrada en el log
+      /*
 			$log = new log();
 		  $log->add('login',0,$usuario->id);	
+      */
 			header("location:index.php");
 		}
 		else 

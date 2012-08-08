@@ -46,6 +46,14 @@ button.light,
 	background-image:     -ms-linear-gradient(top, #E6ECEF, #D0D6DA); /* IE10 */
 	background-image:      -o-linear-gradient(top, #E6ECEF, #D0D6DA); /* Opera 11.10+ */
 	background-image:         linear-gradient(top, #E6ECEF, #D0D6DA);
+
+    background-color: #FCCC2E;	
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FDE597), to(#FCCC2E)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #FDE597, #FCCC2E); /* Chrome 10+, Saf5.1+, iOS 5+ */
+	background-image:    -moz-linear-gradient(top, #FDE597, #FCCC2E); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #FDE597, #FCCC2E); /* IE10 */
+	background-image:      -o-linear-gradient(top, #FDE597, #FCCC2E); /* Opera 11.10+ */
+	background-image:         linear-gradient(top, #FDE597, #FCCC2E);
 }
 
 .grad_grey_reverse,
@@ -58,6 +66,14 @@ button.light:hover,
 	background-image:     -ms-linear-gradient(top, #D0D6DA, #E6ECEF); /* IE10 */
 	background-image:      -o-linear-gradient(top, #D0D6DA, #E6ECEF); /* Opera 11.10+ */
 	background-image:         linear-gradient(top, #D0D6DA, #E6ECEF);
+
+    background-color: #FCCC2E;	
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCCC2E), to(#FDE597)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #FCCC2E, #FDE597); /* Chrome 10+, Saf5.1+, iOS 5+ */
+	background-image:    -moz-linear-gradient(top, #FCCC2E, #FDE597); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #FCCC2E, #FDE597); /* IE10 */
+	background-image:      -o-linear-gradient(top, #FCCC2E, #FDE597); /* Opera 11.10+ */
+	background-image:         linear-gradient(top, #FCCC2E, #FDE597);
 }
 
 

@@ -7,11 +7,10 @@
 //---------------------------------------------------------------------------------------------------
 
 // Si vienen todos los datos necesarios del formulario grabamos     
-if (isset($_REQUEST['nombre_largo']) && isset($_REQUEST['nombre_corto']))
+if (isset($_REQUEST['nombre_es']))
 {
   $receta = new receta();        
-  $receta->nombre_largo = sanitize($_REQUEST["nombre_largo"], SQL);
-  $receta->nombre_corto = sanitize($_REQUEST["nombre_corto"], SQL);
+  $receta->nombre_es = sanitize($_REQUEST["nombre_es"], SQL);
   $receta->preparacion = isset($_REQUEST['preparacion'])?sanitize($_REQUEST['preparacion'],SQL):0;   
   $receta->variantes = isset($_REQUEST['variantes'])?sanitize($_REQUEST['variantes'],SQL):null;
 

@@ -42,6 +42,7 @@ $smarty->assign('_version', '0.1');
 // Conectamos a los datos con ADODB y ActiveRecord 
 $adodb = NewADOConnection('mysql://'.CC_DB_LOGIN.':'.CC_DB_CLAVE.'@'.CC_DB_HOST.'/'.CC_DB_DATABASE);
 ADOdb_Active_Record::SetDatabaseAdapter($adodb);
+$adodb->EXECUTE("set names 'utf8'");
 
 // Crea una sesión con un identificador encriptado para evitar ataques
 $session_key = substr(md5(CC_DIR_BASE), 0, 8);
@@ -57,36 +58,21 @@ if(!@session_id())
 	//@ini_set("session.gc_maxlifetime",10);
     @session_start();
 }
-// Hay que haber iniciado sesión y haber pedido pagina
+// Comprueba si el usuario ha iniciado sesión
 if (isset($_SESSION['usuario'])) 
 {
-	// Si viene id_entidad le asignamos su valor, si no, asignamos cero.
-  // Quitarlo cuando se aclare lo de los permisos
-	$id_entidad = isset($_REQUEST['id_entidad'])?sanitize($_REQUEST['id_entidad'],16):0;
 	$usuario = new usuario();
 	$usuario = $_SESSION['usuario'];
 	$smarty->assign('_usuario',$usuario);
-  /*
-	// Comprueba si el usuario tiene permiso para realizar esta acción
-	if (! $usuario->autorizar($page, $id_entidad, $usuario->id_usuario, $id_usuario_url))
-	{
-		$smarty->assign('error', 'No tiene permisos para realizar esta acción');
-		$page = "error";
-	}
-  */
-  if (isset($_GET['page']))
-  {
-	  $page = sanitize($_GET['page'],2);
-  }
-  else
-  {
-    $page = "inicio";
-  }
+}
+
+if (isset($_GET['page']))
+{
+  $page = sanitize($_GET['page'],2);
 }
 else
 {
-	// Si no se ha pedido ninguna página o no se ha iniciado sesión cargamos la de login  
-	$page = CC_TIPO_LOGIN;
+  $page = "inicio";
 }
 
 // Definimos $plantilla en blanco para que se comporte como variable global
