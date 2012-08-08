@@ -22,6 +22,6 @@ if (is_object($usuario))
 else
 {
   $error = "Debe iniciar sesión con su cuenta de usuario para proponer nuevas recetas";
-  header("location:index.php?page=receta_listar");
+  header("location:index.php?page=receta_listar&error=$error");
 }
 ?>

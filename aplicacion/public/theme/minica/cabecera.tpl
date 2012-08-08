@@ -79,6 +79,16 @@
         <div id="logo">
           <a href="index.php"><img src="images/logo_foodness.png" alt="foodness" /></a>
         </div>
+        <div id="control_sesion" style=" position: absolute; top: 10px; right: 30px; padding-top: 5px; letter-spacing:0">
+          {if isset($_usuario)}
+            {$_usuario->nombre} {$_usuario->apellidos} | 
+            <a href="index.php?page=usuario_perfil">Mis datos</a> | 
+            <a href="index.php?page=login_basico&logout=true">Salir</a>
+          {else}
+            <a href="index.php?page=login_basico">Iniciar sesión</a> |
+            <a href="index.php?page=usuario_crear">Crear cuenta</a>
+          {/if}
+        </div>
         <div id="nav_top" class="dropdown_menu clearfix round_top">
           <ul class="clearfix">
             <li><a href="index.php" class="pjax"><img src="theme/minica/images/icons/small/grey/home.png"/><span>Inicio</span></a></li>
