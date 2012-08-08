@@ -47,6 +47,7 @@
         </div>
         -->
 			   
+
 			  <div class="button_bar clearfix">
 					<button class="green" type="submit" value="Grabar" name="proceso_submit">
             <div class="ui-icon ui-icon-check"></div>
