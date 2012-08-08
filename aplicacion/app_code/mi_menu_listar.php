@@ -1,13 +1,19 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Comerbien
-// Archivo: class/ingrediente.php
+// Archivo: mi_menu_listar.php
 //---------------------------------------------------------------------------------------------------
-// Descripcion: gestiona los ingredientes
+// Lista los menús relacionados con el usuario actual
 //---------------------------------------------------------------------------------------------------
-class ingrediente extends ADOdb_Active_Record
-{
-  //Propiedades de la clase
-	public $_table = 'ingredientes';
-}
+global $smarty;
+global $plantilla;
+global $usuario;
+
+
+$menu = new menu();
+$menus = $menu->Find("id_usuario = $usuario->id");
+$smarty->assign("menus", $menus);
+
+$smarty->assign("_nombre_pagina", "Mis Menús");
+$plantilla = "mi_menu_listar.tpl";
 ?>

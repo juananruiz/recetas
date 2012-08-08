@@ -12,8 +12,8 @@ global $usuario;
 
 if (is_object($usuario))
 {
-  $ingrediente = new ingrediente();
-  $ingredientes = $ingrediente->load("1 = 1");
+  $ingrediente = new alimento();
+  $ingredientes = $ingrediente->Find("ingrediente = 1");
   $smarty->assign("ingredientes", $ingredientes);
 
   $smarty->assign("_nombre_pagina", "Creando receta");
