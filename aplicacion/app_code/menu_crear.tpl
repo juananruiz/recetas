@@ -1,3 +1,90 @@
+  <style>
+  .miniboton {
+    float: right;
+    background: #FCCC2E;
+    color: #333;
+    font-size: 0.9em;
+    line-height: 1;
+    border:1px solid #999;
+    padding:2px;
+    margin:0.4em 0;
+    text-shadow:0px 0px 0px #FCCC2E;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  }
+  </style>
+
+<div class="box grid_8 side_tabs tabs no_titlebar" style="opacity: 1; ">
+  <div class="side_holder">
+    <ul class="tab_sider clearfix">
+      <li><a href="#entrantes">Entrantes</a></li>
+      <li><a href="#sopa">Sopas y consomés</a></li>
+      <li><a href="#arroz">Arroz, cereales y pasta</a></li>
+      <li><a href="#ensalada">Ensaladas</a></li>
+      <li><a href="#carne">Carne</a></li>
+      <li><a href="#pescado">Pescado</a></li>
+      <li><a href="#verdura">Verduras y hortalizas</a></li>
+      <li><a href="#legumbre">Legumbres</a></li>
+      <li><a href="#postres">Postres</a></li>
+      <li><a href="#desayuno">Desayunos y meriendas</a></li>
+      <li><a href="#pasteleria">Pastelería y bollería</a></li>
+      <li><a href="#bebida">Bebidas</a></li>
+    </ul>
+  </div>
+  <div id="entrantes" class="block">
+    <div class="section">
+      <ul>
+        {foreach $recetas as $receta}
+          <li style="clear:both;">{$receta->nombre_es} <span class="miniboton">Agregar</span></li>
+        {/foreach}
+      </ul>
+    </div>
+  </div>
+  <div id="sopa" class="block">
+    <div class="section">
+      <ul>
+        {foreach $recetas as $receta}
+          <li style="clear:both;">{$receta->nombre_es} <span class="miniboton">Agregar</span></li>
+        {/foreach}
+      </ul>
+    </div>
+  </div>
+  <div id="arroz" class="block">
+    <div class="section">
+      <ul>
+      {foreach $recetas as $receta}
+        <li style="clear:both;">{$receta->nombre_es} <span class="miniboton">Agregar</span></li>
+      {/foreach}
+      </ul>
+    </div>
+  </div>
+  <div id="ensalada" class="block">
+    <div class="section">
+      <p>Content goes here.</p>
+    </div>
+  </div>
+  <div id="carne" class="block">
+    <div class="section">
+      <p>Content goes here.</p>
+    </div>
+  </div>
+  <div id="pescado" class="block">
+    <div class="section">
+      <p>Content goes here.</p>
+    </div>
+  </div>
+  <div id="verdura" class="block">
+    <div class="section">
+      <p>Content goes here.</p>
+    </div>
+  </div>
+  <div id="legumbre" class="block">
+    <div class="section">
+      <p>Content goes here.</p>
+    </div>
+  </div>
+</div>
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">

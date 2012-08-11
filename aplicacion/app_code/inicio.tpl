@@ -1,10 +1,18 @@
 <!-- Novedades -->
 {*$pagina->contenido*}
+<div class="main_container container_16 clearfix ui-sortable">
+  <div class="flat_area grid_8">
+    <h2>¿De qué va esto?</h2>
+      <p>Esta aplicación se encuentra en desarrollo te pedimos disculpas por los errores que puedas encontrar.</p>
+      <p>En este momento sólo está activo el <a href="index.php?page=receta_listar">módulo de recetas</a></p>
+      <p>Seguimos trabajando en ello y mejorando gracias a tu ayuda.</p>
+  </div>
 
-<div class="box grid_16">
-    <p>Esta aplicación se encuentra en desarrollo por lo que te rogamos que nos disculpes de los errores que puedan surgir.</p>
-    <p>En este momento sólo está activo el <a href="index.php?page=receta_listar">módulo de recetas</a></p>
-    <p>Seguimos trabajando en ello y mejorando gracias a tu ayuda</p>
+  <div class="flat_area grid_8">
+    <h2>Página experimental</h2>
+      <p>El contenido de esta página es meramente experimental para probar los estilos de diseño.</p>
+      <p>Seguimos trabajando en ello y mejorando gracias a tu ayuda.</p>
+  </div>
 </div>
 
 <h1>Titulo 1</h1>
