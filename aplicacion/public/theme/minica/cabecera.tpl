@@ -1,17 +1,16 @@
-<!doctype html public "✰">
-<!--[if lt IE 7]> <html lang="en-us" class="no-js ie6"> <![endif]-->
-<!--[if IE 7]>    <html lang="en-us" class="no-js ie7"> <![endif]-->
-<!--[if IE 8]>    <html lang="en-us" class="no-js ie8"> <![endif]-->
-<!--[if IE 9]>    <html lang="en-us" class="no-js ie9"> <![endif]-->
+<!doctype html>
+<!--[if lt IE 7]> <html lang="es-es" class="no-js ie6"> <![endif]-->
+<!--[if IE 7]> <html lang="es-es" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="es-es" class="no-js ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="es-es" class="no-js ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> 
 <html lang="es-es" class="no-js"> 
 <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
 		<title>{$_nombre_pagina} - Foodness</title>
-		
-  	<meta name="description" content="Planifica y controla tu alimentación para sentirte fenomenal">
-  		
+ 	<meta name="description" content="Planifica y controla tu alimentación para sentirte fenomenal">
+ 		
 	<!-- iPhone, iPad and Android specific settings -->	
 		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1;">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -20,41 +19,41 @@
 		<link rel="apple-touch-startup-image" href="theme/minica/images/iOS_startup.png">
 
 	<!-- Styles -->
-		<link rel="stylesheet" type="text/css" href="theme/minica/styles/reset.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/fancybox/jquery.fancybox-1.3.4.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/tinyeditor/style.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/slidernav/slidernav.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/uitotop/css/ui.totop.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/fullcalendar/fullcalendar.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/isotope/isotope.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/elfinder/css/elfinder.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/tiptip/tipTip.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/uniform/css/uniform.aristo.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/multiselect/css/ui.multiselect.css">
-    <link rel="stylesheet" type="text/css" href="theme/minica/scripts/colorpicker/css/colorpicker.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/selectbox/jquery.selectBox.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/scripts/uistars/jquery.ui.stars.min.css">
-    <link rel="stylesheet" type="text/css" href="theme/minica/scripts/themeroller/Aristo.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/styles/text.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/styles/grid.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/styles/main.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/styles/theme/theme_base.css">
-    <!--<link rel="stylesheet" type="text/css" href="theme/minica/scripts/syntax_highlighter/styles/shCore.css">-->
-    <!--<link rel="stylesheet" type="text/css" href="theme/minica/scripts/syntax_highlighter/styles/shThemeDefault.css">-->
-		<link rel="stylesheet" type="text/css" href="theme/minica/styles/colours.css">
-		<link rel="stylesheet" type="text/css" href="theme/minica/styles/bottons.css">
+		<link rel="stylesheet" href="theme/minica/styles/reset.css">
+		<link rel="stylesheet" href="theme/minica/scripts/fancybox/jquery.fancybox-1.3.4.css">
+		<link rel="stylesheet" href="theme/minica/scripts/tinyeditor/style.css">
+		<link rel="stylesheet" href="theme/minica/scripts/slidernav/slidernav.css">
+		<link rel="stylesheet" href="theme/minica/scripts/uitotop/css/ui.totop.css">
+		<link rel="stylesheet" href="theme/minica/scripts/fullcalendar/fullcalendar.css">
+		<link rel="stylesheet" href="theme/minica/scripts/isotope/isotope.css">
+		<link rel="stylesheet" href="theme/minica/scripts/elfinder/css/elfinder.css">
+		<link rel="stylesheet" href="theme/minica/scripts/tiptip/tipTip.css">
+		<link rel="stylesheet" href="theme/minica/scripts/uniform/css/uniform.aristo.css">
+		<link rel="stylesheet" href="theme/minica/scripts/multiselect/css/ui.multiselect.css">
+    <link rel="stylesheet" href="theme/minica/scripts/colorpicker/css/colorpicker.css">
+		<link rel="stylesheet" href="theme/minica/scripts/selectbox/jquery.selectBox.css">
+		<link rel="stylesheet" href="theme/minica/scripts/uistars/jquery.ui.stars.min.css">
+    <link rel="stylesheet" href="theme/minica/scripts/themeroller/Aristo.css">
+		<link rel="stylesheet" href="theme/minica/styles/text.css">
+		<link rel="stylesheet" href="theme/minica/styles/grid.css">
+		<link rel="stylesheet" href="theme/minica/styles/main.css">
+		<link rel="stylesheet" href="theme/minica/styles/theme/theme_base.css">
+     <!--<link rel="stylesheet" href="theme/minica/scripts/syntax_highlighter/styles/shCore.css">-->
+     <!--<link rel="stylesheet" href="theme/minica/scripts/syntax_highlighter/styles/shThemeDefault.css">-->
+		<link rel="stylesheet" href="theme/minica/styles/colours.css">
+		<link rel="stylesheet" href="theme/minica/styles/bottons.css">
 
 	<!-- Scripts -->
 
 		<!-- Load JQuery -->		
-		<script src="theme/minica/scripts/jquery/jquery171.min.js" type="text/javascript"></script>
+		<script src="theme/minica/scripts/jquery/jquery171.min.js"></script>
 
 		<!-- Load JQuery UI -->
-		<script src="theme/minica/scripts/jquery/jquery-ui1817.min.js" type="text/javascript"></script>
+		<script src="theme/minica/scripts/jquery/jquery-ui1817.min.js"></script>
 		
 		<!-- Global -->
-		<script src="theme/minica/scripts/touchPunch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
-		<script src="theme/minica/scripts/uitotop/js/jquery.ui.totop.js" type="text/javascript"></script>
+		<script src="theme/minica/scripts/touchPunch/jquery.ui.touch-punch.min.js"></script>
+		<script src="theme/minica/scripts/uitotop/js/jquery.ui.totop.js"></script>
 				
 		<!-- Forms -->
 		<script src="theme/minica/scripts/uniform/jquery.uniform.min.js"></script>
@@ -65,16 +64,15 @@
 		<script src="theme/minica/scripts/colorpicker/js/colorpicker.js"></script>
 		<script src="theme/minica/scripts/uistars/jquery.ui.stars.min.js"></script>
 		<script src="theme/minica/scripts/tiptip/jquery.tipTip.minified.js"></script>
-		<script src="theme/minica/scripts/validation/jquery.validate.min.js" type="text/javascript"></script>		
+		<script src="theme/minica/scripts/validation/jquery.validate.min.js"></script>		
 
 		<!-- Configuration Script -->
-		<script type="text/javascript" src="theme/minica/scripts/minica/minica_ui.js"></script>
-		<script type="text/javascript" src="theme/minica/scripts/minica/minica_forms.js"></script>
-		<script type="text/javascript" src="theme/minica/scripts/minica/minica_mobile.js"></script>
+		<script src="theme/minica/scripts/minica/minica_ui.js"></script>
+		<script src="theme/minica/scripts/minica/minica_forms.js"></script>
+		<script src="theme/minica/scripts/minica/minica_mobile.js"></script>
 		
 	<body>
 		<div id="wrapper">		
-      
 			<div id="main_container" class="main_container container_16 clearfix">
         <div id="logo">
           <a href="index.php"><img src="images/logo_foodness.png" alt="foodness" /></a>
