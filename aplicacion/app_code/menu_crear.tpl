@@ -14,7 +14,16 @@
     border-radius: 3px;
   }
   </style>
+<script>
+  window.onload = function() {
+  }
 
+  function agregarReceta(e) {
+    var receta = e.target.parentNode;
+    var receptor = document.getElementById("receptor");
+    receptor.appendChild(receta);
+  }
+</script>
 <div class="box grid_16">
   <div class="box grid_8 side_tabs tabs no_titlebar" style="opacity: 1; ">
     <div class="side_holder">
@@ -37,7 +46,7 @@
       <div class="section">
         <ul>
           {foreach $recetas as $receta}
-            <li style="clear:both;">{$receta->nombre_es} <span class="miniboton">Agregar</span></li>
+            <li style="clear:both;" id="{$receta->id}">{$receta->nombre_es} <span class="miniboton" onclick="agregarReceta();">Agregar</span></li>
           {/foreach}
         </ul>
       </div>
@@ -91,6 +100,8 @@
     <div class="block">
       <div class="section">
       <h3>Alimentos de tu menú</h3>
+      <ul id="receptor">
+      </ul>
       <select name="comida">
         <option value="" selected>Desayuno</option>
         <option value="">Almuerzo</option>

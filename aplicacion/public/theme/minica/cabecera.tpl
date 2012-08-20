@@ -12,7 +12,7 @@
  	<meta name="description" content="Planifica y controla tu alimentación para sentirte fenomenal">
  		
 	<!-- iPhone, iPad and Android specific settings -->	
-		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1;">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<link rel="apple-touch-icon" href="theme/minica/images/iOS_icon.png">
@@ -41,7 +41,7 @@
      <!--<link rel="stylesheet" href="theme/minica/scripts/syntax_highlighter/styles/shCore.css">-->
      <!--<link rel="stylesheet" href="theme/minica/scripts/syntax_highlighter/styles/shThemeDefault.css">-->
 		<link rel="stylesheet" href="theme/minica/styles/colours.css">
-		<link rel="stylesheet" href="theme/minica/styles/bottons.css">
+		<link rel="stylesheet" href="theme/minica/styles/buttons.css">
 
 	<!-- Scripts -->
 
