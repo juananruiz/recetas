@@ -49,11 +49,12 @@
     border: 1px dashed #333;
   }
 </style>
+<button id="grabar">Grabar menú</button>
 <div class="main_cotainer">
-<div class="dia">
+<div class="dia" id="Lunes">
 <h3>Lunes</h3>
   {foreach $lunes as $plato}
-    <div class="box plato ui-sortable">
+    <div class="box plato ui-sortable" id="{$plato->receta->id}">
 			<div class="resumen">
         <span class="descartar">X</span>
         <a href="#" class="grabber"></a>
@@ -75,7 +76,7 @@
 <div class="dia">
 <h3>Martes</h3>
   {foreach $martes as $plato}
-    <div class="box plato ui-sortable">
+    <div class="box plato ui-sortable" id="{$plato->receta->id}">
 			<div class="resumen">
         <span class="descartar">X</span>
         <a href="#" class="grabber"></a>
@@ -97,7 +98,7 @@
 <div class="dia">
 <h3>Miércoles</h3>
   {foreach $miercoles as $plato}
-    <div class="box plato ui-sortable">
+    <div class="box plato ui-sortable" id="{$plato->receta->id}">
 			<div class="resumen">
         <span class="descartar">X</span>
         <a href="#" class="grabber"></a>
@@ -119,7 +120,7 @@
 <div class="dia">
 <h3>Jueves</h3>
   {foreach $jueves as $plato}
-    <div class="box plato ui-sortable">
+    <div class="box plato ui-sortable" id="{$plato->receta->id}">
 			<div class="resumen">
         <span class="descartar">X</span>
         <a href="#" class="grabber"></a>
@@ -141,7 +142,7 @@
 <div class="dia">
 <h3>Viernes</h3>
   {foreach $viernes as $plato}
-    <div class="box plato ui-sortable">
+    <div class="box plato ui-sortable" id="{$plato->receta->id}">
 			<div class="resumen">
         <span class="descartar">X</span>
         <a href="#" class="grabber"></a>
@@ -163,7 +164,7 @@
 <div class="dia">
 <h3>Sábado</h3>
   {foreach $sabado as $plato}
-    <div class="box plato ui-sortable">
+    <div class="box plato ui-sortable" id="{$plato->receta->id}">
 			<div class="resumen">
         <span class="descartar">X</span>
         <a href="#" class="grabber"></a>
@@ -185,7 +186,7 @@
 <div class="dia">
 <h3>Domingo</h3>
   {foreach $domingo as $plato}
-    <div class="box plato ui-sortable">
+    <div class="box plato ui-sortable" id="{$plato->receta->id}">
 			<div class="resumen">
         <span class="descartar">X</span>
         <a href="#" class="grabber"></a>
@@ -207,7 +208,7 @@
 <div class="dia" id="reserva">
   <h3>Reserva</h3>
   {foreach $reserva as $plato}
-    <div class="box plato ui-sortable">
+    <div class="box plato ui-sortable" id="{$plato->receta->id}">
       <div class="resumen">
         <span class="descartar">X</span>
         <a href="#" class="grabber"></a>
@@ -235,10 +236,43 @@
       $(this).parent().next().fadeToggle("slow");
     });
     $(".descartar").click(descartar);
-    
-    function descartar(){
-      $(this).parent().fadeOut(500);
-      $(this).parent().next().fadeOut(500);
-    };
+    $("#grabar").click(grabarMenu);
   });
+    
+  function descartar(){
+    $(this).parent().fadeOut(500);
+    $(this).parent().next().fadeOut(500);
+  };
+
+  // Ahora mismo graba sin tener en cuenta los días, sólo los platos.
+  // Espero pronto poder grabarlo todo
+  function grabarMenu(){
+    //No entiendo porque no funciona así
+    //$(".plato .resumen .nombre").each(save($(this).html()));
+    $(".plato .resumen .nombre").each(function(){
+      var plato = $(this).html();
+      var menuazar = getStorearray("menuazar"); 
+      menuazar.push(plato); 
+      localStorage.setItem("menuazar", JSON.stringify(menuazar));
+      });
+    
+  };
+    
+  function save(plato) { 
+    var menuazar = getStorearray("menuazar"); 
+    menuazar.push(plato); 
+    localStorage.setItem("menuazar", JSON.stringify(menuazar));
+  };
+
+  function getStorearray(key) { 
+    var platos = localStorage.getItem(key); 
+    if (platos == null || platos == "") { 
+      platos = new Array();
+    }	
+    else { 
+      platos = JSON.parse(platos); 
+    }	
+    return platos;
+  }
+
 </script>
