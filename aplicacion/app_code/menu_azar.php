@@ -49,6 +49,14 @@ if (is_object($usuario))
   $domingo[] = $primeros[rand(0,$total_primeros)];
   $domingo[] = $segundos[rand(0,$total_segundos)];
   
+  $reserva =array();
+  $reserva[] = $primeros[rand(0,$total_primeros)];
+  $reserva[] = $segundos[rand(0,$total_segundos)];
+  $reserva[] = $primeros[rand(0,$total_primeros)];
+  $reserva[] = $segundos[rand(0,$total_segundos)];
+  $reserva[] = $primeros[rand(0,$total_primeros)];
+  $reserva[] = $segundos[rand(0,$total_segundos)];
+
   $smarty->assign("lunes", $lunes);
   $smarty->assign("martes", $martes);
   $smarty->assign("miercoles", $miercoles);
@@ -56,6 +64,7 @@ if (is_object($usuario))
   $smarty->assign("viernes", $viernes);
   $smarty->assign("sabado", $sabado);
   $smarty->assign("domingo", $domingo);
+  $smarty->assign("reserva", $reserva);
   $smarty->assign("_nombre_pagina", "Creando menu");
   $plantilla = "menu_azar.tpl";
 }
