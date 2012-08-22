@@ -212,7 +212,7 @@
       <div class="resumen">
         <span class="descartar">X</span>
         <a href="#" class="grabber"></a>
-        <span class="nombre {$plato->etiqueta->nombre_es}">{$plato->receta->nombre_es}</span>
+        <span class="nombre">{$plato->receta->nombre_es}</span>
       </div>
       <div class="detalle">
         <ul>
@@ -233,7 +233,7 @@
     $(".error").fadeOut(5000);
     $(".resumen span.nombre").click(function(){
       $(this).parent().css("margin-bottom", "0");
-      $(this).parent().next().fadeToggle("slow");
+      $(this).parent().next().slideToggle("slow");
     });
     $(".descartar").click(descartar);
     $("#grabar").click(grabarMenu);
@@ -242,37 +242,54 @@
   function descartar(){
     $(this).parent().fadeOut(500);
     $(this).parent().next().fadeOut(500);
+    //$(this).parent().parent().html("<img src='theme/minica/images/icons/large/grey/cloud_lightning.png'>");
+    $(this).parent().parent().remove();
   };
 
   // Ahora mismo graba sin tener en cuenta los días, sólo los platos.
   // Espero pronto poder grabarlo todo
   function grabarMenu(){
-    //No entiendo porque no funciona así
-    //$(".plato .resumen .nombre").each(save($(this).html()));
-    $(".plato .resumen .nombre").each(function(){
-      var plato = $(this).html();
-      var menuazar = getStorearray("menuazar"); 
+    var menuazar = crearAlmacenLocal("menuazar"); 
+    var menuazarAjax = "nombre_es=MenuJuanan";
+    $(".plato").each(function(){
+      var plato = $(this).attr("id");
+      // Resto todo
       menuazar.push(plato); 
-      localStorage.setItem("menuazar", JSON.stringify(menuazar));
-      });
-    
-  };
-    
-  function save(plato) { 
-    var menuazar = getStorearray("menuazar"); 
-    menuazar.push(plato); 
+      menuazarAjax += "&platos[]=" + plato;
+    });
+    // Grabamos en local (por experimentar)
     localStorage.setItem("menuazar", JSON.stringify(menuazar));
+    // Grabamos en remoto (esta es la buena)
+    grabarRemoto(menuazarAjax);
   };
 
-  function getStorearray(key) { 
-    var platos = localStorage.getItem(key); 
-    if (platos == null || platos == "") { 
-      platos = new Array();
+  function grabarRemoto(datos){
+    var request = new XMLHttpRequest();
+    var page = "index.php?page=menu_grabar";
+    request.open("POST", page, true);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send(datos);
+  };
+  
+  function crearAlmacenLocal(key) {
+    var valor = localStorage.getItem(key);
+    if (valor) {
+      localStorage.removeItem(key);
+    }
+    valor = new Array();
+    return valor;
+  }
+  
+  //Esta me sirve para cuando quiero mantener el almacen siempre en memoria local
+  function getAlmacenLocal(key) { 
+    var valor = localStorage.getItem(key); 
+    if (valor == null || valor == "") { 
+      valor = new Array();
     }	
     else { 
-      platos = JSON.parse(platos); 
+      valor = JSON.parse(valor); 
     }	
-    return platos;
+    return valor;
   }
 
 </script>
