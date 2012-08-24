@@ -10,6 +10,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
   }
 
   .detalle {
@@ -37,6 +38,7 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    cursor: pointer;
   }
 
   .dia {
@@ -49,8 +51,8 @@
     border: 1px dashed #333;
   }
 </style>
+<div class="main_container">
 <button id="grabar">Grabar menú</button>
-<div class="main_cotainer">
 <div class="dia" id="Lunes">
 <h3>Lunes</h3>
   {foreach $lunes as $plato}
@@ -256,6 +258,10 @@
       // Resto todo
       menuazar.push(plato); 
       menuazarAjax += "&platos[]=" + plato;
+      $("#grabar").attr("disabled","disabled");
+      $("#grabar").css("background","silver");
+      $("#grabar").css("border","1px dashed gray");
+      $("#grabar").css("cursor","default");
     });
     // Grabamos en local (por experimentar)
     localStorage.setItem("menuazar", JSON.stringify(menuazar));
