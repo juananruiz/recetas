@@ -87,14 +87,12 @@
             <a href="index.php?page=usuario_crear">Crear cuenta</a>
           {/if}
         </div>
-        {include file="menu_top.tpl"}
+        {include file="nav_top.tpl"}
         <!-- #nav_top -->
 
       <div class="flat_area grid_16">
         
-      <div>
-        <h2>{$_nombre_pagina}</h2>
-      </div>
+        <h1>{$_nombre_pagina}</h1>
 
         {if isset($smarty.get.error)}
           <div class="alert dissmisible alert_red">

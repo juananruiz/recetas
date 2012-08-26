@@ -17,6 +17,7 @@
       <script type="text/javascript" src="theme/minica/scripts/minica/minica_datatables.js"></script>
       <script type="text/javascript">
         $(".validate_form").validate();
+        $(".alert").delay(3000).slideUp(3000,"linear");
       </script>
     <!-- La barrita animada de carga -->
     <!--

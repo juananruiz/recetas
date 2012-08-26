@@ -17,61 +17,41 @@ if (is_object($usuario))
   $segundos = $etiqueta_receta->Find_recetas("id_etiqueta = 21");
   $entrantes = $etiqueta_receta->Find_recetas("id_etiqueta = 19");
   $unicos = $etiqueta_receta->Find_recetas("id_etiqueta = 101");
+  $cenas = $etiqueta_receta->Find_recetas("id_etiqueta = 15");
   
-  $total_primeros = count($primeros) - 1;
-  $total_segundos = count($segundos) - 1;
+  $total_primeros = count($primeros);
+  $total_segundos = count($segundos);
+  $total_cenas = count($cenas);
 
-  $lunes = array();
-  $lunes[] = $primeros[rand(0,$total_primeros)];
-  $lunes[] = $segundos[rand(0,$total_segundos)];
-  
-  $martes = array();
-  $martes[] = $primeros[rand(0,$total_primeros)];
-  $martes[] = $segundos[rand(0,$total_segundos)];
-  
-  $miercoles = array();
-  $miercoles[] = $primeros[rand(0,$total_primeros)];
-  $miercoles[] = $segundos[rand(0,$total_segundos)];
-  
-  $jueves = array();
-  $jueves[] = $primeros[rand(0,$total_primeros)];
-  $jueves[] = $segundos[rand(0,$total_segundos)];
-  
-  $viernes = array();
-  $viernes[] = $primeros[rand(0,$total_primeros)];
-  $viernes[] = $segundos[rand(0,$total_segundos)];
-  
-  $sabado = array();
-  $sabado[] = $primeros[rand(0,$total_primeros)];
-  $sabado[] = $segundos[rand(0,$total_segundos)];
-  
-  $domingo = array();
-  $domingo[] = $primeros[rand(0,$total_primeros)];
-  $domingo[] = $segundos[rand(0,$total_segundos)];
+  $dias = array("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo");
+  $momentos = array("almuerzo","cena"); //Este habría que ampliarlo para incluir el número (¿y tipo?) de plato en cada comida
+  $recetas = array();
+  foreach($dias as $dia)
+  {
+    foreach($momentos as $momento)
+    {
+      $recetas[$dia][$momento][] =  $primeros[rand(0,$total_primeros - 1)];
+      $recetas[$dia][$momento][] =  $segundos[rand(0,$total_segundos - 1)];
+    }
+  } 
   
   $reserva =array();
-  $reserva[] = $primeros[rand(0,$total_primeros)];
-  $reserva[] = $segundos[rand(0,$total_segundos)];
-  $reserva[] = $primeros[rand(0,$total_primeros)];
-  $reserva[] = $segundos[rand(0,$total_segundos)];
-  $reserva[] = $primeros[rand(0,$total_primeros)];
-  $reserva[] = $segundos[rand(0,$total_segundos)];
+  for ($i = 0; $i < 3; $i++)
+  {
+    $reserva[] = $primeros[rand(0,$total_primeros - 1)];
+    $reserva[] = $segundos[rand(0,$total_segundos - 1)];
+    $reserva[] = $cenas[rand(0,$total_cenas - 1)];
+  }
 
-  $smarty->assign("lunes", $lunes);
-  $smarty->assign("martes", $martes);
-  $smarty->assign("miercoles", $miercoles);
-  $smarty->assign("jueves", $jueves);
-  $smarty->assign("viernes", $viernes);
-  $smarty->assign("sabado", $sabado);
-  $smarty->assign("domingo", $domingo);
+  $smarty->assign("recetas", $recetas);
   $smarty->assign("reserva", $reserva);
-  $smarty->assign("_nombre_pagina", "Creando menu");
+  $smarty->assign("_nombre_pagina", "Menú semanal inteligente");
   $plantilla = "menu_azar.tpl";
 }
 else
 {
   $error = "Debe iniciar sesión con su cuenta de usuario para crear nuevos menus";
-  header("location:index.php?page=mi_menu_listar&error=$error");
+  header("location:index.php?error=$error");
 }
 ?>
 

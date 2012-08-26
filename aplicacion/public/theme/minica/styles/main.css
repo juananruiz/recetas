@@ -867,6 +867,11 @@ div.main_container .box h2.box_head {
 	margin-bottom: 0;
 }
 
+.flat_area h1 {
+  border-bottom: 1px solid #EEE;
+  padding-bottom: 8px;
+  }
+  
 .flat_area h2 {
 	margin-left: 0px;
 	margin-right: 0px;

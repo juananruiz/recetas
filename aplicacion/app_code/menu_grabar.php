@@ -10,7 +10,7 @@ global $usuario;
 
 if (is_object($usuario))
 {
-  if (isset($_REQUEST["nombre_es"]) AND isset($_REQUEST["platos"]))
+  if (isset($_REQUEST["nombre_es"]) AND isset($_REQUEST["recetas"]))
   {
     $menu = new menu();
     $menu->nombre_es = sanitize($_REQUEST["nombre_es"], SQL);
@@ -18,7 +18,7 @@ if (is_object($usuario))
     $menu->publico = 1; //De momento todos serán públicos por defecto
     if ($menu->save())
     {
-      foreach($_REQUEST["platos"] as $id_receta)
+      foreach($_REQUEST["recetas"] as $id_receta)
       {
         $menu_receta = new menu_receta();
         $menu_receta->id_receta = sanitize($id_receta, INT);
@@ -40,7 +40,7 @@ if (is_object($usuario))
 else
 {
   $error = "Debe iniciar sesión con su cuenta de usuario para crear nuevos menus";
-  header("location:index.php?page=mi_menu_listar&error=$error");
+  header("location:index.php?error=$error");
 }
 ?>
 

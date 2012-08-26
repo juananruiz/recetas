@@ -29,10 +29,8 @@ hr {
 ----------------------------------------------------------------------------------------------------*/
 
 h1 {
-	font-size: 17px;
-  text-align: center;
-  color: #999;
-  font-weight: normal;
+	font-size: 24px;
+  color:#333;
 }
 
 h2 {
@@ -52,10 +50,12 @@ h4 {
 
 h5 {
 	font-size: 12px;
+  color:#333;
 }
 
 h6 {
 	font-size: 12px;
+  color:#333;
 }
 
 /* `Spacing
