@@ -1,9 +1,7 @@
 <div class="box grid_16 single_datatable">
   <div class="button_bar clearfix">
-    <ul class="clearfix">
-      <li class><a href="index.php?page=menu_crear"><img src='theme/minica/images/icons/small/white/frames.png' /> Crear menú</a></li>
-      <li class><a href="index.php?page=menu_buscar"><img src='theme/minica/images/icons/small/white/magnifying_glass.png' /> Buscar menú</a></li>
-    </ul>
+      <a class="comando" href="index.php?page=menu_crear"><img src='theme/minica/images/icons/small/white/frames.png' /><span>Crear menú</span></a>
+      <a class="comando" href="index.php?page=menu_buscar"><img src='theme/minica/images/icons/small/white/magnifying_glass.png' /><span>Buscar menú</span></a>
   </div>
 
   {if $menus}

@@ -58,7 +58,6 @@
     font-weight: bold;
   }
 
-
   .box .resumen a.grabber {
     height: 20px;
     width: 20px;
@@ -94,86 +93,86 @@
 
 </style>
 
-
-  <div class="box grid_16 no_titlebar" style="opacity: 1; ">
-      <div class="block lines" style="opacity: 1; ">
-        <div class="columns clearfix">
-          <div class="col_25">
-            <div class="section">
-              <button id="grabar">Grabar menú</button>
-            </div>
-          </div>
-          <div class="col_25">
-            <div class="section">
-              <p>25% content</p>
-            </div>
-          </div>
-          <div class="col_25">
-            <div class="section">
-              <p>25% content</p>
-            </div>
-          </div>
-          <div class="col_25 on_right">
-            <div class="section">
-              <p>25% content</p>
-            </div>
-          </div>
+<div class="box grid_16 no_titlebar" style="opacity: 1; ">
+  <div class="block lines" style="opacity: 1; ">
+    <div class="columns clearfix">
+      <div class="col_25">
+        <div class="section">
+          <button id="grabar">Grabar menú</button>
         </div>
       </div>
-  </div>
-  {foreach $recetas as $dia => $momentos}
-    <div class="dia" id="{$dia}">
-      <h2>{$dia|upper}</h2>
-      {foreach $momentos as $momento => $recetas}
-        <div class="momento" id="{$momento}">
-          <h3>{$momento}</h3>
-          {foreach $recetas as $receta}
-            <div class="box receta ui-sortable" id="{$receta->receta->id}">
-              <div class="resumen">
-                <span class="descartar">X</span>
-                <a href="#" class="grabber"></a>
-                <span class="nombre">{$receta->receta->nombre_es}</span>
-              </div>
-              <div class="detalle">
-                <ul>
-                  <li>{$receta->receta->descripcion_es}</li>
-                  <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
-                  <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
-                  <li>Grasas: {$receta->receta->grasas}gr</li>
-                  <li>Proteínas: {$receta->receta->proteinas}gr</li>
-                  <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
-                </ul>
-              </div>
-            </div>
-          {/foreach}
+      <div class="col_25">
+        <div class="section">
+          <p>25% content</p>
         </div>
-      {/foreach}
+      </div>
+      <div class="col_25">
+        <div class="section">
+          <p>25% content</p>
+        </div>
+      </div>
+      <div class="col_25 on_right">
+        <div class="section">
+          <p>25% content</p>
+        </div>
+      </div>
     </div>
-  {/foreach}
-
-  <div class="dia" id="reserva">
-    <h2>RESERVA</h2>
-    {foreach $reserva as $receta}
-      <div class="box receta ui-sortable" id="{$receta->receta->id}">
-        <div class="resumen">
-          <span class="descartar">X</span>
-          <a href="#" class="grabber"></a>
-          <span class="nombre">{$receta->receta->nombre_es}</span>
-        </div>
-        <div class="detalle">
-          <ul>
-            <li>{$receta->receta->descripcion_es}</li>
-            <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
-            <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
-            <li>Grasas: {$receta->receta->grasas}gr</li>
-            <li>Proteínas: {$receta->receta->proteinas}gr</li>
-            <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
-          </ul>
-        </div>
+  </div>
+</div>
+<div class="flat grid_16 no_titlebar">
+{foreach $recetas as $dia => $momentos}
+  <div class="dia" id="{$dia}">
+    <h2>{$dia|upper}</h2>
+    {foreach $momentos as $momento => $recetas}
+      <div class="momento" id="{$momento}">
+        <h3>{$momento}</h3>
+        {foreach $recetas as $receta}
+          <div class="box receta ui-sortable" id="{$receta->receta->id}">
+            <div class="resumen">
+              <span class="descartar">X</span>
+              <a href="#" class="grabber"></a>
+              <span class="nombre">{$receta->receta->nombre_es}</span>
+            </div>
+            <div class="detalle">
+              <ul>
+                <li>{$receta->receta->descripcion_es}</li>
+                <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
+                <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
+                <li>Grasas: {$receta->receta->grasas}gr</li>
+                <li>Proteínas: {$receta->receta->proteinas}gr</li>
+                <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
+              </ul>
+            </div>
+          </div>
+        {/foreach}
       </div>
     {/foreach}
   </div>
+{/foreach}
 
+<div class="dia" id="reserva">
+  <h2>RESERVA</h2>
+  {foreach $reserva as $receta}
+    <div class="box receta ui-sortable" id="{$receta->receta->id}">
+      <div class="resumen">
+        <span class="descartar">X</span>
+        <a href="#" class="grabber"></a>
+        <span class="nombre">{$receta->receta->nombre_es}</span>
+      </div>
+      <div class="detalle">
+        <ul>
+          <li>{$receta->receta->descripcion_es}</li>
+          <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
+          <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
+          <li>Grasas: {$receta->receta->grasas}gr</li>
+          <li>Proteínas: {$receta->receta->proteinas}gr</li>
+          <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
+        </ul>
+      </div>
+    </div>
+  {/foreach}
+</div>
+</div>
 <script>
   $(".resumen span.nombre").click(detallarReceta);
   $(".descartar").click(descartarReceta);

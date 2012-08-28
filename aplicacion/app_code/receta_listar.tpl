@@ -1,6 +1,6 @@
 <div class="box grid_16 single_datatable">
   <div class="button_bar clearfix">
-    <a href="index.php?page=receta_crear"><img src='/icons/ff16/time.png' /> Agregar receta</a> &nbsp; &nbsp; &nbsp;
+    <a class="comando" href="index.php?page=receta_crear"><img src="theme/minica/images/icons/small/grey/note_book.png" alt=""><span>Agregar receta</span></a>
   </div>
 
   {if $recetas}

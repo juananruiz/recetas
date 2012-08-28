@@ -696,6 +696,23 @@ li.has_drawer.open > a {
 	display: block;
 	width: 100%;
 }
+/*-----Comando-----*/
+.comando {
+  border: 1px solid silver;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding:5px;
+  margin: 0 8px 0 0;
+}
+
+.comando span {
+  padding: 0px 2px;
+}
+.comando img {
+  margin: -10px 0px;
+  padding: 2px 0px;
+}
 
 /*-----Box -------*/
 div.main_container .box {
