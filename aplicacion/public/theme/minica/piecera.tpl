@@ -1,5 +1,5 @@
                 <div class="flat_area grid_16">
-                &copy; Triple Jota
+                 <p style="margin-top:50px;"> Foodness - http://foodnes.com - &copy; Triple Jota</p>
                 </div>
 
 							</div>

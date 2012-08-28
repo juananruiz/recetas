@@ -28,7 +28,10 @@
               </ul>
             {/if}
           </td>
-          <td><a href="index.php?page=menu_mostrar&id_menu={$menu->id}">Mostrar</a></td>
+          <td>
+            <a href="index.php?page=menu_mostrar&id_menu={$menu->id}">Mostrar</a>
+            <a href="index.php?page=menu_imprimir&id_menu={$menu->id}">Imprimir</a>
+          </td>
         </tr>
       {/foreach}
     </tbody>

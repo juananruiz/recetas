@@ -13,9 +13,9 @@ global $usuario;
 if (is_object($usuario))
 {
   $etiqueta_receta = new etiqueta_receta();
-  $primeros = $etiqueta_receta->Find_recetas("id_etiqueta = 20");
-  $segundos = $etiqueta_receta->Find_recetas("id_etiqueta = 21");
-  $entrantes = $etiqueta_receta->Find_recetas("id_etiqueta = 19");
+  $primeros = $etiqueta_receta->Find_recetas("id_etiqueta = 19");
+  $segundos = $etiqueta_receta->Find_recetas("id_etiqueta = 20");
+  $entrantes = $etiqueta_receta->Find_recetas("id_etiqueta = 21");
   $unicos = $etiqueta_receta->Find_recetas("id_etiqueta = 101");
   $cenas = $etiqueta_receta->Find_recetas("id_etiqueta = 15");
   
