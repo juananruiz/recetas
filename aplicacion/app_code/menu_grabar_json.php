@@ -1,11 +1,10 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Comerbien 
-// Archivo: menu_grabar.php
+// Archivo: menu_grabar_json.php
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Graba un menu en la base de datos tras una peticion de ajax
+// Descripcion: Graba un menu en la base de datos tras una peticion de ajax utilizando json
 //---------------------------------------------------------------------------------------------------
-
 global $usuario;
 
 if (is_object($usuario))

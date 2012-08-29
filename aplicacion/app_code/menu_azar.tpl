@@ -120,63 +120,65 @@
   </div>
 </div>
 <div class="flat grid_16 no_titlebar">
-{foreach $recetas as $dia => $momentos}
-  <div class="dia" id="{$dia}">
-    <h2>{$dia|upper}</h2>
-    {foreach $momentos as $momento => $recetas}
-      <div class="momento" id="{$momento}">
-        <h3>{$momento}</h3>
-        {foreach $recetas as $receta}
-          <div class="box receta ui-sortable" id="{$receta->receta->id}">
-            <div class="resumen">
-              <span class="descartar">X</span>
-              <a href="#" class="grabber"></a>
-              <span class="nombre">{$receta->receta->nombre_es}</span>
+  {foreach $recetas as $dia => $momentos}
+    <div class="dia" id="{$dia}">
+      <h2>{$dia|upper}</h2>
+      {foreach $momentos as $momento => $recetas}
+        <div class="momento" id="{$momento}">
+          <h3>{$momento}</h3>
+          {foreach $recetas as $receta}
+            <div class="box receta ui-sortable" id="{$receta->receta->id}">
+              <div class="resumen">
+                <span class="descartar">X</span>
+                <a href="#" class="grabber"></a>
+                <span class="nombre">{$receta->receta->nombre_es}</span>
+              </div>
+              <div class="detalle">
+                <ul>
+                  <li>{$receta->receta->descripcion_es}</li>
+                  <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
+                  <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
+                  <li>Grasas: {$receta->receta->grasas}gr</li>
+                  <li>Proteínas: {$receta->receta->proteinas}gr</li>
+                  <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
+                </ul>
+              </div>
             </div>
-            <div class="detalle">
-              <ul>
-                <li>{$receta->receta->descripcion_es}</li>
-                <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
-                <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
-                <li>Grasas: {$receta->receta->grasas}gr</li>
-                <li>Proteínas: {$receta->receta->proteinas}gr</li>
-                <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
-              </ul>
-            </div>
-          </div>
-        {/foreach}
+          {/foreach}
+        </div>
+      {/foreach}
+    </div>
+  {/foreach}
+
+  <div class="dia" id="reserva">
+    <h2>RESERVA</h2>
+    {foreach $reserva as $receta}
+      <div class="box receta ui-sortable" id="{$receta->receta->id}">
+        <div class="resumen">
+          <span class="descartar">X</span>
+          <a href="#" class="grabber"></a>
+          <span class="nombre">{$receta->receta->nombre_es}</span>
+        </div>
+        <div class="detalle">
+          <ul>
+            <li>{$receta->receta->descripcion_es}</li>
+            <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
+            <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
+            <li>Grasas: {$receta->receta->grasas}gr</li>
+            <li>Proteínas: {$receta->receta->proteinas}gr</li>
+            <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
+          </ul>
+        </div>
       </div>
     {/foreach}
   </div>
-{/foreach}
+</div>
 
-<div class="dia" id="reserva">
-  <h2>RESERVA</h2>
-  {foreach $reserva as $receta}
-    <div class="box receta ui-sortable" id="{$receta->receta->id}">
-      <div class="resumen">
-        <span class="descartar">X</span>
-        <a href="#" class="grabber"></a>
-        <span class="nombre">{$receta->receta->nombre_es}</span>
-      </div>
-      <div class="detalle">
-        <ul>
-          <li>{$receta->receta->descripcion_es}</li>
-          <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
-          <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
-          <li>Grasas: {$receta->receta->grasas}gr</li>
-          <li>Proteínas: {$receta->receta->proteinas}gr</li>
-          <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
-        </ul>
-      </div>
-    </div>
-  {/foreach}
-</div>
-</div>
+{literal}
 <script>
   $(".resumen span.nombre").click(detallarReceta);
   $(".descartar").click(descartarReceta);
-  $("#grabar").click(grabarMenu);
+  $("#grabar").click(grabarMenuJson);
     
   function detallarReceta(){
     $(this).parent().css("border-bottom", "1px solid #EEE");
@@ -211,6 +213,7 @@
     grabarRemoto(menuazarAjax);
   }
 
+  // Esta función graba con JavaScript utilizando Ajax contra un controlador php
   function grabarRemoto(datos){
     var request = new XMLHttpRequest();
     var page = "index.php?page=menu_grabar";
@@ -219,6 +222,38 @@
     request.send(datos);
   }
   
+  function grabarMenuJson(){
+    var recetas = new Array();
+    $(".receta").each(function(){
+      var receta = {
+        id_receta:$(this).attr("id"),
+        id_momento:$(this).parent().attr("id"),
+        id_dia:$(this).parent().parent().attr("id")
+      };
+      recetas.push(receta);
+    });
+    var datos = {nombre_es:"MenuJuananJson", recetas:recetas};
+    alert(datos);
+    grabarRemotoJson(datos);
+  }
+
+  function grabarRemotoJson(datos){
+    $.ajax({ 
+      type: "POST", 
+      url: "index.php?page=menu_grabar_json", 
+      data: datos,
+      dataType: "json", 
+      success: deshabilitarGrabar()   
+    }); 
+  }
+
+  function deshabilitarGrabar(){
+    $("#grabar").attr("disabled","disabled");
+    $("#grabar").css("background","silver");
+    $("#grabar").css("border","1px dashed gray");
+    $("#grabar").css("cursor","default");
+  }
+
   function crearAlmacenLocal(key) {
     var valor = localStorage.getItem(key);
     if (valor) {
@@ -239,5 +274,5 @@
     }	
     return valor;
   }
-
 </script>
+{/literal}
