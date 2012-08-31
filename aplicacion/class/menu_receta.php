@@ -10,6 +10,8 @@ class menu_receta extends ADOdb_Active_Record
   //Propiedades de la clase
 	public $_table = 'menus_recetas';
   public $receta;
+  public $dia;
+  public $momento;
 
   function Find_recetas($condicion) 
   {
@@ -19,6 +21,10 @@ class menu_receta extends ADOdb_Active_Record
       {
         $menu_receta->receta = new receta();
         $menu_receta->receta->load_joined("id = $menu_receta->id_receta");
+        $menu_receta->dia = new dia();
+        $menu_receta->dia->load("id = $menu_receta->id_dia");
+        $menu_receta->momento = new momento();
+        $menu_receta->momento->load("id = $menu_receta->id_momento");
       }
       return $menus_recetas;  
     }

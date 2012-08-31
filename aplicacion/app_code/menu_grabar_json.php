@@ -17,10 +17,12 @@ if (is_object($usuario))
     $menu->publico = 1; //De momento todos serán públicos por defecto
     if ($menu->save())
     {
-      foreach($_REQUEST["recetas"] as $id_receta)
+      foreach($_REQUEST["recetas"] as $receta)
       {
         $menu_receta = new menu_receta();
-        $menu_receta->id_receta = sanitize($id_receta, INT);
+        $menu_receta->id_receta = sanitize($receta["id_receta"], INT);
+        $menu_receta->id_dia = sanitize($receta["id_dia"], INT);
+        $menu_receta->id_momento = sanitize($receta["id_momento"], INT);
         $menu_receta->id_menu = $menu->id;
         $menu_receta->save();
       }

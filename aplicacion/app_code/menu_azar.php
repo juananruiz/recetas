@@ -23,15 +23,16 @@ if (is_object($usuario))
   $total_segundos = count($segundos);
   $total_cenas = count($cenas);
 
-  $dias = array("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo");
-  $momentos = array("almuerzo","cena"); //Este habría que ampliarlo para incluir el número (¿y tipo?) de plato en cada comida
-  $recetas = array();
+  //Esta información debe proporcionarla el usuario previamente o tomar configuración por defecto
+  $dias = array(1,2,3,4,5,6,7);
+  $momentos = array(3,6);//Este habría que ampliarlo para incluir el número (¿y tipo?) de plato en cada comida
+  $comidas = array();
   foreach($dias as $dia)
   {
     foreach($momentos as $momento)
     {
-      $recetas[$dia][$momento][] =  $primeros[rand(0,$total_primeros - 1)];
-      $recetas[$dia][$momento][] =  $segundos[rand(0,$total_segundos - 1)];
+      $comidas[$dia][$momento][] =  $primeros[rand(0,$total_primeros - 1)];
+      $comidas[$dia][$momento][] =  $segundos[rand(0,$total_segundos - 1)];
     }
   } 
   
@@ -42,8 +43,15 @@ if (is_object($usuario))
     $reserva[] = $segundos[rand(0,$total_segundos - 1)];
     $reserva[] = $cenas[rand(0,$total_cenas - 1)];
   }
+  $dia = new dia();
+  $dias = $dia->Find("1 = 1");
+  $smarty->assign("dias", $dias);
 
-  $smarty->assign("recetas", $recetas);
+  $momento = new momento();
+  $momentos = $momento->Find("1 = 1");
+  $smarty->assign("momentos", $momentos);
+
+  $smarty->assign("comidas", $comidas);
   $smarty->assign("reserva", $reserva);
   $smarty->assign("_nombre_pagina", "Menú semanal inteligente");
   $plantilla = "menu_azar.tpl";

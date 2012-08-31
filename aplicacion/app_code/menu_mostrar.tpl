@@ -119,6 +119,80 @@
     </div>
   </div>
 </div>
+--------------------------------------
+{$dia_anterior = 0}
+{$momento_anterior = 0}
+
+{foreach $menus_recetas as $menu_receta}
+  {if $menu_receta->id_dia > 0}
+    {if $dia_anterior != $menu_receta->id_dia}
+      <h3>{$menu_receta->dia->nombre_es}</h3>
+    {/if}
+
+    {if $momento_anterior != $menu_receta->id_momento}
+      <h4>{$menu_receta->momento->nombre_es}</h4>
+    {/if}
+
+      <span class="nombre_receta">{$menu_receta->receta->nombre_es}</span>
+
+    {$dia_anterior = $menu_receta->id_dia}
+    {$momento_anterior = $menu_receta->id_momento}
+  {/if}
+{/foreach}
+------------------------------------
+{$dia_anterior = -1}
+{$momento_anterior = -1}
+<div class="flat grid_16 no_titlebar">
+{foreach $menus_recetas as $menu_receta}
+  {if $menu_receta->id_dia > 0}
+    {if $dia_anterior != $menu_receta->id_dia}
+      <h3>{$menu_receta->dia->nombre_es}</h3>
+    {/if}
+
+    {if $momento_anterior != $menu_receta->id_momento}
+      <h4>{$menu_receta->momento->nombre_es}</h4>
+    {/if}
+
+      <span class="nombre_receta">{$menu_receta->receta->nombre_es}</span>
+
+    {$dia_anterior = $menu_receta->id_dia}
+    {$momento_anterior = $menu_receta->id_momento}
+  {else}
+    {if $dia_anterior != $menu_receta->id_dia}
+      <div class="dia" id="reserva">
+        <h2>RESERVA</h2>
+    {/if}
+      <div class="box receta ui-sortable" id="{$receta->receta->id}">
+        <div class="resumen">
+          <span class="descartar">X</span>
+          <a href="#" class="grabber"></a>
+          <span class="nombre">{$receta->receta->nombre_es}</span>
+        </div>
+        <div class="detalle">
+          <ul>
+            <li>{$receta->receta->descripcion_es}</li>
+            <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
+            <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
+            <li>Grasas: {$receta->receta->grasas}gr</li>
+            <li>Proteínas: {$receta->receta->proteinas}gr</li>
+            <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
+          </ul>
+        </div>
+      </div>
+    
+    {$dia_anterior = $menu_receta->id_dia}
+    {$momento_anterior = $menu_receta->id_momento}
+    {if $dia_anterior != $menu_receta->id_dia}
+      </div>
+    {/if}
+
+    {if $momento_anterior != $menu_receta->id_momento}
+      </div>
+    {/if}
+  {/if}
+{/foreach}
+------------------------------------
+
 <div class="flat grid_16 no_titlebar">
   {foreach $comidas as $dia => $array_momentos}
     <div class="dia" id="{$dia}">
