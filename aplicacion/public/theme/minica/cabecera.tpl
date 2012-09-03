@@ -73,7 +73,7 @@
 		
 	<body>
 		<div id="wrapper">		
-			<div id="main_container" class="main_container container_16 clearfix">
+			<div id="header" class="main_container container_16 clearfix" style="opacity: 1; ">
         <div id="logo">
           <a href="index.php"><img src="images/logo_foodness.png" alt="foodness" /></a>
         </div>
@@ -87,34 +87,37 @@
             <a href="index.php?page=usuario_crear">Crear cuenta</a>
           {/if}
         </div>
-        {include file="nav_top.tpl"}
-        <!-- #nav_top -->
+        <div id="nav_top" class="dropdown_menu clearfix round_top">
+          {include file="nav_top.tpl"}
+        </div>
+      </div>
+      
+      <div id="contenido" class="main_container container_16 clearfix full_size ui-sortable">
+        <div class="flat_area grid_16"> 
+          <h1>{$_nombre_pagina}</h1>
 
-      <div class="flat_area grid_16">
-        
-        <h1>{$_nombre_pagina}</h1>
-
-        {if isset($smarty.get.error)}
-          <div class="alert dissmisible alert_red">
-            <img height="24" width="24" src="theme/minica/images/icons/small/white/alarm_bell.png"> 
-            {$smarty.get.error}
-          </div>
-        {/if}
-        {if isset($error)}
-          <div class="alert dissmisible alert_red">
-            <img height="24" width="24" src="theme/minica/images/icons/small/white/alarm_bell.png"> 
-            {$error}
-          </div>
-        {/if}
-        {if isset($smarty.get.aviso)}
-          <div class="alert dissmisible alert_blue">
-            <img height="24" width="24" src="theme/minica/images/icons/small/white/alert_2.png"> 
-            {$smarty.get.aviso}
-          </div>
-        {/if}
-        {if isset($aviso)}
-          <div class="alert dissmisible alert_blue">
-            <img height="24" width="24" src="theme/minica/images/icons/small/white/alert_2.png"> 
-            {$aviso}
-          </div>
-        {/if}
+          {if isset($smarty.get.error)}
+            <div class="alert dissmisible alert_red">
+              <img height="24" width="24" src="theme/minica/images/icons/small/white/alarm_bell.png"> 
+              {$smarty.get.error}
+            </div>
+          {/if}
+          {if isset($error)}
+            <div class="alert dissmisible alert_red">
+              <img height="24" width="24" src="theme/minica/images/icons/small/white/alarm_bell.png"> 
+              {$error}
+            </div>
+          {/if}
+          {if isset($smarty.get.aviso)}
+            <div class="alert dissmisible alert_blue">
+              <img height="24" width="24" src="theme/minica/images/icons/small/white/alert_2.png"> 
+              {$smarty.get.aviso}
+            </div>
+          {/if}
+          {if isset($aviso)}
+            <div class="alert dissmisible alert_blue">
+              <img height="24" width="24" src="theme/minica/images/icons/small/white/alert_2.png"> 
+              {$aviso}
+            </div>
+          {/if}
+        </div>

@@ -732,11 +732,10 @@ div.main_container .box {
 div.main_container .box h2.box_head {
 	font-size: 14px;
 	font-weight: normal;
-	line-height: 32px;
+	line-height: 24px;
 	color: white;
 	margin: -1px auto 0px;
 	text-indent: 10px;
-	text-shadow: 0px 1px 0px #000;
 
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -746,7 +745,6 @@ div.main_container .box h2.box_head {
 .box.light h2.box_head,.box.light h2.box_head small {
 	border-color: #959BA2;
 	color: #333 !important;
-	text-shadow: 0 1px 0 #FFFFFF !important;
 }
 
 .box.light a.toggle {
@@ -876,7 +874,6 @@ div.main_container .box h2.box_head {
 }
 
 .flat_area > * {
-	text-shadow: 0px 1px 0px #fff;
 	padding: 0 10px;
 }
 
@@ -887,21 +884,19 @@ div.main_container .box h2.box_head {
 .flat_area h1 {
   border-bottom: 1px solid #EEE;
   padding-bottom: 8px;
+  margin-top: 12px;
   }
   
 .flat_area h2 {
-	margin-left: 0px;
-	margin-right: 0px;
+  margin: 0 0 10px 0;
 	padding: 2px 10px 2px;
-	margin-bottom: 10px;
-	margin-top: 0px;
 	font-weight: bold;
-  border: 2px solid #FCCC2E;
-  border-left: fccc2e;
-  border-right: 2px solid #FCCC2E;
-  line-height: 30px;
+  border: 1px solid #FCCC2E;
+  border: 1px solid #EEE;
+  line-height: 18px;
   text-indent: 0px;
   background: #FDE597;
+  background: #EEE;
 }
 
 /*-----End of Main Container -------*/
@@ -1298,7 +1293,6 @@ fieldset > div > label input[type=radio],fieldset > div > label input[type=check
 	padding-left: 5px;
 	margin: 10px;
 	color: #fff;
-	text-shadow: 0 1px 1px #000;
 }
 
 .alert:hover {
@@ -2714,4 +2708,29 @@ ul.breadcrumb > li:last-child {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
+}
+
+/*--------------------------------
+Footer
+--------------------------------*/
+#footer {
+  border-top: 1px solid #EEE;
+  margin-top: 15px;
+  padding-top: 15px;
+}
+
+/*--------------------------------
+Print
+--------------------------------*/
+@media print {
+  * {
+    background: transparent !important;
+    color: #000 !important; /* Black prints faster: h5bp.com/s */
+    box-shadow:none !important;
+    text-shadow: none !important;
+  }
+
+  #header, #control_sesion, #nav_top, #logo {
+    display: none !important;
+  }
 }

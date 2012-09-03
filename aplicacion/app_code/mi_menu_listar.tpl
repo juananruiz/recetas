@@ -1,4 +1,4 @@
-<div class="box grid_16 single_datatable">
+<div class="flat_area grid_16 single_datatable">
   <div class="button_bar clearfix">
       <a class="comando" href="index.php?page=menu_crear"><img src='theme/minica/images/icons/small/white/frames.png' /><span>Crear menú</span></a>
       <a class="comando" href="index.php?page=menu_buscar"><img src='theme/minica/images/icons/small/white/magnifying_glass.png' /><span>Buscar menú</span></a>

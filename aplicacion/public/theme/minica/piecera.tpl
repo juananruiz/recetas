@@ -1,31 +1,16 @@
-                <div class="flat_area grid_16">
-                 <p style="margin-top:50px;"> Foodness - http://foodnes.com - &copy; Triple Jota</p>
-                </div>
-
-							</div>
-							<div id="tabs-3" class="block">
-								<div class="section">
-									<p>&nbsp;</p>
-								</div>
-							</div>
-				</div>
+          <div id="footer" class="flat_area grid_16">
+           <p> Foodness - http://foodnes.com - &copy; Triple Jota</p>
+          </div>
+        </div>
 			</div>
 		
-      <!-- No se si hace falta -->
-      <script type="text/javascript" src="theme/minica/scripts/DataTables/jquery.dataTables.js"></script>
+    <!-- No se si hace falta -->
+    <script type="text/javascript" src="theme/minica/scripts/DataTables/jquery.dataTables.js"></script>
 
-      <script type="text/javascript" src="theme/minica/scripts/minica/minica_datatables.js"></script>
-      <script type="text/javascript">
-        $(".validate_form").validate();
-        $(".alert").delay(3000).slideUp(3000,"linear");
-      </script>
-    <!-- La barrita animada de carga -->
-    <!--
-		<div id="loading_overlay">
-			<div class="loading_message round_bottom">
-				<img src="theme/minica/images/loading.gif" alt="loading" />
-			</div>
-		</div>
-    -->		
+    <script type="text/javascript" src="theme/minica/scripts/minica/minica_datatables.js"></script>
+    <script type="text/javascript">
+      $(".validate_form").validate();
+      $(".alert").delay(3000).slideUp(3000,"linear");
+    </script>
 	</body>
 </html>
