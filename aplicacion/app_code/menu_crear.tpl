@@ -28,6 +28,10 @@
   <div class="box grid_8 side_tabs tabs no_titlebar" style="opacity: 1; ">
     <div class="side_holder">
       <ul class="tab_sider clearfix">
+        {foreach $recetas as $clave => $etiqueta}
+          <li><a href="#{$clave}">{$etiqueta[0]->etiqueta->nombre_es}</a></li>
+        {/foreach}
+        <!--
         <li><a href="#entrantes">Entrantes</a></li>
         <li><a href="#sopa">Sopas y Cremas</a></li>
         <li><a href="#arroz">Arroz, Cereales y Pasta</a></li>
@@ -40,6 +44,7 @@
         <li><a href="#desayuno">Desayuno y Merienda</a></li>
         <li><a href="#dulces">Dulces</a></li>
         <li><a href="#bebida">Bebidas</a></li>
+        -->
       </ul>
     </div>
     <div id="entrantes" class="block">
@@ -49,49 +54,6 @@
             <li style="clear:both;" id="{$receta->id}">{$receta->nombre_es} <span class="miniboton" onclick="agregarReceta();">Agregar</span></li>
           {/foreach}
         </ul>
-      </div>
-    </div>
-    <div id="sopa" class="block">
-      <div class="section">
-        <ul>
-          {foreach $recetas as $receta}
-            <li style="clear:both;">{$receta->nombre_es} <span class="miniboton">Agregar</span></li>
-          {/foreach}
-        </ul>
-      </div>
-    </div>
-    <div id="arroz" class="block">
-      <div class="section">
-        <ul>
-        {foreach $recetas as $receta}
-          <li style="clear:both;">{$receta->nombre_es} <span class="miniboton">Agregar</span></li>
-        {/foreach}
-        </ul>
-      </div>
-    </div>
-    <div id="ensalada" class="block">
-      <div class="section">
-        <p>Content goes here.</p>
-      </div>
-    </div>
-    <div id="carne" class="block">
-      <div class="section">
-        <p>Content goes here.</p>
-      </div>
-    </div>
-    <div id="pescado" class="block">
-      <div class="section">
-        <p>Content goes here.</p>
-      </div>
-    </div>
-    <div id="verdura" class="block">
-      <div class="section">
-        <p>Content goes here.</p>
-      </div>
-    </div>
-    <div id="legumbre" class="block">
-      <div class="section">
-        <p>Content goes here.</p>
       </div>
     </div>
   </div>
