@@ -1,0 +1,32 @@
+/* --- Colores ---
+ * Sombra letras: #E5D7C4
+ * Color títulos: #4B4B4B
+ * Naranja base: #FF6501
+ *
+ *
+ *
+ *
+ *
+ *
+ * --------------- */
+
+
+body {
+  background: url("../img/fondo_pagina.png");
+}
+
+.navbar-inverse .navbar-inner {
+  border-bottom: 4px solid #E5D7C4;
+}
+
+a.brand img {
+  margin: -8px;
+  padding: 0 20px 0 10px;
+}
+
+.footer {
+  padding: 70px 0;
+  margin-top: 70px;
+  border-top: 1px solid #E5D7C4;
+  background-color: #FDA;
+}

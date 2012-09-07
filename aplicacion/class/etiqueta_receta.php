@@ -37,6 +37,8 @@ class etiqueta_receta extends ADOdb_Active_Record
       {
         $etiqueta_receta->receta = new receta();
         $etiqueta_receta->receta->load("id = $etiqueta_receta->id_receta");
+        $etiqueta_receta->etiqueta = new etiqueta();
+        $etiqueta_receta->etiqueta->load("id = $etiqueta_receta->id_etiqueta");
       }
       return $etiquetas_recetas;
     }
