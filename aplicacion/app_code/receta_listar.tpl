@@ -1,41 +1,30 @@
   <a class="comando" href="index.php?page=receta_crear"><img src="theme/minica/images/icons/small/grey/note_book.png" alt=""><span>Agregar receta</span></a>
 
   <ul class="nav nav-tabs" id="tabrecetas">
-    <li class="active"><a href="#carne">Carnes</a></li>
-    <li><a href="#aves">Aves</a></li>
-    <li><a href="#verdura">Verduras</a></li>
-    <li><a href="#arroz">Arroz, cereales, pasta</a></li>
-    <li><a href="#legumbres">Legumbres</a></li>
-    <li><a href="#ensalada">Ensaladas</a></li>
+    {foreach $recetas as $clave => $etiquetas}
+      <li><a href="#{$clave}">{$etiquetas[0]->etiqueta->nombre_es}</a></li>
+    {/foreach}
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane active" id="carne">
-    {if $recetas}
-      <table class="table table-striped table-condensed"> 
-        <thead>
-          <tr>
-            <th>Nombre</th>
-          </tr>
-        </thead>
-        <tbody>
-          {foreach $recetas as $receta}
-            <tr class="gradeX">
-              <td><a href="index.php?page=receta_mostrar&id_receta={$receta->id}">{$receta->nombre_es}</a></td>
+    {foreach $recetas as $clave => $etiquetas}
+      <div class="tab-pane" id="{$clave}">
+        <table class="table table-striped table-condensed"> 
+          <thead>
+            <tr>
+              <th>Nombre</th>
             </tr>
-          {/foreach}
-        </tbody>
-      </table>
-    {else}
-      <div class="alert alert_blue">
-        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-        No existen recetas que cumplan los criterios de búsqueda. Prueba con menos opciones.
+          </thead>
+          <tbody>
+            {foreach $etiquetas as $etiqueta}
+              <tr>
+                <td><a href="index.php?page=receta_mostrar&id_receta={$etiqueta->receta->id}">{$etiqueta->receta->nombre_es}</a></td>
+              </tr>
+            {/foreach}
+          </tbody>
+        </table>
       </div>
-    {/if}
-    </div>
-    <div class="tab-pane" id="aves">
-      <p>La gallina cocorocó. La gallina dijo eureka!</p>
-    </div>
+    {/foreach}
   </div>
     
 <script>
@@ -45,6 +34,6 @@
   });
 
   $(function () {
-    $('#myTab a:last').tab('show');
+    $('#tabrecetas a:first').tab('show');
   });
 </script>

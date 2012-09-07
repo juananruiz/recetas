@@ -31,20 +31,6 @@
         {foreach $recetas as $clave => $etiqueta}
           <li><a href="#{$clave}">{$etiqueta[0]->etiqueta->nombre_es}</a></li>
         {/foreach}
-        <!--
-        <li><a href="#entrantes">Entrantes</a></li>
-        <li><a href="#sopa">Sopas y Cremas</a></li>
-        <li><a href="#arroz">Arroz, Cereales y Pasta</a></li>
-        <li><a href="#ensalada">Ensaladas</a></li>
-        <li><a href="#carne">Carnes rojas</a></li>
-        <li><a href="#pescado">Pescado y Marisco</a></li>
-        <li><a href="#verdura">Verduras y Hortalizas</a></li>
-        <li><a href="#legumbre">Legumbres</a></li>
-        <li><a href="#postres">Postres</a></li>
-        <li><a href="#desayuno">Desayuno y Merienda</a></li>
-        <li><a href="#dulces">Dulces</a></li>
-        <li><a href="#bebida">Bebidas</a></li>
-        -->
       </ul>
     </div>
     <div id="entrantes" class="block">
