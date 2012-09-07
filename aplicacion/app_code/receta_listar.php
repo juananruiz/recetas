@@ -26,6 +26,6 @@ global $usuario;
 
   $smarty->assign("recetas", $recetas);
 
-$smarty->assign("_nombre_pagina", "El Recetario");
+$smarty->assign("_nombre_pagina", "Libro de Recetas");
 $plantilla = "receta_listar.tpl";
 ?>

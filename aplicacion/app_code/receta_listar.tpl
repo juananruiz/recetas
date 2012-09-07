@@ -1,4 +1,11 @@
-  <a class="comando" href="index.php?page=receta_crear"><img src="theme/minica/images/icons/small/grey/note_book.png" alt=""><span>Agregar receta</span></a>
+<div class="btn-toolbar">
+  <div class="btn-group">
+    <a class="btn" href="index.php?page=receta_crear"><img src="theme/minica/images/icons/small/grey/note_book.png" alt=""> Crear receta</a>
+    <a class="btn" href="#"><img src="theme/minica/images/icons/small/grey/paperclip.png" alt=""> Favoritas</a>
+    <a class="btn" href="#"><img src="theme/minica/images/icons/small/grey/paperclip.png" alt=""> Orden 1</a>
+    <a class="btn" href="#"><img src="theme/minica/images/icons/small/grey/paperclip.png" alt=""> Orden 2</a>
+  </div>
+</div>
 
   <ul class="nav nav-tabs" id="tabrecetas">
     {foreach $recetas as $clave => $etiquetas}
@@ -9,12 +16,7 @@
   <div class="tab-content">
     {foreach $recetas as $clave => $etiquetas}
       <div class="tab-pane" id="{$clave}">
-        <table class="table table-striped table-condensed"> 
-          <thead>
-            <tr>
-              <th>Nombre</th>
-            </tr>
-          </thead>
+        <table class="table table-striped table-bordered table-condensed"> 
           <tbody>
             {foreach $etiquetas as $etiqueta}
               <tr>
