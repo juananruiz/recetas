@@ -24,30 +24,66 @@
     receptor.appendChild(receta);
   }
 </script>
-<div class="box grid_16">
-  <div class="box grid_8 side_tabs tabs no_titlebar" style="opacity: 1; ">
-    <div class="side_holder">
-      <ul class="tab_sider clearfix">
-        {foreach $recetas as $clave => $etiqueta}
-          <li><a href="#{$clave}">{$etiqueta[0]->etiqueta->nombre_es}</a></li>
+
+<div class="row">
+<div class="span12">
+  <div class="widget">
+    <div class="widget-header">
+      <h3>Bautiza tu menú</h3>
+    </div>
+    <div class="widget-content">
+      <form method="post" action="index.php?page=receta_grabar" class="form-inline validate_form">
+        <label>Nombre del menú</label>
+        <input type="text" name="nombre_es" class="input-xxlarge required" />
+        <button class="btn btn-primary" type="submit" id="grabar">Grabar</button>
+        <button class="btn" type="reset" id="cancelar" onclick="history.back()">Cancelar</button>
+      </form>
+    </div><!-- /widget-content -->
+  </div><!-- /widget -->
+</div><!-- /span12 -->
+</div><!-- /row -->
+
+<div class="row">
+  <div class="span6">
+  <div class="widget">
+  <div class="widget-header">
+    <h3>Elige los platos</h3>
+  </div>
+    <div class="widget-content tabbable tabs-left">
+      <ul class="nav nav-tabs" id="tabrecetas">
+        {foreach $recetas as $clave => $etiquetas}
+          <li><a href="#{$clave}">{$etiquetas[0]->etiqueta->nombre_es}</a></li>
         {/foreach}
       </ul>
-    </div>
-    <div id="entrantes" class="block">
-      <div class="section">
-        <ul>
-          {foreach $recetas as $receta}
-            <li style="clear:both;" id="{$receta->id}">{$receta->nombre_es} <span class="miniboton" onclick="agregarReceta();">Agregar</span></li>
-          {/foreach}
-        </ul>
-      </div>
-    </div>
-  </div>
 
-  <div class="box grid_8 no_titlebar" style="opacity: 1; ">
-    <div class="block">
-      <div class="section">
-      <h3>Alimentos de tu menú</h3>
+      <div class="tab-content">
+        {foreach $recetas as $clave => $etiquetas}
+          <div class="tab-pane" id="{$clave}">
+            <table class="table table-striped table-bordered table-condensed"> 
+              <tbody>
+                {foreach $etiquetas as $etiqueta}
+                  <tr>
+                    <td>
+                      <a href="index.php?page=receta_mostrar&id_receta={$etiqueta->receta->id}">{$etiqueta->receta->nombre_es}</a>
+                      <span class="miniboton" onclick="agregarReceta();">Agregar</span>
+                    </td>
+                  </tr>
+                {/foreach}
+              </tbody>
+            </table>
+          </div>
+        {/foreach}
+      </div><!-- /tab-content -->
+    </div><!-- /widget-content -->
+  </div><!-- /widget -->
+  </div><!-- /span6 -->
+
+  <div class="span6">
+  <div class="widget">
+    <div class="widget-header">
+      <h3>Organiza tu menú</h3>
+    </div>
+    <div class="widget-content">
       <ul id="receptor">
       </ul>
       <select name="comida">
@@ -85,71 +121,17 @@
         <li>Pollo al ajillo</li>
         <li>Ensalada mixta con frutos secos</li>
       </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="box grid_16">
-	<div class="toggle_container">
-		<div class="block">
-      <div class="button_bar clearfix">
-        <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" 
-          onclick="history.back()">
-          <div class="ui-icon ui-icon-closethick"></div>
-          <span>Cancelar</span>
-        </button>
-      </div>
-			<form method="post" action="index.php?page=receta_grabar" class="validate_form">
-			  <fieldset class="label_side">
-				<label>Nombre</label>
-				<div>
-					<input type="text" name="nombre_es" class="required" />
-					<div class="required_tag"></div>
-				</div>
-			  </fieldset> 
-        <!--
-        <div class="columns clearfix">
-          <div class="col_50">
-            <fieldset>
-            <label>Propietario</label>
-              <div>
-                <select name="id_propietario" class="select_box">
-                  {foreach from=$usuarios_entidad item=usuario_entidad}
-                    <option value="{$usuario_entidad->usuario->id}">{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
-                    </option>
-                  {/foreach}              
-                  </select>
-            </div>
-            </fieldset> 
-          </div>
-          <div class="col_50">
-            <fieldset>
-              <label>Tipo de proceso</label>
-              <div>
-                <select name="alcance" class="select_box">
-                    <option value="Indefinido">Indefinido ...</option>
-                  <option value="Apoyo">Apoyo</option>
-                  <option value="Operativo">Operativo</option>
-                  <option value="Directivo/Gestion">Directivo/Gestión</option>
-                </select>   
-            </div>
-            </fieldset> 
-          </div>
-        </div>
-        -->
-			   
+    </div><!-- /widget-content -->
+  </div><!-- /widget -->
+  </div><!-- /span6 -->
+</div><!-- /row -->
+<script>
+  $('#tabrecetas a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });
 
-			  <div class="button_bar clearfix">
-					<button class="green" type="submit" value="Grabar" name="proceso_submit">
-            <div class="ui-icon ui-icon-check"></div>
-						<span>Grabar</span>
-					</button>
-          <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back()">
-            <div class="ui-icon ui-icon-closethick"></div>
-            <span>Cancelar</span>
-          </button>
-				</div>    
-			</form>
-		</div>
-	</div>
-</div>
+  $(function () {
+    $('#tabrecetas a:first').tab('show');
+  });
+</script>

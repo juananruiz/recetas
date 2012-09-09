@@ -21,10 +21,9 @@ if (is_object($usuario))
   $recetas["legumbre"] = $etiqueta_receta->Find_recetas("id_etiqueta = 5");
   $recetas["fruta"] = $etiqueta_receta->Find_recetas("id_etiqueta = 6");
   $recetas["dulce"] = $etiqueta_receta->Find_recetas("id_etiqueta = 7");
-  $recetas["bebida"] = $etiqueta_receta->Find_recetas("id_etiqueta = 11");
+  //$recetas["bebida"] = $etiqueta_receta->Find_recetas("id_etiqueta = 11");
   $recetas["pescado"] = $etiqueta_receta->Find_recetas("id_etiqueta = 100");
   $recetas["ensalada"] = $etiqueta_receta->Find_recetas("id_etiqueta = 103");
-
   $smarty->assign("recetas", $recetas);
   $smarty->assign("_nombre_pagina", "Diseña tu menú");
   $plantilla = "menu_crear.tpl";

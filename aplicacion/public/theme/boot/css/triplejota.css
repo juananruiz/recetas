@@ -1,9 +1,11 @@
 /* --- Colores ---
- * Sombra letras: #E5D7C4
- * Color títulos: #4B4B4B
- * Naranja base: #FF6501
- *
- *
+ * Sombra letras: #E5D7C4;
+ * Color títulos: #4B4B4B;
+ * Naranja base: #FF6501;
+ * Fondo principal: 
+ * Fondo segundo: #FED;
+ * Azulina oscuro: #5BC0DE;
+ * Azulina claro: #2F96B4;
  *
  *
  *
@@ -27,13 +29,58 @@ a.brand img {
   padding: 0 20px 0 10px;
 }
 
+.btn {
+  background-color: #E5D7C4;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#E5D7C4));
+  background-image: -webkit-linear-gradient(top, white, #E5D7C4);
+  background-image: -o-linear-gradient(top, white, #E5D7C4);
+  background-image: linear-gradient(to bottom, white, #E5D7C4);
+  background-image: -moz-linear-gradient(top, white, #E5D7C4);
+}
+
+.btn:hover,
+.btn:active,
+.btn.active,
+.btn.disabled,
+.btn[disabled] {
+  color: #333333;
+  background-color: #E5D7C4;
+  *background-color: #d9d9d9;
+}
+
+.btn-primary {
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #49AFCD;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5BC0DE), to(#2F96B4));
+  background-image: -webkit-linear-gradient(top, #5BC0DE, #2F96B4);
+  background-image: -o-linear-gradient(top, #5BC0DE, #2F96B4);
+  background-image: linear-gradient(to bottom, #5BC0DE, #2F96B4);
+  background-image: -moz-linear-gradient(top, #5BC0DE, #2F96B4);
+  background-repeat: repeat-x;
+  border-color: #2F96B4 #2F96B4 #1F6377;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#FF5BC0de', endColorstr='#FF2F96b4', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffffff;
+  background-color: #2f96b4;
+  *background-color: #2a85a0;
+}
+
 .footer {
   padding: 70px 0;
   margin-top: 70px;
   border-top: 1px solid #E5D7C4;
-  background-color: #FDA;
+  background-color: #FED;
 }
-
+/*
 .nav {
   margin: 20px 0 0 0;
   list-style: none;
@@ -41,24 +88,26 @@ a.brand img {
 
 .nav-tabs {
   border-bottom: 0;
+  background: #FED;
+  border: 1px solid #DDD;
+  border-bottom: 0;
+  padding-top: 3px;
 }
 
 .tab-content {
   overflow: auto;
-  border: 1px solid #DDD;
-  padding: 10px;
   background: white;
+}
+
+.tab-pane .table {
+  margin: 0;
   -webkit-border-radius: 4px 4px 4px 4px;
   -moz-border-radius: 4px 4px 4px 4px;
   border-radius: 4px 4px 4px 4px;
 }
+*/
 
-.tab-pane .table {
-  width: 98%;
-  margin: 1%;
-}
-
-*------------------------------------------------------------------
+/*------------------------------------------------------------------
 [6. Widget / .widget]
 */
 
@@ -198,5 +247,3 @@ a.brand img {
   background: #E3E3E3;  
   background: #FFF;
 }
-
-/

@@ -57,7 +57,7 @@
               {/if}
               <li><a href="index.php?page=receta_listar"><img src="theme/minica/images/icons/small/white/note_book.png" alt=""/><span>Recetas</span></a></li>
               <li><a href="index.php?page=alimento_listar"><img src="theme/minica/images/icons/small/white/ice_cream_2.png" alt=""/><span>Alimentos</span></a> </li>
-              <li><a href="index.php?page=blog"><img src="theme/minica/images/icons/small/white/rss.png" alt=""/><span>Blog</span></a></li>
+              <li><a href="index.php?page=disenio"><img src="theme/minica/images/icons/small/white/rss.png" alt=""/><span>Diseño</span></a></li>
               {if isset($_usuario)}
                 <li><a href="index.php?page=usuario_perfil">{$_usuario->login}</a></li>
                 <li><a href="index.php?page=login_basico&logout=true">Salir</a></li>
