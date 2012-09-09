@@ -1,30 +1,3 @@
-  <style>
-  .miniboton {
-    float: right;
-    background: #FCCC2E;
-    color: #333;
-    font-size: 0.9em;
-    line-height: 1;
-    border:1px solid #999;
-    padding:2px;
-    margin:0.4em 0;
-    text-shadow:0px 0px 0px #FCCC2E;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-  }
-  </style>
-<script>
-  window.onload = function() {
-  }
-
-  function agregarReceta(e) {
-    var receta = e.target.parentNode;
-    var receptor = document.getElementById("receptor");
-    receptor.appendChild(receta);
-  }
-</script>
-
 <div class="row">
 <div class="span12">
   <div class="widget">
@@ -65,7 +38,7 @@
                   <tr>
                     <td>
                       <a href="index.php?page=receta_mostrar&id_receta={$etiqueta->receta->id}">{$etiqueta->receta->nombre_es}</a>
-                      <span class="miniboton" onclick="agregarReceta();">Agregar</span>
+                      <button class="btn btn-mini" style="float:right;" onclick="agregarReceta();">Agregar</span>
                     </td>
                   </tr>
                 {/foreach}
@@ -125,6 +98,7 @@
   </div><!-- /widget -->
   </div><!-- /span6 -->
 </div><!-- /row -->
+
 <script>
   $('#tabrecetas a').click(function (e) {
     e.preventDefault();
@@ -134,4 +108,10 @@
   $(function () {
     $('#tabrecetas a:first').tab('show');
   });
+
+  function agregarReceta(e) {
+    var receta = e.target.parentNode;
+    var receptor = document.getElementById("receptor");
+    receptor.appendChild(receta);
+  }
 </script>
