@@ -93,33 +93,34 @@
 
 </style>
 
-<div class="box grid_16 no_titlebar" style="opacity: 1; ">
-  <div class="block lines" style="opacity: 1; ">
-    <div class="columns clearfix">
-      <div class="col_25">
-        <div class="section">
-          <button id="grabar">Grabar menú</button>
-        </div>
+<div class="row">
+  <div class="widget">
+    <div class="widget-content">
+      <div class="span2">
+          <button class="btn btn-primary btn-xlarge" id="grabar">Grabar menú</button>
       </div>
-      <div class="col_25">
-        <div class="section">
-          <p>25% content</p>
-        </div>
+      <div class="span2">
+          <p>Calorías: 1950 kcal (95% DDR)</p>
       </div>
-      <div class="col_25">
-        <div class="section">
-          <p>25% content</p>
-        </div>
+      <div class="span2">
+          <p>Proteinas: 500gr (75% DDR)</p>
       </div>
-      <div class="col_25 on_right">
-        <div class="section">
-          <p>25% content</p>
-        </div>
+      <div class="span2">
+          <p>Carbohidratos: 400 gr (63% DDR)</p>
       </div>
-    </div>
-  </div>
-</div>
-<div class="flat grid_16 no_titlebar">
+      <div class="span2">
+          <p>Grasas: 278 gr (85% DDR)</p>
+      </div>
+      <div class="span2">
+          <p>Sodio: 28 gr (75% DDR) <br>
+             Magnesio: 12 gr (69% DDR) <br>
+             Potasio: 8gr (57% DDR)</p>
+      </div>
+    </div><!-- .widget-content -->
+  </div><!-- .widget -->
+</div><!-- .row -->
+
+<div class="container">
   {foreach $comidas as $dia => $array_momentos}
     <div class="dia" id="{$dia}">
       <h2>{$dias[$dia-1]->nombre_es|upper}</h2>

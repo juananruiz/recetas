@@ -1,9 +1,9 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Comerbien 
-// Archivo: menu_azar.php
+// Archivo: menu_auto.php
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Alta de nuevas menus en la base de datos
+// Descripcion: Creación automatizada de menús siguiendo directrices básicas del usuario
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
@@ -54,7 +54,7 @@ if (is_object($usuario))
   $smarty->assign("comidas", $comidas);
   $smarty->assign("reserva", $reserva);
   $smarty->assign("_nombre_pagina", "Menú semanal inteligente");
-  $plantilla = "menu_azar.tpl";
+  $plantilla = "menu_auto.tpl";
 }
 else
 {
