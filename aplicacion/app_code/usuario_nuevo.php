@@ -7,5 +7,6 @@
 global $smarty;
 global $plantilla;
 
+$smarty->assign("_nombre_pagina", "Bienvenido a bordo");
 $plantilla = "usuario_nuevo.tpl";
 ?>

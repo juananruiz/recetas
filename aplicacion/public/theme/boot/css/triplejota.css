@@ -80,35 +80,28 @@ a.brand img {
   border-top: 1px solid #E5D7C4;
   background-color: #FED;
 }
-/*
-.nav {
-  margin: 20px 0 0 0;
-  list-style: none;
-}
-
-.nav-tabs {
-  border-bottom: 0;
-  background: #FED;
-  border: 1px solid #DDD;
-  border-bottom: 0;
-  padding-top: 3px;
-}
-
-.tab-content {
-  overflow: auto;
-  background: white;
-}
-
-.tab-pane .table {
-  margin: 0;
-  -webkit-border-radius: 4px 4px 4px 4px;
-  -moz-border-radius: 4px 4px 4px 4px;
-  border-radius: 4px 4px 4px 4px;
-}
-*/
 
 /*------------------------------------------------------------------
-[6. Widget / .widget]
+jQuery Validation para Bootstrap
+*/ 
+label.valid {
+  width: 24px;
+  height: 24px;
+  background: url(../img/valid.png) center center no-repeat;
+  display: inline-block;
+  text-indent: -9999px;
+}
+
+label.error {
+  background: url(../img/error.png) left center no-repeat;
+  font-weight: bold;
+  color: red;
+  padding: 2px 0 0 22px;
+  margin-top: 2px;
+}
+
+/*------------------------------------------------------------------
+Las simpáticas cajitas Widget / .widget
 */
 
 .widget {
