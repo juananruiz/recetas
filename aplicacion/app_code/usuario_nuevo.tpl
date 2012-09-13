@@ -69,8 +69,8 @@ $(document).ready(function(){
         required: true
       },
       clave: {
-        required: true,
-        minlength: 6
+        minlength: 6,
+        required: true
       }
       ,
       clave_confirma: {
@@ -93,13 +93,15 @@ $(document).ready(function(){
       }
     },
     highlight: function(label) {
+      $(label).closest('.control-group').removeClass('success');
       $(label).closest('.control-group').addClass('error');
     },
     success: function(label) {
-      label
-        .text('OK!').removeClass('error')
-        .text('OK!').addClass('valid')
-        .closest('.control-group').addClass('success');
+      $(label).text('OK!');
+      $(label).addClass('valid');
+      $(label).removeClass('error');
+      $(label).closest('.control-group').removeClass('error');
+      $(label).closest('.control-group').addClass('success');
     }
   });
 	  
