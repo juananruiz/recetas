@@ -81,10 +81,10 @@
           {if isset($_usuario)}
             {$_usuario->nombre} {$_usuario->apellidos} | 
             <a href="index.php?page=usuario_perfil">Mis datos</a> | 
-            <a href="index.php?page=login_basico&logout=true">Salir</a>
+            <a href="index.php?page=usuario_login&logout=true">Salir</a>
           {else}
-            <a href="index.php?page=login_basico">Iniciar sesión</a> |
-            <a href="index.php?page=usuario_crear">Crear cuenta</a>
+            <a href="index.php?page=usuario_login">Iniciar sesión</a> |
+            <a href="index.php?page=usuario_nuevo">Crear cuenta</a>
           {/if}
         </div>
         <div id="nav_top" class="dropdown_menu clearfix round_top">

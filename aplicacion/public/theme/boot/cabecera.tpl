@@ -60,9 +60,10 @@
               <li><a href="index.php?page=disenio"><img src="theme/minica/images/icons/small/white/rss.png" alt=""/><span>Diseño</span></a></li>
               {if isset($_usuario)}
                 <li><a href="index.php?page=usuario_perfil">{$_usuario->login}</a></li>
-                <li><a href="index.php?page=login_basico&logout=true">Salir</a></li>
+                <li><a href="index.php?page=usuario_login&logout=true">Salir</a></li>
               {else}
-                <li><a href="index.php?page=login_basico">Iniciar sesión</a></li>
+                <li><a href="index.php?page=usuario_login">Iniciar sesión</a></li>
+                <li><a href="index.php?page=usuario_nuevo">Crear cuenta</a></li>
               {/if}
             </ul>
           </div><!--/.nav-collapse -->
