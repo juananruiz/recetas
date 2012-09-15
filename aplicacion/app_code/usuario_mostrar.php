@@ -12,13 +12,22 @@ global $usuario;
 if ($_REQUEST['id_usuario'])
 {
 	$id_usuario = sanitize($_REQUEST['id_usuario'],INT);
-	$persona = new usuario();
-  $persona->load_joined("id = $id_usuario");
-	$smarty->assign('persona', $persona);
+  // Los datos de un usuario sólo puede verlos el mismo o un administrador
+  if ($id_usuario = $usuario->id OR $usuario->id < 100)
+  {
+    $usuario = new usuario();
+    $usuario->load("id = $id_usuario");
+    $smarty->assign('usuario', $usuario);
 
-	$nombre_pagina = $persona->nombre . ' ' . $persona->apellidos;
-	$smarty->assign('_nombre_pagina', $nombre_pagina);
-	$plantilla = "usuario_mostrar.tpl";
+    $nombre_pagina = "Datos del usuario: " . $usuario->login;
+    $smarty->assign('_nombre_pagina', $nombre_pagina);
+    $plantilla = "usuario_mostrar.tpl";
+  }
+  else
+  {
+    $error = "No está autorizado a consultar los datos de este usuario";
+    header("location:index.php?error=$error");
+  }
 }
 else
 {

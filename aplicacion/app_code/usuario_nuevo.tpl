@@ -1,13 +1,13 @@
 <div class="span6">
 <div class="widget">
 <div class="widget-content">
-  <form class="form-horizontal validate" id="form_registro" action="index.php?page=usuario_grabar">
+  <form class="form-horizontal validate" id="form_registro" action="index.php?page=usuario_grabar" method="post">
     <fieldset>
       <legend>Datos personales <small>(prometemos cuidarlos)</small></legend>
       <div class="control-group">
-        <label class="control-label" for="nombre">Nombre</label>
+        <label class="control-label" for="login">Nombre de usuario</label>
         <div class="controls">
-          <input class="input-xlarge" type="text" id="nombre" name="nombre" placeholder="Puedes introducir tu nombre real o un alias, como prefieras">
+          <input class="input-xlarge" type="text" id="login" name="login" placeholder="Elige el nombre con el que te conoceremos">
         </div>
       </div>
       <div class="control-group">
@@ -23,15 +23,15 @@
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="email">Correo electrónico</label>
+        <label class="control-label" for="correo">Correo electrónico</label>
         <div class="controls">
-          <input class="input-xlarge" type="text" id="email" name="email" placeholder="Introduce un correo electrónico que uses">
+          <input class="input-xlarge" type="text" id="correo" name="correo" placeholder="Introduce un correo electrónico que uses">
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="onomastica">Fecha de nacimiento</label>
+        <label class="control-label" for="fecha_nacimiento">Fecha de nacimiento</label>
         <div class="controls">
-          <input class="input-xlarge" type="text" id="onomastica" name="onomastica" placeholder="Queda entre nosotros, si no te fias: miente ;)">
+          <input class="input-xlarge" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Queda entre nosotros, si no te fias: miente ;)">
         </div>
       </div>
       <div class="control-group input-append">
@@ -64,7 +64,7 @@
   $(document).ready(function() {
     $('form.validate').validate({
       rules: {
-        nombre: {
+        login: {
           minlength: 4,
           required: true
         },
@@ -77,11 +77,11 @@
           required: true,
           equalTo: clave
         },
-        email: {
+        correo: {
           required: true,
-          email: true
+          correo: true
         },
-        onomastica: {
+        fecha_nacimiento: {
           date: true,
           required: true
         },
