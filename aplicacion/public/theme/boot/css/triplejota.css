@@ -29,6 +29,14 @@ a.brand img {
   padding: 0 20px 0 10px;
 }
 
+.modal {
+  width: 575px;
+}
+
+/*------------------------------------------------------------------
+  Botones con los colores tuneados
+*/
+
 .btn {
   background-color: #E5D7C4;
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#E5D7C4));

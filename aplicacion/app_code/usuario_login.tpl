@@ -1,4 +1,4 @@
-<form method="post" action="index.php?page=login_basico" id="formlogin" >
+<form method="post" action="index.php?page=usuario_login" id="formlogin" >
     <input type="hidden" name="acceso" value="1" />
     <label for="login"><b>Usuario</b></label> <br />
     <input type="text" name="login" id="login" class="inp" /><br />

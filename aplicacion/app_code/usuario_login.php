@@ -34,7 +34,7 @@ if (isset($_POST['acceso']))
 		{
 			$error="Usuario o clave incorrectos.";
 			$smarty->assign('error',$error);
-			$plantilla = 'login_basico.tpl';
+			$plantilla = 'usuario_login.tpl';
 		}
 	}
 	else 
@@ -42,7 +42,7 @@ if (isset($_POST['acceso']))
 		// Si falta algun parametro volvemos al formulario y avisamos
 		$error = "Indique su nombre de usuario y clave.";
 		$smarty->assign('error',$error);
-		$plantilla = 'login_basico.tpl';
+		$plantilla = 'usuario_login.tpl';
 	}
 }
 else if(isset($_GET["logout"]))
@@ -54,6 +54,6 @@ else if(isset($_GET["logout"]))
 else
 {
   // Si no viene del formulario, ni de logout, mostramos el formulario
-  $plantilla = "login_basico.tpl";
+  $plantilla = "usuario_login.tpl";
 }
 ?>

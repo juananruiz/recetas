@@ -127,6 +127,29 @@
   </div><!-- .widget -->
 </div><!-- .row -->
 
+<div class="modal hide fade" id="dialogo-grabar">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Grabar menú</h3>
+  </div>
+    <form class="validate" id="graba_menu" method="post">
+  <div class="modal-body">
+      <fieldset>
+        <div class="control-group">
+          <label class="control-label" for="nombre">Nombre del menú</label>
+          <div class="controls">
+            <input class="input-xxlarge" type="text" id="nombre" name="nombre" placeholder="Elige un nombre que te ayude a reconocer este menú">
+          </div>
+        </div>
+      </fieldset>  
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
+</div>
+
 <div class="container">
   {foreach $comidas as $dia => $array_momentos}
     <div class="dia" id="{$dia}">
@@ -231,6 +254,7 @@
   }
   
   function grabarMenuJson(){
+    $('#dialogo-grabar').modal();
     var recetas = new Array();
     $(".receta").each(function(){
       var receta = {
