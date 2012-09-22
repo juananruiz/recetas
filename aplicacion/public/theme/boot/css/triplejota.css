@@ -248,3 +248,67 @@ Las simpáticas cajitas Widget / .widget
   background: #E3E3E3;  
   background: #FFF;
 }
+
+
+/*------------------------------------------------------------------
+Mini widgets para mostrar platos
+*/ 
+  .widget-mini .widget-header {
+   padding: 0px;
+   height:30px;
+  }
+
+  .widget-mini .widget-header h3 {
+    line-height: 8px;
+  }
+
+  .widget-mini .widget-content {
+    padding: 5px;
+  }
+
+  .widget-mini .widget-content span {
+    color: #666;
+  }
+
+/*------------------------------------------------------------------
+Mostrando los platos de un menú con estilo
+*/ 
+
+  .plato-resumen {
+    display: block;
+    color: #333;
+    background: white;
+    border: 1px solid  #eee;
+    padding: 3px;
+    margin: 1px 0px 2px 0px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .plato-resumen span.plato-nombre {
+    color: #2F96B4;
+  }
+
+  .plato-resumen a.grabber {
+    height: 20px;
+    width: 20px;
+  }
+  
+  .plato-resumen .close {
+    line-height: 15px;
+    opacity: 0.1px;
+  }
+
+  .plato-detalle {
+    font-size: smaller;
+    display: none;
+    color: #333;
+    background: white;
+    border: 1px solid #eee;
+    border-top: 0;
+    padding: 3px;
+    margin: 0px 0px 3px 0px;
+    z-index: 999;
+  }

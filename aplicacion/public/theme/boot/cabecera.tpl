@@ -28,7 +28,6 @@
     <script src="theme/boot/js/jquery-1.8.0.js"></script>
     <script src="theme/boot/js/bootstrap.js"></script>
 
-
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
@@ -36,9 +35,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
   </head>
-
   <body>
-
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -70,8 +67,4 @@
         </div>
       </div>
     </div>
-
     <div class="container">
-
-      <h1>{$_nombre_pagina}</h1>
-
