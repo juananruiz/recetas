@@ -3,7 +3,7 @@
 <div class="span12">
   <div class="widget">
     <div class="widget-header">
-      <h3>{$plan_menu.menu->nombre_es}</h3>
+      <h3>Menú: {$plan_menu.menu->nombre_es}</h3>
     </div>
     <div class="widget-content">
       <div class="span2">

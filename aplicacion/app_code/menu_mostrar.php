@@ -18,7 +18,6 @@ if (is_object($usuario))
     $menu = new menu();
     if ($menu->load("id = $id_menu"))
     {
-      $menu->load("id = $id_menu");
       $plan_menu = array();
       $plan_menu["menu"] = $menu;
       $menu_receta = new menu_receta();
