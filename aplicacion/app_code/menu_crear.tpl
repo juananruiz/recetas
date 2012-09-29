@@ -83,11 +83,18 @@
     $('#tabrecetas a:first').tab('show');
   });
 
-  $(".icon-arrow-right").click(function()
-    {
-      var seleccionado = $(this).prev("a").clone();
+  $('.icon-arrow-right').click(function()
+  {
+    $(this).prev('a').clone().appendTo('#platos-seleccionados').wrap("<div class='plato-nombre' />").after('<i class="icon-remove pull-right"></i>');
+    return false;
+  });
 
-      seleccionado.appendTo("#platos-seleccionados");
-    });
+  $('.icon-remove').click(function()
+  {
+    $(this).parent().fadeOut(500);
+    $(this).parent().next().fadeOut(500);
+    //$(this).parent().parent().html("<img src='theme/minica/images/icons/large/grey/cloud_lightning.png'>");
+    $(this).parent().parent().remove();
+  });
   
 </script>
