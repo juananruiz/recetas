@@ -17,15 +17,17 @@ label.error {
 		*/
 </style>
 {/literal}
-<ul class="nav nav-tabs" id="tabrecetas">
-	<li><a href="#nombre">Nombre, preparación y variantes</a></li>
-	<li><a href="#ingrediente">Ingredientes</a></li>
-	<li><a href="#etiqueta">Etiquetas</a></li>
+<ul class="nav nav-tabs" id="tabrecetas" style="display:none">
+	<li><a href="#nombre" data-toggle="tab">Nombre, preparación y variantes</a></li>
+	<li><a href="#ingrediente" data-toggle="tab">Ingredientes</a></li>
+	<li><a href="#etiqueta" data-toggle="tab">Etiquetas</a></li>
 </ul>
 
 <form method="post" action="index.php?page=receta_grabar" id="receta_crear" name="receta_crear">
 	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane fade" id="nombre">
+		<div class="tab-pane fade active in" id="nombre">
+		<h3>Nombre, preparación y variantes</h3>
+		<fieldset>	
 		<div class="control-group">
 			<label class="control-label" for="nombre_es">Nombre</label>
 			<div class="input-prepend controls">
@@ -44,9 +46,13 @@ label.error {
 				<textarea class="span10 autogrow" name="variantes"></textarea>
 			</div>
 		</div>
+		</fieldset>	
+		<a href="#" class="btn btnNext">Siguiente</a>
 		</div>
 		<div class="tab-pane fade" id="ingrediente">
+		<h3>Ingredientes</h3>
 		<div class="row">
+		<fieldset>	
 			<div class="span6">
 				<div class="widget">
 					<div class="widget-header">
@@ -74,10 +80,15 @@ label.error {
 					</div>
 				</div>
 			</div>
+		</fieldset>	
 		</div>
+		<a href="#" class="btn btnPrev">Anterior</a>
+		<a href="#" class="btn btnNext">Siguiente</a>
 		</div>
 		<div class="tab-pane fade" id="etiqueta">
+		<h3>Etiquetas</h3>
 		<div class="row">
+		<fieldset>	
 			<div class="span6">
 				<div class="widget">
 					<div class="widget-header">
@@ -108,32 +119,24 @@ label.error {
 					</div>
 				</div>
 			</div>
-		</div>
-			<div>
+		</fieldset>	
+			<div style="display:none">
 				<button class="btn btn-primary btn-large" type="submit">Grabar receta</button>
 				<button class="btn offset1" type="reset" onclick="history.back()">Cancelar</button>
 			</div>
-			
+		</div>
+		<a href="#" class="btn btnPrev">Anterior</a>
+		<a href="#" class="btn btnFin">Finalizar</a>
 		</div>
 	</div>
 </form>
 <div id="aviso_validacion"> </div>
-<!--
-
--->
 {literal}
+<script src="theme/boot/js/jquery.validate.min.js"></script>
 <script>
 $().ready(function() {
 	//validar formulario
 	$('#receta_crear').validate({
-		invalidHandler : function(form, validator) {
-			var errors = validator.numberOfInvalids();
-      if(errors) 
-			{
-        $('#aviso_validacion').html('<a href="index.php?page=receta_crear#ingrediente">jsjs</a>');
-         validator.errorList[0].element.focus();
-         }
-      },
 		rules:{
 			preparacion:{
 					required:true
@@ -142,10 +145,21 @@ $().ready(function() {
 					required:true
 					}
 		},
+    ignore: "",
 		messages:{
 			nombre_es:'Debe cumplimentar el nombre de la receta',
 			preparacion:'Debe cumplimetar la preparación de la receta'
-		}
+		},
+			/*
+			highlight: function(label) {
+			$(label).closest('.control-group').addClass('error');
+			},
+			success: function(label) {
+			label
+			.text('OK!').addClass('valid')
+			.closest('.control-group').addClass('success');
+			}
+			*/
 	});
 		//busqueda de etiquetas
 	$('#busqueda_etiqueta').keyup(function () {
@@ -172,17 +186,37 @@ $().ready(function() {
 	//tabs de seguimiento
 	$('#tabrecetas a').click(function (e) { e.preventDefault(); $(this).tab('show'); });
 	$('#tabrecetas li:eq(0) a').tab('show'); 
-	//$(function () { $('#tabrecetas a:first').tab('show'); });
-	//$('#aviso_validacion').click(function (e) { e.preventDefault(); $(this).tab('show'); });
-	$('#aviso_nombre').click(function(){
-		$('#tabrecetas li:eq(0) a').tab('show'); 
+	//Botones de seguimiento
+	$('.btnNext').bind("click",function(e){
+		if ($("#receta_crear").valid()) 
+      nextTab();
+    else {
+            //  TODO: doesn't properly scroll to fields on top
+            $.validator.focusInvalid();
+          }
+          return false;
+	});	
+	$('.btnPrev').bind("click",function(e){
+      prevTab();
+	});	
+	$('.btnFin').bind('click', function() {
+		if ($("#receta_crear").valid()) 
+		 $('#receta_crear').submit();
+		else {
+			$.validator.focusInvalid();
+		}
+		return false; 
 	});
-	
 });
-//mostar tabs por aviso de validacion
-function mostrar_tab(index)
-{
-	$(function () { $('#tabrecetas li:eq('+index+') a').tab('show'); });
+function prevTab() {
+  var e = $('#tabrecetas li.active').prev().find('a[data-toggle="tab"]');  
+  e.tab('show');
+	$(window).scrollTop(0);
+}
+function nextTab() {
+  var e = $('#tabrecetas li.active').next().find('a[data-toggle="tab"]');  
+  e.tab('show');
+	$(window).scrollTop(0);
 }
 //Quitar de la lista de ingredientes seleccionados
 function quitar(id)
@@ -196,7 +230,14 @@ function poner(id)
 	var ingrediente = $('#ingrediente_encontrado_'+id).val();
 	if (peso !='')
 	{
+		if (isNaN(peso)== false)
+		{
 		$('#tabla_seleccionados tbody:last').append('<tr id="fila_'+id+'"><td><button class="btn btn-small" type="button"  onclick="javascript:quitar(\''+id+'\')">Quitar</button></td><td>'+ingrediente+'</td><td><div class="input-append"><input name="ingrediente[]" class="" type="hidden" value="'+id+'"><input class="" style="width:40px"  type="text" name="peso[]" value="'+peso+'"><span class="add-on">gr.</span></div></td></tr>');
+		}
+		else
+		{
+			alert('No es un número.');
+		}
 	}
 	else
 	{
