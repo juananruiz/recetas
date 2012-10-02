@@ -30,42 +30,12 @@
 				</div>
 			</fieldset>	
 			<fieldset class="label_side">
-				<label>Tel&eacute;fono</label>
+				<label>Altura</label>
 				<div class="clearfix">
-						<span>{$persona->telefono}</span>
-				</div>
-			</fieldset>	
-			<fieldset class="label_side">
-				<label>Unidad de destino</label>
-				<div class="clearfix">
-						<span>{$persona->unidad_hominis}</span>
-				</div>
-			</fieldset>	
-			<fieldset class="label_side">
-				<label>Pueto de trabajo</label>
-				<div class="clearfix">
-						<span>{$persona->puesto}</span>
+						<span>{$persona->altura}</span>
 				</div>
 			</fieldset>	
 		</div>
 	</div>
 </div>			
 
-<div class="flat_area grid_16">
-	<h2>Unidades asignadas</h2>
-</div>
-
-<div class="box grid_16">
-	<div class="block">	
-		<table class="static"> 
-			<thead>
-				<th>Unidad</th><th>Rol</th>
-			</thead>
-			<tbody>
-				{foreach $persona->entidades as $usuario_entidad}
-			    <tr><td><a href="index.php?page=entidad_datos&id_entidad={$usuario_entidad->id_entidad}">{$usuario_entidad->entidad->nombre}</a></td> <td>{$usuario_entidad->rol->nombre}</td></tr>
-				{/foreach}
-			</tbody>
-		</table>
-	</div>
-</div>	

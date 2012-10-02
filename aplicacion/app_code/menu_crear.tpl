@@ -37,8 +37,9 @@
                 {foreach $etiquetas as $etiqueta}
                   <tr>
                     <td>
-                      <a href="index.php?page=receta_mostrar&id_receta={$etiqueta->receta->id}">{$etiqueta->receta->nombre_es}</a>
-                      <button class="btn btn-mini" style="float:right;" onclick="agregarReceta();">Agregar</span>
+                      <a href="index.php?page=receta_mostrar&id_receta={$etiqueta->receta->id}" 
+                        id_receta="{$etiqueta->receta->id}">{$etiqueta->receta->nombre_es}</a>
+                      <i class="icon-arrow-right pull-right"></i>
                     </td>
                   </tr>
                 {/foreach}
@@ -57,32 +58,9 @@
       <h3>Organiza tu menú</h3>
     </div>
     <div class="widget-content">
-      <ul id="receptor">
-      </ul>
-      <select name="comida">
-        <option value="" selected>Desayuno</option>
-        <option value="">Almuerzo</option>
-        <option value="">Merienda</option>
-        <option value="">Cena</option>
-      </select>
-
-      <ul>
-        <li>Café con leche</li>
-        <li>Zumo de naranja</li>
-        <li>Tostadas con aceite y queso fresco</li>
-      </ul>
-      <select name="comida">
-        <option value="">Desayuno</option>
-        <option value="" selected>Almuerzo</option>
-        <option value="">Merienda</option>
-        <option value="">Cena</option>
-      </select>
-
-      <ul>
-        <li>Crema de calabacines y puerros</li>
-        <li>Hamburguesas de tofú</li>
-        <li>Helado de membrillo</li>
-      </ul>
+      <div id="platos-seleccionados">
+        <div class="plato-nombre"><a href="#" id="123">Solomillo a la mostaza</a> <i class="icon-remove pull-right"></i></div> 
+      </div>
       <select name="comida">
         <option value="">Desayuno</option>
         <option value="">Almuerzo</option>
@@ -90,10 +68,6 @@
         <option value="" selected>Cena</option>
       </select>
 
-      <ul>
-        <li>Pollo al ajillo</li>
-        <li>Ensalada mixta con frutos secos</li>
-      </ul>
     </div><!-- /widget-content -->
   </div><!-- /widget -->
   </div><!-- /span6 -->
@@ -109,9 +83,18 @@
     $('#tabrecetas a:first').tab('show');
   });
 
-  function agregarReceta(e) {
-    var receta = e.target.parentNode;
-    var receptor = document.getElementById("receptor");
-    receptor.appendChild(receta);
-  }
+  $('.icon-arrow-right').click(function()
+  {
+    $(this).prev('a').clone().appendTo('#platos-seleccionados').wrap("<div class='plato-nombre' />").after('<i class="icon-remove pull-right"></i>');
+    return false;
+  });
+
+  $('.icon-remove').click(function()
+  {
+    $(this).parent().fadeOut(500);
+    $(this).parent().next().fadeOut(500);
+    //$(this).parent().parent().html("<img src='theme/minica/images/icons/large/grey/cloud_lightning.png'>");
+    $(this).parent().parent().remove();
+  });
+  
 </script>

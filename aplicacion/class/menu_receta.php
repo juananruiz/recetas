@@ -33,5 +33,6 @@ class menu_receta extends ADOdb_Active_Record
       return false;
     }
   }
+
 }
 ?>

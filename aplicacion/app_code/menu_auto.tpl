@@ -1,27 +1,39 @@
 <style>
   .dia {
-    background:#FFFFCC;
+    background:white;
     float:left;
     margin:5px;
     padding:0px;
-    border: 1px solid #FCC000;
     height:300px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+    border: 0;
   }
 
   .dia h2 {
     font-size: 1em;
     color: #333;
-    background:#FFCC00;
-    border: 0px;
     padding: 3px;
     margin: 0px;
     margin-bottom: 5px;
     line-height: 1em;
     text-align: center;
     text-shadow:0px 0px 0px #FFFFCC;
+    background: #E9E9E9;
+    background:-moz-linear-gradient(top, #FAFAFA 0%, #E9E9E9 100%); /* FF3.6+ */
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FAFAFA), color-stop(100%,#E9E9E9)); /* Chrome,Safari4+ */
+    background:-webkit-linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%); /* Chrome10+,Safari5.1+ */
+    background:-o-linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%); /* Opera11.10+ */
+    background:-ms-linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%); /* IE10+ */
+    background:linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9')";
+    border: 1px solid #D5D5D5;
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-topright: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    -webkit-background-clip: padding-box;
   }
   
   .dia h3 {
@@ -32,7 +44,7 @@
   }
   
   #reserva {
-    border: 1px dashed #FFCC00;
+    border: 0;
   }
 
   div.main_container .receta {
@@ -42,7 +54,7 @@
   .resumen {
     display: block;
     color: #333;
-    background: white;
+    background: #eee;
     border: 1px solid  #FFCC00;
     width: 210px;
     padding: 3px;
@@ -111,14 +123,32 @@
       <div class="span2">
           <p>Grasas: 278 gr (85% DDR)</p>
       </div>
-      <div class="span2">
-          <p>Sodio: 28 gr (75% DDR) <br>
-             Magnesio: 12 gr (69% DDR) <br>
-             Potasio: 8gr (57% DDR)</p>
-      </div>
     </div><!-- .widget-content -->
   </div><!-- .widget -->
 </div><!-- .row -->
+
+<div class="modal hide fade" id="dialogo-grabar">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Grabar menú</h3>
+  </div>
+    <form class="validate" id="graba_menu" method="post">
+  <div class="modal-body">
+      <fieldset>
+        <div class="control-group">
+          <label class="control-label" for="nombre">Nombre del menú</label>
+          <div class="controls">
+            <input class="input-xxlarge" type="text" id="nombre" name="nombre" placeholder="Elige un nombre que te ayude a reconocer este menú">
+          </div>
+        </div>
+      </fieldset>  
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
+</div>
 
 <div class="container">
   {foreach $comidas as $dia => $array_momentos}
@@ -224,6 +254,7 @@
   }
   
   function grabarMenuJson(){
+    $('#dialogo-grabar').modal();
     var recetas = new Array();
     $(".receta").each(function(){
       var receta = {

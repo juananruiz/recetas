@@ -50,7 +50,6 @@ if (is_object($usuario))
   $momento = new momento();
   $momentos = $momento->Find("1 = 1");
   $smarty->assign("momentos", $momentos);
-
   $smarty->assign("comidas", $comidas);
   $smarty->assign("reserva", $reserva);
   $smarty->assign("_nombre_pagina", "Menú semanal inteligente");

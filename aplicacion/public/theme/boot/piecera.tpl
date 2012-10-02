@@ -24,7 +24,11 @@
 
       </div> <!-- /container -->
     </footer>
-
+    {literal}
+    <script>
+      $("#usuario-pop").popover();
+    </script>
+    {/literal}
   </body>
 </html>
 
