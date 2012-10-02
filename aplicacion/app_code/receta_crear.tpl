@@ -126,32 +126,26 @@ label.error {
 $().ready(function() {
 	//validar formulario
 	$('#receta_crear').validate({
-			rules: {
-					nombre_es:{
-						minlength: 2,
-						required: true
+		invalidHandler : function(form, validator) {
+			var errors = validator.numberOfInvalids();
+      if(errors) 
+			{
+        $('#aviso_validacion').html('<a href="index.php?page=receta_crear#ingrediente">jsjs</a>');
+         validator.errorList[0].element.focus();
+         }
+      },
+		rules:{
+			preparacion:{
+					required:true
 					},
-					preparacion: {
-						minlength: 2,
-						required: true
-					},
-				},
-				
-				messages: {
-				nombre_es:'Le falta rellenar el campo nombre en el Paso 1.',
-				preparacion:"Le falta rellenar el campo preparación en el Paso 1."
-			},
-			
-		  errorContainer: "#aviso_validacion",
-      errorLabelContainer: "#aviso_validacion",
-      errorElement: "li" ,
-				highlight: function(label) {
-					$(label).closest('.control-group').addClass('error');
-				},
-				success: function(label) {
-					label
-						.closest('.control-group').addClass('success');
-				},
+			nombre_es:{
+					required:true
+					}
+		},
+		messages:{
+			nombre_es:'Debe cumplimentar el nombre de la receta',
+			preparacion:'Debe cumplimetar la preparación de la receta'
+		}
 	});
 		//busqueda de etiquetas
 	$('#busqueda_etiqueta').keyup(function () {

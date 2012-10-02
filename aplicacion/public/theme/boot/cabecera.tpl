@@ -27,6 +27,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="theme/boot/js/jquery-1.8.0.js"></script>
     <script src="theme/boot/js/bootstrap.js"></script>
+    <script src="theme/boot/js/jquery.validate.js"></script>
 
 
     <!-- Le fav and touch icons -->
