@@ -27,12 +27,22 @@
             </span>
             <ul class="nav">
               {if isset($_usuario)}
-                <li><a href="index.php?page=mi_menu_listar"><img src="theme/minica/images/icons/small/white/frames.png" alt=""/><span>Menús</span></a></li>
-                <li><a href="index.php?page=diario_mostrar"><img src="theme/minica/images/icons/small/white/create_write.png" alt=""/><span>Diario</span></a></li>
+                <li {if $smarty.template|substr:0:4 == "menu"}class="active"{/if}>
+                  <a href="index.php?page=menu_listar"><img src="theme/minica/images/icons/small/white/frames.png" alt=""/><span>Menús</span></a>
+                </li>
+                <li {if $smarty.template|substr:0:4 == "diar"}class="active"{/if}>
+                  <a href="index.php?page=diario_mostrar"><img src="theme/minica/images/icons/small/white/create_write.png" alt=""/><span>Diario</span></a>
+                </li>
               {/if}
-              <li><a href="index.php?page=receta_listar"><img src="theme/minica/images/icons/small/white/note_book.png" alt=""/><span>Recetas</span></a></li>
-              <li><a href="index.php?page=alimento_listar"><img src="theme/minica/images/icons/small/white/ice_cream_2.png" alt=""/><span>Alimentos</span></a> </li>
-              <li><a href="index.php?page=disenio"><img src="theme/minica/images/icons/small/white/rss.png" alt=""/><span>Diseño</span></a></li>
+              <li {if $smarty.template|substr:0:4 == "rece"}class="active"{/if}>
+                <a href="index.php?page=receta_listar"><img src="theme/minica/images/icons/small/white/note_book.png" alt=""/><span>Recetas</span></a>
+              </li>
+              <li {if $smarty.template|substr:0:4 == "alim"}class="active"{/if}>
+                <a href="index.php?page=alimento_listar"><img src="theme/minica/images/icons/small/white/ice_cream_2.png" alt=""/><span>Alimentos</span></a> 
+              </li>
+              <li>
+                <a href="index.php?page=disenio"><img src="theme/minica/images/icons/small/white/rss.png" alt=""/><span>Diseño</span></a>
+              </li>
             </ul>
           </div><!-- .nav-collapse -->
         </div><!-- .container -->

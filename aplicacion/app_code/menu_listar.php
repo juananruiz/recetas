@@ -1,7 +1,7 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Comerbien
-// Archivo: mi_menu_listar.php
+// Archivo: menu_listar.php
 //---------------------------------------------------------------------------------------------------
 // Lista los menús relacionados con el usuario actual
 //---------------------------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ if (is_object($usuario))
   $smarty->assign("menus", $menus);
 
   $smarty->assign("_nombre_pagina", "Mis Menús");
-  $plantilla = "mi_menu_listar.tpl";
+  $plantilla = "menu_listar.tpl";
 }
 else
 {
