@@ -1,14 +1,15 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: ComerBien 
-// Archivo: inicio.php
+// Archivo: diario_mostrar.php
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 global $smarty;
 global $usuario;
 global $plantilla;
 
-$smarty->assign('_nombre_pagina', 'Inicio');
+$smarty->assign('_nombre_pagina', 'Diario');
 
-$plantilla = 'inicio.tpl';
+$plantilla = 'diario_mostrar.tpl';
 ?>
+

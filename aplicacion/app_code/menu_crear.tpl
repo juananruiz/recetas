@@ -59,42 +59,90 @@
     </div>
     <div class="widget-content">
       <div id="platos-seleccionados">
-        <div class="plato-nombre"><a href="#" id="123">Solomillo a la mostaza</a> <i class="icon-remove pull-right"></i></div> 
-      </div>
-      <select name="comida">
-        <option value="">Desayuno</option>
-        <option value="">Almuerzo</option>
-        <option value="">Merienda</option>
-        <option value="" selected>Cena</option>
-      </select>
+        <ul class="nav nav-tabs" id="tabdias">
+          {foreach $dias as $dia}
+            <li><a href="#{$dia->id}">{$dia->nombre_es|substr:0:3}</a></li>
+          {/foreach}
+        </ul>
 
-    </div><!-- /widget-content -->
-  </div><!-- /widget -->
-  </div><!-- /span6 -->
+        <div class="tab-content">
+          {foreach $dias as $dia}
+            <div class="tab-pane" id="{$dia->id}">
+              {section name="momento" start=1 loop=3}
+                <div class="momento">
+                  <select style="height: 20px; line-height: 20px; margin: 5px;">
+                    {foreach $momentos as $momento}
+                      <option value="{$momento->id}" {if $momento->id == $smarty.section.momento.index * 3}selected{/if}>{$momento->nombre_es}</option>
+                    {/foreach}
+                  </select>
+                  <span class="pull-right"><a href="#"><i class="icon-plus"></i><i class="icon-remove"></i></a></span>
+                  <div class="receptor"></div>
+                </div><!-- .momento -->
+              {/section}
+            </div><!-- .tab-pane -->
+          {/foreach}
+        </div><!-- .tab-content -->
+      </div>
+
+    </div><!-- .widget-content -->
+  </div><!-- .widget -->
+  </div><!-- .span6 -->
 </div><!-- /row -->
 
 <script>
+  $(function () {
+    $('#tabrecetas a:first').tab('show');
+    $('#tabdias a:first').tab('show');
+    $('.momento:first .receptor:first').toggleClass('activo');
+  });
+
   $('#tabrecetas a').click(function (e) {
     e.preventDefault();
     $(this).tab('show');
   });
 
-  $(function () {
-    $('#tabrecetas a:first').tab('show');
+  $('#tabdias a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    $('.active .momento:first .receptor:first').toggleClass('activo');
   });
 
   $('.icon-arrow-right').click(function()
   {
-    $(this).prev('a').clone().appendTo('#platos-seleccionados').wrap("<div class='plato-nombre' />").after('<i class="icon-remove pull-right"></i>');
+    $(this).prev('a').clone().appendTo('.activo').wrap("<div class='plato-nombre' />").before('<i class="icon-move"></i>&nbsp;').after('<i class="icon-remove pull-right"></i>');
+    $('.icon-remove').bind('click', function()
+    {
+      $(this).parent().fadeOut(500);
+      $(this).parent().delay(500).remove();
+    });
     return false;
   });
 
-  $('.icon-remove').click(function()
+  $('.icon-remove').bind('click', function()
   {
     $(this).parent().fadeOut(500);
-    $(this).parent().next().fadeOut(500);
-    //$(this).parent().parent().html("<img src='theme/minica/images/icons/large/grey/cloud_lightning.png'>");
-    $(this).parent().parent().remove();
+    $(this).parent().remove();
   });
-  
+
+  $('.receptor').click(function()
+  {
+    $('.receptor').removeClass('activo');  
+    $(this).toggleClass('activo');  
+  });
+
 </script>
+
+<style>
+  .receptor {
+    width: 80%;
+    min-height: 20px;
+    border: 1px dashed #ddd;
+    margin: 5px;
+    padding: 5px;
+  } 
+
+  .activo {
+    border: 1px dashed #08c;
+    background: #f0f0f0;
+  }
+</style>

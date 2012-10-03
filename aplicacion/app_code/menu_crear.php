@@ -25,6 +25,13 @@ if (is_object($usuario))
   $recetas["pescado"] = $etiqueta_receta->Find_recetas("id_etiqueta = 100");
   $recetas["ensalada"] = $etiqueta_receta->Find_recetas("id_etiqueta = 103");
   $smarty->assign("recetas", $recetas);
+
+  $dia = new dia();
+  $dias = $dia->Find("id > 0 ORDER BY id");
+  $smarty->assign("dias", $dias);
+  $momento = new momento();
+  $momentos = $momento->Find("id > 0 ORDER BY id");
+  $smarty->assign("momentos", $momentos);
   $smarty->assign("_nombre_pagina", "Diseña tu menú");
   $plantilla = "menu_crear.tpl";
 }
