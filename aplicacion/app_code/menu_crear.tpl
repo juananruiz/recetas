@@ -89,6 +89,7 @@
   </div><!-- .span6 -->
 </div><!-- /row -->
 
+{literal}
 <script>
   $(function () {
     $('#tabrecetas a:first').tab('show');
@@ -104,6 +105,7 @@
   $('#tabdias a').click(function (e) {
     e.preventDefault();
     $(this).tab('show');
+    $('.activo').removeClass('activo');
     $('.active .momento:first .receptor:first').toggleClass('activo');
   });
 
@@ -130,19 +132,90 @@
     $(this).toggleClass('activo');  
   });
 
-</script>
+// ----- Grabando -----  //
 
-<style>
-  .receptor {
-    width: 80%;
-    min-height: 20px;
-    border: 1px dashed #ddd;
-    margin: 5px;
-    padding: 5px;
-  } 
-
-  .activo {
-    border: 1px dashed #08c;
-    background: #f0f0f0;
+  // Ahora mismo graba sin tener en cuenta los días, sólo los platos.
+  // Espero pronto poder grabarlo todo
+  function grabarMenu(){
+    var menuazar = crearAlmacenLocal("menuazar"); 
+    var menuazarAjax = "nombre_es=MenuJuanan";
+    $(".receta").each(function(){
+      var receta = $(this).attr("id");
+      // Resto todo
+      menuazar.push(receta); 
+      menuazarAjax += "&recetas[]=" + receta;
+      $("#grabar").attr("disabled","disabled");
+      $("#grabar").css("background","silver");
+      $("#grabar").css("border","1px dashed gray");
+      $("#grabar").css("cursor","default");
+    });
+    // Grabamos en local (por experimentar)
+    localStorage.setItem("menuazar", JSON.stringify(menuazar));
+    // Grabamos en remoto (esta es la buena)
+    grabarRemoto(menuazarAjax);
   }
-</style>
+
+  // Esta función graba con JavaScript utilizando Ajax contra un controlador php
+  function grabarRemoto(datos){
+    var request = new XMLHttpRequest();
+    var page = "index.php?page=menu_grabar";
+    request.open("POST", page, true);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send(datos);
+  }
+  
+  function grabarMenuJson(){
+    $('#dialogo-grabar').modal();
+    var recetas = new Array();
+    $(".receta").each(function(){
+      var receta = {
+        id_receta:$(this).attr("id"),
+        id_momento:$(this).parent().attr("id"),
+        id_dia:$(this).parent().parent().attr("id")
+      };
+      recetas.push(receta);
+    });
+    var datos = {nombre_es:"MenuJuananJson", recetas:recetas};
+    grabarRemotoJson(datos);
+  }
+
+  function grabarRemotoJson(datos){
+    $.ajax({ 
+      type: "POST", 
+      url: "index.php?page=menu_grabar_json", 
+      data: datos,
+      dataType: "json", 
+      success: deshabilitarGrabar()   
+    }); 
+  }
+
+  function deshabilitarGrabar(){
+    $("#grabar").attr("disabled","disabled");
+    $("#grabar").css("background","silver");
+    $("#grabar").css("border","1px dashed gray");
+    $("#grabar").css("cursor","default");
+  }
+
+  function crearAlmacenLocal(key) {
+    var valor = localStorage.getItem(key);
+    if (valor) {
+      localStorage.removeItem(key);
+    }
+    valor = new Array();
+    return valor;
+  }
+  
+  //Esta me sirve para cuando quiero mantener el almacen siempre en memoria local
+  function getAlmacenLocal(key) { 
+    var valor = localStorage.getItem(key); 
+    if (valor == null || valor == "") { 
+      valor = new Array();
+    }	
+    else { 
+      valor = JSON.parse(valor); 
+    }	
+    return valor;
+  }
+// ------------  //
+</script>
+{/literal}

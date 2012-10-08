@@ -12,6 +12,21 @@
  *
  * --------------- */
 
+/* --- La cosa nostra --- */
+.receptor {
+  width: 80%;
+  min-height: 20px;
+  border: 1px dashed #ddd;
+  margin: 5px;
+  padding: 5px;
+} 
+
+.activo {
+  border: 1px dashed #08c;
+  background: #f0f0f0;
+}
+
+/* --- Modificaciones sobre bootstrap --- */
 body {
   background: url("../img/body_bgc.png");
 }
@@ -32,16 +47,23 @@ h1 {
   border-bottom: 4px solid #E5D7C4;
 }
 
+.navbar-inverse .navbar-text {
+  color: #5BC0DE;
+}
+
+.navbar-inverse .navbar-text > a,
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
   color: #e9e9e9;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
+.navbar-inverse .navbar-text > a:hover,
 .navbar-inverse .brand:hover,
 .navbar-inverse .nav > li > a:hover {
   color: #ffffff;
   background-color: #49AFCD;
+  text-decoration: none;
 }
 
 .navbar-inverse .nav .active > a,
@@ -83,18 +105,20 @@ h1 {
 }
 
 .btn-primary {
-  color: white;
+  color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #49AFCD;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5BC0DE), to(#2F96B4));
-  background-image: -webkit-linear-gradient(top, #5BC0DE, #2F96B4);
-  background-image: -o-linear-gradient(top, #5BC0DE, #2F96B4);
-  background-image: linear-gradient(to bottom, #5BC0DE, #2F96B4);
-  background-image: -moz-linear-gradient(top, #5BC0DE, #2F96B4);
+  background-color: #49afcd;
+  *background-color: #2f96b4;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
   background-repeat: repeat-x;
-  border-color: #2F96B4 #2F96B4 #1F6377;
+  border: 1px outset buttonface;
+  border-color: #2f96b4 #2f96b4 #1f6377;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#FF5BC0de', endColorstr='#FF2F96b4', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
