@@ -46,7 +46,17 @@ label.error {
 				<textarea class="span10 autogrow" name="variantes"></textarea>
 			</div>
 		</div>
-		</fieldset>	
+		<div class="control-group">
+			<label class="control-label" for="Etiqueta_principal">Etiqueta principal</label>
+			<div class="controls">
+			<select name="etiqueta_principal">
+			<option value="">Elegir uno ...</option>
+			{foreach from=$etiquetas item=etiqueta}
+			<option value="{$etiqueta->id}">{$etiqueta->nombre_es}</option>
+			{/foreach}
+			</select>
+			</div>
+		</div></fieldset>	
 		<a href="#" class="btn btnNext">Siguiente</a>
 		</div>
 		<div class="tab-pane fade" id="ingrediente">
@@ -56,7 +66,7 @@ label.error {
 			<div class="span6">
 				<div class="widget">
 					<div class="widget-header">
-						<h3><span class="icon-align-left" style="margin-right:10px"></span> Busca tus ingredientes</h3>
+						<h3><span class="icon-align-left" style="margin-right:"></span> </h3>
 						<input id="busqueda" name="busqueda" type="text" class="input-medium search-query"  placeholder="Escribe tu ingrediente">
 					</div>
 					<div class="widget-content tabbable tabs-left">
@@ -73,7 +83,7 @@ label.error {
 			<div class="span6">
 				<div class="widget">
 					<div class="widget-header">
-						<h3><span class="icon-indent-left" style="margin-right:10px"></span> Ingredientes seleccionados</h3>
+						<h3><span class="icon-indent-left" style="margin-right:"></span> Ingredientes seleccionados</h3>
 					</div>
 					<div id="seleccionados" class="widget-content tabbable tabs-left">
 					<table id="tabla_seleccionados" class="table table-hover table-striped"><thead><tr><th style="width:15%"></th><th style="width:70%"></th><th style="width:15%"></th></tr></thead><tbody></tbody></table>
@@ -92,24 +102,19 @@ label.error {
 			<div class="span6">
 				<div class="widget">
 					<div class="widget-header">
-						<h3><span class="icon-tag" style="margin-right:10px"></span> Busca tus etiquetas</h3>
-						<input id="busqueda_etiqueta" name="busqueda_etiqueta" type="text" class="input-medium search-query"  placeholder="Escribe tu etiqueta">
-					</div>
-					<div class="widget-content tabbable tabs-left">
-						<table class="table table-hover table-striped">
-						<thead>
-							<tr><th style="width:70%"></th><th style="width:15%"></th><th style="width:15%"></th></tr>
-						</thead>
-						<tbody id="etiquetas_encontradas">
-						</tbody>
-						</table>	
+						<h3><span class="icon-tag" style="margin-right:"></span> </h3>
+						<input id="busqueda_etiqueta" name="busqueda_etiqueta" type="text" class="input-medium search-query"  placeholder="Escribe tu etiqueta"><h3><a id="etiqueta_todas" href="javascript:void(0)">Todas</a>
+						</div>
+					<div class="widget-content tabbable tabs-left" id="contenedor_etiquetas">
+						<br />	
+						<br />	
 					</div>
 				</div>
 			</div>
 			<div class="span6">
 				<div class="widget">
 					<div class="widget-header">
-						<h3><span class="icon-tags" style="margin-right:10px"></span> Etiquetas  seleccionadas</h3>
+						<h3><span class="icon-tags" style="margin-right:"></span> Etiquetas  seleccionadas</h3>
 					</div>
 					<div id="etiquetas_seleccionadas" class="widget-content tabbable tabs-left">
 						<table id="tabla_etiquetas_seleccionadas" class="table table-hover table-striped">
@@ -141,6 +146,9 @@ $().ready(function() {
 			preparacion:{
 					required:true
 					},
+			etiqueta_principal:{
+					required:true
+					},
 			nombre_es:{
 					required:true
 					}
@@ -161,14 +169,25 @@ $().ready(function() {
 			}
 			*/
 	});
-		//busqueda de etiquetas
+	//etiquetas todas
+	$('#etiqueta_todas').click(function () {
+	 $.ajax({
+		url: "index.php?page=receta_crear_etiqueta_ajax_todas&ajax=true",
+		success: function(datos)
+		{
+			$('#contenedor_etiquetas').html(datos);
+		}
+		}); 
+	});
+//busqueda de etiquetas
 	$('#busqueda_etiqueta').keyup(function () {
 	 var valor = $('#busqueda_etiqueta').val();
 	 $.ajax({
 		url: "index.php?page=receta_crear_etiqueta_ajax&ajax=true&busqueda="+valor,
 		success: function(datos)
 		{
-			$('#etiquetas_encontradas').html(datos);
+			$('#contenedor_etiquetas').html(datos);
+			//$('#etiquetas_encontradas').html(datos);
 		}
 		}); 
 	});
