@@ -5,10 +5,10 @@
       <h3>Bautiza tu menú</h3>
     </div>
     <div class="widget-content">
-      <form method="post" action="index.php?page=receta_grabar" class="form-inline validate_form">
+      <form method="post" class="form-inline validate_form">
         <label>Nombre del menú</label>
-        <input type="text" name="nombre_es" class="input-xxlarge required" />
-        <button class="btn btn-primary" type="submit" id="grabar">Grabar</button>
+        <input type="text" name="nombre_es" id="nombre_es" class="input-xxlarge required" />
+        <button class="btn btn-primary" type="button" id="grabar">Grabar</button>
         <button class="btn" type="reset" id="cancelar" onclick="history.back()">Cancelar</button>
       </form>
     </div><!-- /widget-content -->
@@ -37,7 +37,7 @@
                 {foreach $etiquetas as $etiqueta}
                   <tr>
                     <td>
-                      <a href="index.php?page=receta_mostrar&id_receta={$etiqueta->receta->id}" 
+                      <a class="receta" href="index.php?page=receta_mostrar&id_receta={$etiqueta->receta->id}" 
                         id_receta="{$etiqueta->receta->id}">{$etiqueta->receta->nombre_es}</a>
                       <i class="icon-arrow-right pull-right"></i>
                     </td>
@@ -89,6 +89,7 @@
   </div><!-- .span6 -->
 </div><!-- /row -->
 
+{literal}
 <script>
   $(function () {
     $('#tabrecetas a:first').tab('show');
@@ -96,20 +97,21 @@
     $('.momento:first .receptor:first').toggleClass('activo');
   });
 
-  $('#tabrecetas a').click(function (e) {
-    e.preventDefault();
+  $('#tabrecetas a').click(function (evento) {
+    evento.preventDefault();
     $(this).tab('show');
   });
 
   $('#tabdias a').click(function (e) {
     e.preventDefault();
     $(this).tab('show');
+    $('.activo').removeClass('activo');
     $('.active .momento:first .receptor:first').toggleClass('activo');
   });
 
   $('.icon-arrow-right').click(function()
   {
-    $(this).prev('a').clone().appendTo('.activo').wrap("<div class='plato-nombre' />").before('<i class="icon-move"></i>&nbsp;').after('<i class="icon-remove pull-right"></i>');
+    $(this).prev('a').clone().appendTo('.activo').wrap("<div class='plato-nombre' />").before('<i class="icon-move"></i>&nbsp;').after('<i class="icon-remove pull-right"></i>').removeClass("receta").addClass("plato");
     $('.icon-remove').bind('click', function()
     {
       $(this).parent().fadeOut(500);
@@ -130,19 +132,97 @@
     $(this).toggleClass('activo');  
   });
 
-</script>
+  $('#grabar').click(function(evento)
+    {
+    evento.preventDefault();
+    generarMenuJson();
+    });
 
-<style>
-  .receptor {
-    width: 80%;
-    min-height: 20px;
-    border: 1px dashed #ddd;
-    margin: 5px;
-    padding: 5px;
-  } 
+// ----- Módulo de grabación -----  //
 
-  .activo {
-    border: 1px dashed #08c;
-    background: #f0f0f0;
+  // EN DESUSO 
+  function grabarMenu(){
+    var menuazar = crearAlmacenLocal("menuazar"); 
+    var menuazarAjax = "nombre_es=MenuJuanan";
+    $(".receta").each(function(){
+      var receta = $(this).attr("id");
+      // Resto todo
+      menuazar.push(receta); 
+      menuazarAjax += "&recetas[]=" + receta;
+    });
+    // Grabamos en local (por experimentar)
+    localStorage.setItem("menuazar", JSON.stringify(menuazar));
+    // Grabamos en remoto (esta es la buena)
+    grabarRemoto(menuazarAjax);
   }
-</style>
+
+  // EN DESUSO 
+  // Esta función graba con JavaScript utilizando Ajax contra un controlador php
+  function grabarRemoto(datos){
+    var request = new XMLHttpRequest();
+    var page = "index.php?page=menu_grabar";
+    request.open("POST", page, true);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send(datos);
+  }
+  
+  // Prepará el menú para que se puede grabar utilizando formato JSON
+  function generarMenuJson(){
+    //$('#dialogo-grabar').modal();
+    var platos = new Array();
+    $(".plato").each(function(){
+      var receta = {
+        id_receta:$(this).attr("id_receta"),
+        id_momento:$(this).closest(".momento").find("option:selected").attr("value"),
+        id_dia:$(this).closest(".tab-pane").attr("id")
+      };
+      platos.push(plato);
+    });
+    var nombre_es = $("#nombre_es").attr("value");
+    var datos = {nombre_es:nombre_es, recetas:platos};
+    alert(datos);
+    grabarRemotoJson(datos);
+  }
+
+  // Graba el menú en formato JSON en la base de datos utilizando AJAX
+  function grabarRemotoJson(datos){
+    $.ajax({ 
+      type: "POST", 
+      url: "index.php?page=menu_grabar_json", 
+      data: datos,
+      dataType: "json", 
+      success: deshabilitarGrabar()   
+    }); 
+  }
+
+  function deshabilitarGrabar(){
+    $("#grabar").attr("disabled","disabled");
+    $("#grabar").css("background","silver");
+    $("#grabar").css("border","1px dashed gray");
+    $("#grabar").css("cursor","default");
+  }
+
+  // EN DESUSO 
+  function crearAlmacenLocal(key) {
+    var valor = localStorage.getItem(key);
+    if (valor) {
+      localStorage.removeItem(key);
+    }
+    valor = new Array();
+    return valor;
+  }
+  
+  // EN DESUSO 
+  //Esta me sirve para cuando quiero mantener el almacen siempre en memoria local
+  function getAlmacenLocal(key) { 
+    var valor = localStorage.getItem(key); 
+    if (valor == null || valor == "") { 
+      valor = new Array();
+    }	
+    else { 
+      valor = JSON.parse(valor); 
+    }	
+    return valor;
+  }
+</script>
+{/literal}
