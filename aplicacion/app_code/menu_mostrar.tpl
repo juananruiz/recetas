@@ -8,7 +8,8 @@
     <div class="widget-content">
       <div class="span2">
         <button class="btn btn-primary btn-xlarge" id="grabar">Grabar menú</button>
-        <button class="btn" id="imprimir" style="margin-top:10px;">Imprimir</button>
+        <a class="btn" href="index.php?page=menu_imprimir&id_menu={$plan_menu.menu->id}" 
+          style="margin-top:10px;"><i class="icon-print"></i> Imprimir</a>
       </div>
       <div class="span2">
           <p>Calorías: 1950 kcal (95% DDR)</p>
@@ -91,7 +92,6 @@
   $(".plato-nombre").click(detallarReceta);
   $(".close").click(descartarReceta);
   $("#grabar").click(grabarMenuJson);
-  $("#imprimir").click(function (){window.location("index.php?page=menu_imprimir&id_menu=" + this.id_menu);});
     
   function detallarReceta(){
     $(this).parent().css("border-bottom", "1px solid #EEE");

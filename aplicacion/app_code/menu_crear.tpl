@@ -134,44 +134,20 @@
 
   $('#grabar').click(function(evento)
     {
-    evento.preventDefault();
-    generarMenuJson();
+      evento.preventDefault();
+      var datos_menu = menuJson();
+      grabarLocal(datos_menu);
+      grabarRemotoJson(datos_menu);
     });
 
 // ----- Módulo de grabación -----  //
 
-  // EN DESUSO 
-  function grabarMenu(){
-    var menuazar = crearAlmacenLocal("menuazar"); 
-    var menuazarAjax = "nombre_es=MenuJuanan";
-    $(".receta").each(function(){
-      var receta = $(this).attr("id");
-      // Resto todo
-      menuazar.push(receta); 
-      menuazarAjax += "&recetas[]=" + receta;
-    });
-    // Grabamos en local (por experimentar)
-    localStorage.setItem("menuazar", JSON.stringify(menuazar));
-    // Grabamos en remoto (esta es la buena)
-    grabarRemoto(menuazarAjax);
-  }
-
-  // EN DESUSO 
-  // Esta función graba con JavaScript utilizando Ajax contra un controlador php
-  function grabarRemoto(datos){
-    var request = new XMLHttpRequest();
-    var page = "index.php?page=menu_grabar";
-    request.open("POST", page, true);
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send(datos);
-  }
   
   // Prepará el menú para que se puede grabar utilizando formato JSON
-  function generarMenuJson(){
-    //$('#dialogo-grabar').modal();
+  function menuJson(){
     var platos = new Array();
     $(".plato").each(function(){
-      var receta = {
+      var plato = {
         id_receta:$(this).attr("id_receta"),
         id_momento:$(this).closest(".momento").find("option:selected").attr("value"),
         id_dia:$(this).closest(".tab-pane").attr("id")
@@ -180,8 +156,7 @@
     });
     var nombre_es = $("#nombre_es").attr("value");
     var datos = {nombre_es:nombre_es, recetas:platos};
-    alert(datos);
-    grabarRemotoJson(datos);
+    return datos;
   }
 
   // Graba el menú en formato JSON en la base de datos utilizando AJAX
@@ -193,6 +168,12 @@
       dataType: "json", 
       success: deshabilitarGrabar()   
     }); 
+  }
+
+  function grabarLocal(datos)
+  {
+    // Grabamos en local (por experimentar)
+    localStorage.setItem("menu_galatar", JSON.stringify(datos));
   }
 
   function deshabilitarGrabar(){

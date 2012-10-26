@@ -3,7 +3,10 @@
     <div class="widget">
       <div class="widget-content">
         <h3>Página en construcción</h3>
-        <p>Esta aplicación se encuentra en desarrollo te pedimos disculpas por los errores que puedas encontrar.</p>
+        <p>Galatar te permite planificar tu alimentación (y la de tu familia) de una forma sencilla y divertida, a la vez
+          que controlas las calorías y nutrientes que incorporas a tu dieta. 
+          Además te permite hacer un seguimiento del ejercicio que realizas, de manera que puedes llevar un balance de 
+          calorías que entran y calorías que gastas. </p>
         <p>Seguimos trabajando en ello y mejorando gracias a tu ayuda.</p>
       </div>
     </div>
@@ -28,8 +31,8 @@
   <div class="span4">
     <div class="widget" style="height:400px;">
       <div class="widget-content">
-        <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.</p>
+        <p>La lista de la compra.</p>
+        <p>Una vez que tengas planificado el menú de tu semana tendrás tu lista de la compra con sólo pulsar un botón. Esto te permite planificar mejor tu visita al supermercad, lo que suele traducirse en un ahorro económico.</p>
       </div>
     </div>
   </div>
