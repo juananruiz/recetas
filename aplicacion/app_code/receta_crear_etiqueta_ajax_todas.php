@@ -10,22 +10,17 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
+
 if (is_object($usuario))
 {
-  $ingrediente = new alimento();
-  $ingredientes = $ingrediente->Find("ingrediente = 1");
-  $smarty->assign("ingredientes", $ingredientes);
-
-  $smarty->assign("_nombre_pagina", "Creando receta");
-  $plantilla = "receta_crear.tpl";
-	
-	$e = new etiqueta();
-	$etiquetas = $e->find("id_familia= 1");
-  $smarty->assign("etiquetas", $etiquetas);
+  $familia_etiqueta = new familia_etiqueta();
+  $familias = $familia_etiqueta->find_joined();
+  $smarty->assign("familias", $familias);
+//print_r($familias);
+  $plantilla = "receta_crear_etiqueta_ajax_todas.tpl";
 }
 else
 {
   $error = "Debe iniciar sesión con su cuenta de usuario para proponer nuevas recetas";
-  header("location:index.php?page=receta_listar&error=$error");
 }
 ?>
