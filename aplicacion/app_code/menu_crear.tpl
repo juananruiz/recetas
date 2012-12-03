@@ -20,9 +20,19 @@
   <div class="span6">
   <div class="widget">
   <div class="widget-header">
-    <h3>Elige los platos</h3>
+		<h3>Elige los platos</h3>
+      <input id="busca_receta" name="busca_receta" type="text" class="input-medium search-query"  placeholder="Busca recetas...">
+      <div class="btn-group pull-right" data-toggle="buttons-radio">
+        <button class="btn active">T</button>
+        <button class="btn">F</button>
+        <button class="btn">P</button>
+      </div>
+      <!--
+      <i id="mostrar_favoritos" class="icon-heart "></i>
+      <i id="mostrar_populares" class="icon-globe "></i>
+      -->
   </div>
-    <div class="widget-content tabbable tabs-left">
+    <div id="recetario" class="widget-content tabbable tabs-left">
       <ul class="nav nav-tabs" id="tabrecetas">
         {foreach $recetas as $clave => $etiquetas}
           <li><a href="#{$clave}">{$etiquetas[0]->etiqueta->nombre_es}</a></li>
@@ -109,7 +119,9 @@
     $('.active .momento:first .receptor:first').toggleClass('activo');
   });
 
-  $('.icon-arrow-right').click(function()
+  $('.icon-arrow-right').click(agregarPlato);
+  
+  function agregarPlato()
   {
     $(this).prev('a').clone().appendTo('.activo').wrap("<div class='plato-nombre' />").before('<i class="icon-move"></i>&nbsp;').after('<i class="icon-remove pull-right"></i>').removeClass("receta").addClass("plato");
     $('.icon-remove').bind('click', function()
@@ -118,7 +130,7 @@
       $(this).parent().delay(500).remove();
     });
     return false;
-  });
+  }
 
   $('.icon-remove').bind('click', function()
   {
@@ -131,6 +143,21 @@
     $('.receptor').removeClass('activo');  
     $(this).toggleClass('activo');  
   });
+
+  // Buscador interactivo de recetas
+	$('#busca_receta').keyup(function () 
+    {
+	    var valor = $('#busca_receta').val();
+	    $.ajax(
+      {
+        url: "index.php?page=menu_crear_buscar_ajax&ajax=true&busqueda="+valor,
+        success: function(datos)
+        {
+          $('#recetario').html(datos);
+          $('.icon-arrow-right').bind('click', agregarPlato);
+        }
+      }); 
+    });
 
   $('#grabar').click(function(evento)
     {
