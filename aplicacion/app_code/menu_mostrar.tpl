@@ -3,7 +3,7 @@
 <div class="span12">
   <div class="widget">
     <div class="widget-header">
-      <h3>Menú: {$plan_menu.menu->nombre_es}</h3>
+      <h3>Menú: <span id="nombre_menu">{$plan_menu.menu->nombre_es}</span></h3>
     </div>
     <div class="widget-content">
       <div class="span2">
@@ -108,17 +108,12 @@
   // Ahora mismo graba sin tener en cuenta los días, sólo los platos.
   // Espero pronto poder grabarlo todo
   function grabarMenu(){
-    var menuazar = crearAlmacenLocal("menuazar"); 
-    var menuazarAjax = "nombre_es=MenuJuanan";
+    var menuazar = crearAlmacenLocal("menu_galatar"); 
     $(".plato-nombre").each(function(){
       var receta = $(this).attr("id");
       // Resto todo
       menuazar.push(receta); 
       menuazarAjax += "&recetas[]=" + receta;
-      $("#grabar").attr("disabled","disabled");
-      $("#grabar").css("background","silver");
-      $("#grabar").css("border","1px dashed gray");
-      $("#grabar").css("cursor","default");
     });
     // Grabamos en local (por experimentar)
     localStorage.setItem("menuauto", JSON.stringify(menuazar));
@@ -126,27 +121,19 @@
     grabarRemoto(menuazarAjax);
   }
 
-  // Esta función graba con JavaScript utilizando Ajax contra un controlador php
-  function grabarRemoto(datos){
-    var request = new XMLHttpRequest();
-    var page = "index.php?page=menu_grabar";
-    request.open("POST", page, true);
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send(datos);
-  }
-  
-  function grabarMenuJson(){
-    var recetas = new Array();
+  function menuJson(){
+    var platos = new Array();
     $(".plato-nombre").each(function(){
-      var receta = {
+      var plato = {
         id_receta:$(this).attr("id"),
         id_momento:$(this).parent().attr("id"),
         id_dia:$(this).parent().parent().attr("id")
       };
-      recetas.push(receta);
+      platos.push(plato);
     });
-    var datos = {nombre_es:"MenuJuananJson", recetas:recetas};
-    grabarRemotoJson(datos);
+    var nombre_menu = $("#nombre_menu").attr("value");
+    var datos = {nombre_es:nombre_menu, recetas:platos};
+    return datos;
   }
 
   function grabarRemotoJson(datos){

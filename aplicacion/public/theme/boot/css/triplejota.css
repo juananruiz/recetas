@@ -1,11 +1,13 @@
 /* --- Colores ---
- * Sombra letras: #E5D7C4;
- * Color títulos: #4B4B4B;
- * Naranja base: #FF6501;
+ * Sombra letras: #E5D7C4
+ * Color títulos: #4B4B4B
+ * Naranja base: #FF6501
  * Fondo principal: 
- * Fondo segundo: #FED;
- * Azulina oscuro: #5BC0DE;
- * Azulina claro: #2F96B4;
+ * Fondo segundo: #FED
+ * Azulina oscuro: #5BC0DE
+ * Azulina claro: #2F96B4
+ * Azulina másclaro: #49AFCD
+ * Azulina superclaro: #EAF8FF
  *
  *
  *
@@ -331,7 +333,7 @@ Mostrando los platos de un menú con estilo
   .plato-resumen {
     display: block;
     color: #333;
-    background: white;
+    background: #eaf8ff;
     border: 1px solid  #eee;
     padding: 3px;
     margin: 1px 0px 2px 0px;

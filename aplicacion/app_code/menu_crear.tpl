@@ -7,7 +7,7 @@
     <div class="widget-content">
       <form method="post" class="form-inline validate_form">
         <label>Nombre del menú</label>
-        <input type="text" name="nombre_es" id="nombre_es" class="input-xxlarge required" />
+        <input type="text" name="nombre_menu" id="nombre_menu" class="input-xxlarge required" />
         <button class="btn btn-primary" type="button" id="grabar">Grabar</button>
         <button class="btn" type="reset" id="cancelar" onclick="history.back()">Cancelar</button>
       </form>
@@ -37,7 +37,7 @@
                 {foreach $etiquetas as $etiqueta}
                   <tr>
                     <td>
-                      <a class="receta" href="index.php?page=receta_mostrar&id_receta={$etiqueta->receta->id}" 
+                      <a class="receta" xxxhref="index.php?page=receta_mostrar&id_receta={$etiqueta->receta->id}" 
                         id_receta="{$etiqueta->receta->id}">{$etiqueta->receta->nombre_es}</a>
                       <i class="icon-arrow-right pull-right"></i>
                     </td>
@@ -55,7 +55,7 @@
   <div class="span6">
   <div class="widget">
     <div class="widget-header">
-      <h3>Organiza tu menú</h3>
+      <h3>Selecciona día y momento</h3>
     </div>
     <div class="widget-content">
       <div id="platos-seleccionados">
@@ -154,8 +154,8 @@
       };
       platos.push(plato);
     });
-    var nombre_es = $("#nombre_es").attr("value");
-    var datos = {nombre_es:nombre_es, recetas:platos};
+    var nombre_menu = $("#nombre_menu").attr("value");
+    var datos = {nombre_es:nombre_menu, recetas:platos};
     return datos;
   }
 
