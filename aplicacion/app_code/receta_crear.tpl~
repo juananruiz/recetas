@@ -12,19 +12,19 @@
 		<div class="control-group">
 			<label class="control-label" for="nombre_es">Nombre</label>
 			<div class="input-prepend controls">
-				<input type="text" id="nombre_es" name="nombre_es" class="span10" placeholder="Requerido"/>
+				<input type="text" name="nombre_es" class="span10" placeholder="Requerido"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="preparacion">Preparación</label>
 			<div class="controls">
-				<textarea  class="span10 autogrow" rows="5" id="preparacion" name="preparacion" placeholder="Requerido"></textarea>
+				<textarea  class="span10 autogrow" rows="5" name="preparacion" placeholder="Requerido"></textarea>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="Variantes">Variantes</label>
 			<div class="controls">
-				<textarea class="span10 autogrow" id="variantes" name="variantes"></textarea>
+				<textarea class="span10 autogrow" name="variantes"></textarea>
 			</div>
 		</div>
 		<div class="control-group">
@@ -109,49 +109,79 @@
 			</div>
 		</fieldset>	
 
+			<div id="recetaMostrar2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Modal header</h3>
+			</div>
+			<div class="modal-body">
+			<p>One fine body…</p>
+			</div>
+			<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="btn btn-primary">Save changes</button>
+			</div>
+			</div>
+			<div style="display:none">
+				<button class="btn btn-primary btn-large" type="button">Grabar receta</button>
+				<button class="btn offset1" type="reset" onclick="history.back()">Cancelar</button>
+			</div>
 		</div>
-			<a href="#" class="btn btnPrev">Anterior</a>
-			<a id="lanzarmodal" href="#modalmostrar" role="button" class="btn" data-toggle="modal">Finalizar</a>
+		<a href="#" class="btn btnPrev">Anterior</a>
+		<a href="#recetaMostrar" role="button" class="btn" data-toggle="modal">Finalizar</a>
 		</div>
 	</div>
 </form>
 <div id="aviso_validacion"> </div>
 {literal}
+<style type="text/css">
+/* set the height so $(window).height() is accurate
+html, body {
+height: 100%;
+}
+ 
+/* prevent scrolling while during modal */
+body.modal-open {
+overflow: hidden;
+}
+ 
+/* optional: override bootstrap image gallery */
+.modal-gallery {
+margin-top: 0 !important;
+}
+@media (max-width: 767px) {
+.modal-gallery {
+margin-left: 0 !important;
+}
+.modal-fullscreen {
+left: 0 !important;
+right: 0 !important;
+}
+}
+</style>
+<script src="theme/boot/js/bootstrap.js"></script>
+<script src="theme/boot/js/modal-responsive-fix.js"></script>
+<script src="theme/boot/js/touchscroll.js"></script>
+
+<script>
+$(function() {
+$('.modal').modalResponsiveFix({ debug: true })
+$('.modal').touchScroll();
+})
+</script>
+{/literal}
+{literal}
 <script src="theme/boot/js/jquery.validate.min.js"></script>
 <script>
 $().ready(function() {
-	$("#lanzarmodal").on('click',function(){
-		var etiquetasSeleccionadas = '';
-		$('*[name="etiquetas_selecionadas\\[\\]"]').each(function(){
-			etiquetasSeleccionadas = etiquetasSeleccionadas+'<dd>&nbsp;'+$(this).val()+'</dd>';
-		});
-		//$('#modalmostrar').remove();
-		$('<div id="modalmostrar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modalmostrarLabel" aria-hidden="true">'+
-				'<div class="modal-header">'+
-				'<h3 id="modalmostrarLabel">&nbsp;'+$('#nombre_es').val()+'</h3>'+
-				'</div>'+
-				'<div class="modal-body modalmostrar">'+
-				'<dl class="dl-horizontal">'+
-					'<dt>Preparación:</dt>'+
-					'<dd>&nbsp;'+$('#preparacion').val()+'</dd>'+
-					'<dt>Etiquetas:</dt>'+
-					etiquetasSeleccionadas+
-				'</dl>'+
-				'</div>'+
-				'<div class="modal-footer">'+
-				'<button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>'+
-				'<input type="submit" class="btn btn-primary" value="Grabar receta">'+
-				'</div>'+
-				'</div>').appendTo('form');
-	});
 	//Propagar etiqueta principal
 	$('#etiqueta_principal').on('change',function(){
 		var etiqueta = $(this).find(':selected').data('etiquetaprincipal');
 		$('#mi_etiqueta_principal').html(etiqueta);
 	});
 	//validar formulario
-	//$('#r eceta_crear').validate({
 	$('#receta_crear').validate({
+		/*
 		rules:{
 			preparacion:{
 					required:true
@@ -163,6 +193,7 @@ $().ready(function() {
 					required:true
 					}
 		},
+		*/
     ignore: "",
 		messages:{
 			nombre_es:'Debe cumplimentar el nombre de la receta',

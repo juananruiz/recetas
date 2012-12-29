@@ -1,5 +1,5 @@
 <div class="tabbable tabs-left">
-	 <ul class="nav nav-tabs">
+	 <ul class="nav nav-tabs" id="etiquetas_all">
 		{foreach from=$familias item=familia}
 		<li><a href="#familia_{$familia->id}" data-toggle="tab">{$familia->nombre_es}</a></li>
 		{/foreach}
@@ -32,4 +32,8 @@
 	{/foreach}
 	</div>
 </div>
-
+<script>
+$(function () {
+	$('#etiquetas_all a:first').tab('show');
+});
+</script>

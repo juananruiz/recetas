@@ -26,7 +26,7 @@
     </footer>
     {literal}
     <script>
-      $("#usuario-pop").popover();
+      //$("#usuario-pop").popover();
     </script>
     {/literal}
   </body>
