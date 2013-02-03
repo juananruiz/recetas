@@ -2,10 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{$_nombre_pagina} - Comer Bien</title>
+    <title>{$_nombre_pagina} - Galatar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <link href="http://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet" type="text/css">
 
     <!-- Le styles -->
     <link href="theme/boot/css/bootstrap.css" rel="stylesheet">

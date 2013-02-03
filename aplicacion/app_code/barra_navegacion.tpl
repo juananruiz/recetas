@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="index.php"><!--<img src="img/logo_foodness.png">-->Comer Bien</a>
+          <a class="brand" href="index.php"><!--<img src="img/logo_foodness.png">-->Galatar</a>
           <div class="nav-collapse collapse">
             <span class="navbar-text pull-right">
               {if isset($_usuario)}
