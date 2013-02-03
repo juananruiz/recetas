@@ -1,207 +1,236 @@
-  <style>
-  .miniboton {
-    float: right;
-    background: #FCCC2E;
-    color: #333;
-    font-size: 0.9em;
-    line-height: 1;
-    border:1px solid #999;
-    padding:2px;
-    margin:0.4em 0;
-    text-shadow:0px 0px 0px #FCCC2E;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-  }
-  </style>
+<div class="row">
+<div class="span12">
+  <div class="widget">
+    <div class="widget-header">
+      <h3>Bautiza tu menú</h3>
+    </div>
+    <div class="widget-content">
+      <form method="post" class="form-inline validate_form">
+        <label>Nombre del menú</label>
+        <input type="text" name="nombre_menu" id="nombre_menu" class="input-xxlarge required" />
+        <button class="btn btn-primary" type="button" id="grabar">Grabar</button>
+        <button class="btn" type="reset" id="cancelar" onclick="history.back()">Cancelar</button>
+      </form>
+    </div><!-- /widget-content -->
+  </div><!-- /widget -->
+</div><!-- /span12 -->
+</div><!-- /row -->
+
+<div class="row">
+  <div class="span6">
+  <div class="widget">
+  <div class="widget-header">
+		<h3>Elige los platos</h3>
+      <input id="busca_receta" name="busca_receta" type="text" class="input-medium search-query"  placeholder="Busca recetas...">
+      <div class="btn-group pull-right" data-toggle="buttons-radio">
+        <button class="btn active">T</button>
+        <button class="btn">F</button>
+        <button class="btn">P</button>
+      </div>
+      <!--
+      <i id="mostrar_favoritos" class="icon-heart "></i>
+      <i id="mostrar_populares" class="icon-globe "></i>
+      -->
+  </div>
+    <div id="recetario" class="widget-content tabbable tabs-left">
+      <ul class="nav nav-tabs" id="tabrecetas">
+        {foreach $recetas as $clave => $etiquetas}
+          <li><a href="#{$clave}">{$etiquetas[0]->etiqueta->nombre_es}</a></li>
+        {/foreach}
+      </ul>
+
+      <div class="tab-content">
+        {foreach $recetas as $clave => $etiquetas}
+          <div class="tab-pane" id="{$clave}">
+            <table class="table table-striped table-bordered table-condensed"> 
+              <tbody>
+                {foreach $etiquetas as $etiqueta}
+                  <tr>
+                    <td>
+                      <a class="receta" xxxhref="index.php?page=receta_mostrar&id_receta={$etiqueta->receta->id}" 
+                        id_receta="{$etiqueta->receta->id}">{$etiqueta->receta->nombre_es}</a>
+                      <i class="icon-arrow-right pull-right"></i>
+                    </td>
+                  </tr>
+                {/foreach}
+              </tbody>
+            </table>
+          </div>
+        {/foreach}
+      </div><!-- /tab-content -->
+    </div><!-- /widget-content -->
+  </div><!-- /widget -->
+  </div><!-- /span6 -->
+
+  <div class="span6">
+  <div class="widget">
+    <div class="widget-header">
+      <h3>Selecciona día y momento</h3>
+    </div>
+    <div class="widget-content">
+      <div id="platos-seleccionados">
+        <ul class="nav nav-tabs" id="tabdias">
+          {foreach $dias as $dia}
+            <li><a href="#{$dia->id}">{$dia->nombre_es|substr:0:3}</a></li>
+          {/foreach}
+        </ul>
+
+        <div class="tab-content">
+          {foreach $dias as $dia}
+            <div class="tab-pane" id="{$dia->id}">
+              {section name="momento" start=1 loop=3}
+                <div class="momento">
+                  <select style="height: 20px; line-height: 20px; margin: 5px;">
+                    {foreach $momentos as $momento}
+                      <option value="{$momento->id}" {if $momento->id == $smarty.section.momento.index * 3}selected{/if}>{$momento->nombre_es}</option>
+                    {/foreach}
+                  </select>
+                  <span class="pull-right"><a href="#"><i class="icon-plus"></i><i class="icon-remove"></i></a></span>
+                  <div class="receptor"></div>
+                </div><!-- .momento -->
+              {/section}
+            </div><!-- .tab-pane -->
+          {/foreach}
+        </div><!-- .tab-content -->
+      </div>
+
+    </div><!-- .widget-content -->
+  </div><!-- .widget -->
+  </div><!-- .span6 -->
+</div><!-- /row -->
+
+{literal}
 <script>
-  window.onload = function() {
+  $(function () {
+    $('#tabrecetas a:first').tab('show');
+    $('#tabdias a:first').tab('show');
+    $('.momento:first .receptor:first').toggleClass('activo');
+  });
+
+  $('#tabrecetas a').click(function (evento) {
+    evento.preventDefault();
+    $(this).tab('show');
+  });
+
+  $('#tabdias a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    $('.activo').removeClass('activo');
+    $('.active .momento:first .receptor:first').toggleClass('activo');
+  });
+
+  $('.icon-arrow-right').click(agregarPlato);
+  
+  function agregarPlato()
+  {
+    $(this).prev('a').clone().appendTo('.activo').wrap("<div class='plato-nombre' />").before('<i class="icon-move"></i>&nbsp;').after('<i class="icon-remove pull-right"></i>').removeClass("receta").addClass("plato");
+    $('.icon-remove').bind('click', function()
+    {
+      $(this).parent().fadeOut(500);
+      $(this).parent().delay(500).remove();
+    });
+    return false;
   }
 
-  function agregarReceta(e) {
-    var receta = e.target.parentNode;
-    var receptor = document.getElementById("receptor");
-    receptor.appendChild(receta);
+  $('.icon-remove').bind('click', function()
+  {
+    $(this).parent().fadeOut(500);
+    $(this).parent().remove();
+  });
+
+  $('.receptor').click(function()
+  {
+    $('.receptor').removeClass('activo');  
+    $(this).toggleClass('activo');  
+  });
+
+  // Buscador interactivo de recetas
+	$('#busca_receta').keyup(function () 
+    {
+	    var valor = $('#busca_receta').val();
+	    $.ajax(
+      {
+        url: "index.php?page=menu_crear_buscar_ajax&ajax=true&busqueda="+valor,
+        success: function(datos)
+        {
+          $('#recetario').html(datos);
+          $('.icon-arrow-right').bind('click', agregarPlato);
+        }
+      }); 
+    });
+
+  $('#grabar').click(function(evento)
+    {
+      evento.preventDefault();
+      var datos_menu = menuJson();
+      grabarLocal(datos_menu);
+      grabarRemotoJson(datos_menu);
+    });
+
+// ----- Módulo de grabación -----  //
+
+  
+  // Prepará el menú para que se puede grabar utilizando formato JSON
+  function menuJson(){
+    var platos = new Array();
+    $(".plato").each(function(){
+      var plato = {
+        id_receta:$(this).attr("id_receta"),
+        id_momento:$(this).closest(".momento").find("option:selected").attr("value"),
+        id_dia:$(this).closest(".tab-pane").attr("id")
+      };
+      platos.push(plato);
+    });
+    var nombre_menu = $("#nombre_menu").attr("value");
+    var datos = {nombre_es:nombre_menu, recetas:platos};
+    return datos;
+  }
+
+  // Graba el menú en formato JSON en la base de datos utilizando AJAX
+  function grabarRemotoJson(datos){
+    $.ajax({ 
+      type: "POST", 
+      url: "index.php?page=menu_grabar_json", 
+      data: datos,
+      dataType: "json", 
+      success: deshabilitarGrabar()   
+    }); 
+  }
+
+  function grabarLocal(datos)
+  {
+    // Grabamos en local (por experimentar)
+    localStorage.setItem("menu_galatar", JSON.stringify(datos));
+  }
+
+  function deshabilitarGrabar(){
+    $("#grabar").attr("disabled","disabled");
+    $("#grabar").css("background","silver");
+    $("#grabar").css("border","1px dashed gray");
+    $("#grabar").css("cursor","default");
+  }
+
+  // EN DESUSO 
+  function crearAlmacenLocal(key) {
+    var valor = localStorage.getItem(key);
+    if (valor) {
+      localStorage.removeItem(key);
+    }
+    valor = new Array();
+    return valor;
+  }
+  
+  // EN DESUSO 
+  //Esta me sirve para cuando quiero mantener el almacen siempre en memoria local
+  function getAlmacenLocal(key) { 
+    var valor = localStorage.getItem(key); 
+    if (valor == null || valor == "") { 
+      valor = new Array();
+    }	
+    else { 
+      valor = JSON.parse(valor); 
+    }	
+    return valor;
   }
 </script>
-<div class="box grid_16">
-  <div class="box grid_8 side_tabs tabs no_titlebar" style="opacity: 1; ">
-    <div class="side_holder">
-      <ul class="tab_sider clearfix">
-        <li><a href="#entrantes">Entrantes</a></li>
-        <li><a href="#sopa">Sopas y Cremas</a></li>
-        <li><a href="#arroz">Arroz, Cereales y Pasta</a></li>
-        <li><a href="#ensalada">Ensaladas</a></li>
-        <li><a href="#carne">Carnes rojas</a></li>
-        <li><a href="#pescado">Pescado y Marisco</a></li>
-        <li><a href="#verdura">Verduras y Hortalizas</a></li>
-        <li><a href="#legumbre">Legumbres</a></li>
-        <li><a href="#postres">Postres</a></li>
-        <li><a href="#desayuno">Desayuno y Merienda</a></li>
-        <li><a href="#dulces">Dulces</a></li>
-        <li><a href="#bebida">Bebidas</a></li>
-      </ul>
-    </div>
-    <div id="entrantes" class="block">
-      <div class="section">
-        <ul>
-          {foreach $recetas as $receta}
-            <li style="clear:both;" id="{$receta->id}">{$receta->nombre_es} <span class="miniboton" onclick="agregarReceta();">Agregar</span></li>
-          {/foreach}
-        </ul>
-      </div>
-    </div>
-    <div id="sopa" class="block">
-      <div class="section">
-        <ul>
-          {foreach $recetas as $receta}
-            <li style="clear:both;">{$receta->nombre_es} <span class="miniboton">Agregar</span></li>
-          {/foreach}
-        </ul>
-      </div>
-    </div>
-    <div id="arroz" class="block">
-      <div class="section">
-        <ul>
-        {foreach $recetas as $receta}
-          <li style="clear:both;">{$receta->nombre_es} <span class="miniboton">Agregar</span></li>
-        {/foreach}
-        </ul>
-      </div>
-    </div>
-    <div id="ensalada" class="block">
-      <div class="section">
-        <p>Content goes here.</p>
-      </div>
-    </div>
-    <div id="carne" class="block">
-      <div class="section">
-        <p>Content goes here.</p>
-      </div>
-    </div>
-    <div id="pescado" class="block">
-      <div class="section">
-        <p>Content goes here.</p>
-      </div>
-    </div>
-    <div id="verdura" class="block">
-      <div class="section">
-        <p>Content goes here.</p>
-      </div>
-    </div>
-    <div id="legumbre" class="block">
-      <div class="section">
-        <p>Content goes here.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="box grid_8 no_titlebar" style="opacity: 1; ">
-    <div class="block">
-      <div class="section">
-      <h3>Alimentos de tu menú</h3>
-      <ul id="receptor">
-      </ul>
-      <select name="comida">
-        <option value="" selected>Desayuno</option>
-        <option value="">Almuerzo</option>
-        <option value="">Merienda</option>
-        <option value="">Cena</option>
-      </select>
-
-      <ul>
-        <li>Café con leche</li>
-        <li>Zumo de naranja</li>
-        <li>Tostadas con aceite y queso fresco</li>
-      </ul>
-      <select name="comida">
-        <option value="">Desayuno</option>
-        <option value="" selected>Almuerzo</option>
-        <option value="">Merienda</option>
-        <option value="">Cena</option>
-      </select>
-
-      <ul>
-        <li>Crema de calabacines y puerros</li>
-        <li>Hamburguesas de tofú</li>
-        <li>Helado de membrillo</li>
-      </ul>
-      <select name="comida">
-        <option value="">Desayuno</option>
-        <option value="">Almuerzo</option>
-        <option value="">Merienda</option>
-        <option value="" selected>Cena</option>
-      </select>
-
-      <ul>
-        <li>Pollo al ajillo</li>
-        <li>Ensalada mixta con frutos secos</li>
-      </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="box grid_16">
-	<div class="toggle_container">
-		<div class="block">
-      <div class="button_bar clearfix">
-        <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" 
-          onclick="history.back()">
-          <div class="ui-icon ui-icon-closethick"></div>
-          <span>Cancelar</span>
-        </button>
-      </div>
-			<form method="post" action="index.php?page=receta_grabar" class="validate_form">
-			  <fieldset class="label_side">
-				<label>Nombre</label>
-				<div>
-					<input type="text" name="nombre_es" class="required" />
-					<div class="required_tag"></div>
-				</div>
-			  </fieldset> 
-        <!--
-        <div class="columns clearfix">
-          <div class="col_50">
-            <fieldset>
-            <label>Propietario</label>
-              <div>
-                <select name="id_propietario" class="select_box">
-                  {foreach from=$usuarios_entidad item=usuario_entidad}
-                    <option value="{$usuario_entidad->usuario->id}">{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
-                    </option>
-                  {/foreach}              
-                  </select>
-            </div>
-            </fieldset> 
-          </div>
-          <div class="col_50">
-            <fieldset>
-              <label>Tipo de proceso</label>
-              <div>
-                <select name="alcance" class="select_box">
-                    <option value="Indefinido">Indefinido ...</option>
-                  <option value="Apoyo">Apoyo</option>
-                  <option value="Operativo">Operativo</option>
-                  <option value="Directivo/Gestion">Directivo/Gestión</option>
-                </select>   
-            </div>
-            </fieldset> 
-          </div>
-        </div>
-        -->
-			   
-
-			  <div class="button_bar clearfix">
-					<button class="green" type="submit" value="Grabar" name="proceso_submit">
-            <div class="ui-icon ui-icon-check"></div>
-						<span>Grabar</span>
-					</button>
-          <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back()">
-            <div class="ui-icon ui-icon-closethick"></div>
-            <span>Cancelar</span>
-          </button>
-				</div>    
-			</form>
-		</div>
-	</div>
-</div>
+{/literal}

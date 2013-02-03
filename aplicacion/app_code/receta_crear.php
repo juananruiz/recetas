@@ -18,6 +18,10 @@ if (is_object($usuario))
 
   $smarty->assign("_nombre_pagina", "Creando receta");
   $plantilla = "receta_crear.tpl";
+	
+	$e = new etiqueta();
+	$etiquetas = $e->find("id_familia= 1");
+  $smarty->assign("etiquetas", $etiquetas);
 }
 else
 {

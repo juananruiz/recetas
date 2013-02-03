@@ -1,75 +1,296 @@
-<div class="box grid_16">
-	<div class="toggle_container">
-		<div class="block">
-      <div class="button_bar clearfix">
-        <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" 
-          onclick="history.back()">
-          <div class="ui-icon ui-icon-closethick"></div>
-          <span>Cancelar</span>
-        </button>
-      </div>
-			<form method="post" action="index.php?page=receta_grabar" class="validate_form">
-			  <fieldset class="label_side">
-				<label>Nombre</label>
-				<div>
-					<input type="text" name="nombre_es" class="required" />
-					<div class="required_tag"></div>
+<ul class="nav nav-tabs" id="tabrecetas" style="display:none">
+	<li><a href="#nombre" data-toggle="tab">Nombre, preparación y variantes</a></li>
+	<li><a href="#ingrediente" data-toggle="tab">Ingredientes</a></li>
+	<li><a href="#etiqueta" data-toggle="tab">Etiquetas</a></li>
+</ul>
+
+<form method="post" action="index.php?page=receta_grabar" id="receta_crear" name="receta_crear">
+	<div id="divRecetaCrear" class="tab-content">
+		<div class="tab-pane fade active in" id="nombre">
+		<h3>Nombre, preparación y variantes</h3>
+		<fieldset>	
+		<div class="control-group">
+			<label class="control-label" for="nombre_es">Nombre</label>
+			<div class="input-prepend controls">
+				<input type="text" id="nombre_es" name="nombre_es" class="span10" placeholder="Requerido"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="preparacion">Preparación</label>
+			<div class="controls">
+				<textarea  class="span10 autogrow" rows="5" id="preparacion" name="preparacion" placeholder="Requerido"></textarea>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="Variantes">Variantes</label>
+			<div class="controls">
+				<textarea class="span10 autogrow" id="variantes" name="variantes"></textarea>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="Etiqueta_principal">Etiqueta principal</label>
+			<div class="controls">
+			<select id="etiqueta_principal" name="etiqueta_seleccionada_[]">
+			<!-- <select id="etiqueta_principal" name="etiqueta_principal">-->
+			<option value="">Elegir uno ...</option>
+			{foreach from=$etiquetas item=etiqueta}
+			<option value="{$etiqueta->id}" data-etiquetaprincipal="{$etiqueta->nombre_es}">{$etiqueta->nombre_es}</option>
+			{/foreach}
+			</select>
+			</div>
+		</div></fieldset>	
+		<a href="#" class="btn btnNext">Siguiente</a>
+		</div>
+		<div class="tab-pane fade" id="ingrediente">
+		<h3>Ingredientes</h3>
+		<div class="row">
+		<fieldset>	
+			<div class="span6">
+				<div class="widget">
+					<div class="widget-header">
+						<h3><span class="icon-align-left" style="margin-right:"></span> </h3>
+						<input id="busqueda" name="busqueda" type="text" class="input-medium search-query"  placeholder="Escribe tu ingrediente">
+					</div>
+					<div class="widget-content tabbable tabs-left">
+						<table class="table table-hover table-striped">
+						<thead>
+							<tr><th style="width:70%"></th><th style="width:15%"></th><th style="width:15%"></th></tr>
+						</thead>
+						<tbody id="encontrados">
+						</tbody>
+						</table>	
+					</div>
 				</div>
-			  </fieldset> 
-        <!--
-        <div class="columns clearfix">
-          <div class="col_50">
-            <fieldset>
-            <label>Propietario</label>
-              <div>
-                <select name="id_propietario" class="select_box">
-                  {foreach from=$usuarios_entidad item=usuario_entidad}
-                    <option value="{$usuario_entidad->usuario->id}">{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
-                    </option>
-                  {/foreach}              
-                  </select>
-            </div>
-            </fieldset> 
-          </div>
-          <div class="col_50">
-            <fieldset>
-              <label>Tipo de proceso</label>
-              <div>
-                <select name="alcance" class="select_box">
-                    <option value="Indefinido">Indefinido ...</option>
-                  <option value="Apoyo">Apoyo</option>
-                  <option value="Operativo">Operativo</option>
-                  <option value="Directivo/Gestion">Directivo/Gestión</option>
-                </select>   
-            </div>
-            </fieldset> 
-          </div>
-        </div>
-        -->
-			  <fieldset class="label_side">
-          <label>Preparación</label>
-          <div>
-            <textarea  class="autogrow" name="preparacion"></textarea>
-          </div>
-			  </fieldset>   
-			  <fieldset class="label_side">
-          <label>Variantes</label>
-          <div>
-					<textarea class="autogrow" name="variantes"></textarea>
+			</div> 
+			<div class="span6">
+				<div class="widget">
+					<div class="widget-header">
+						<h3><span class="icon-indent-left" style="margin-right:"></span> Ingredientes seleccionados</h3>
+					</div>
+					<div id="seleccionados" class="widget-content tabbable tabs-left">
+					<table id="tabla_seleccionados" class="table table-hover table-striped"><thead><tr><th style="width:15%"></th><th style="width:70%"></th><th style="width:15%"></th></tr></thead><tbody></tbody></table>
+					</div>
 				</div>
-			  </fieldset>      
-			   
-			  <div class="button_bar clearfix">
-					<button class="green" type="submit" value="Grabar" name="proceso_submit">
-            <div class="ui-icon ui-icon-check"></div>
-						<span>Grabar</span>
-					</button>
-          <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back()">
-            <div class="ui-icon ui-icon-closethick"></div>
-            <span>Cancelar</span>
-          </button>
-				</div>    
-			</form>
+			</div>
+		</fieldset>	
+		</div>
+		<a href="#" class="btn btnPrev">Anterior</a>
+		<a href="#" class="btn btnNext">Siguiente</a>
+		</div>
+		<div class="tab-pane fade" id="etiqueta">
+		<h3>Etiquetas</h3>
+		<div class="row">
+		<fieldset>	
+			<div class="span6">
+				<div class="widget">
+					<div class="widget-header">
+						<h3><span class="icon-tag" style="margin-right:"></span> </h3>
+						<input id="busqueda_etiqueta" name="busqueda_etiqueta" type="text" class="input-medium search-query"  placeholder="Escribe tu etiqueta"><h3><a id="etiqueta_todas" href="javascript:void(0)">Todas</a>
+						</div>
+					<div class="widget-content tabbable tabs-left" id="contenedor_etiquetas">
+						<br />	
+						<br />	
+					</div>
+				</div>
+			</div>
+			<div class="span6">
+				<div class="widget">
+					<div class="widget-header">
+						<h3><span class="icon-tags" style="margin-right:"></span> Etiquetas  seleccionadas</h3>
+					</div>
+					<div id="etiquetas_seleccionadas" class="widget-content tabbable tabs-left">
+						<div><span style="font-weight:bold;margin-right:10px">Principal:</span> <span id="mi_etiqueta_principal"></span></div>
+						<table id="tabla_etiquetas_seleccionadas" class="table table-hover table-striped">
+							<thead><tr><th style="width:15%"></th><th style="width:70%"></th><th style="width:15%"></th></tr></thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</fieldset>	
+
+		</div>
+			<a href="#" class="btn btnPrev">Anterior</a>
+			<a id="lanzarmodal" href="#modalmostrar" role="button" class="btn" data-toggle="modal">Finalizar</a>
 		</div>
 	</div>
-</div>
+</form>
+<div id="aviso_validacion"> </div>
+{literal}
+<script src="theme/boot/js/jquery.validate.min.js"></script>
+<script>
+$().ready(function() {
+	$("#lanzarmodal").on('click',function(){
+		var etiquetasSeleccionadas = '';
+		$('*[name="etiquetas_selecionadas\\[\\]"]').each(function(){
+			etiquetasSeleccionadas = etiquetasSeleccionadas+'<dd>&nbsp;'+$(this).val()+'</dd>';
+		});
+		//$('#modalmostrar').remove();
+		$('<div id="modalmostrar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modalmostrarLabel" aria-hidden="true">'+
+				'<div class="modal-header">'+
+				'<h3 id="modalmostrarLabel">&nbsp;'+$('#nombre_es').val()+'</h3>'+
+				'</div>'+
+				'<div class="modal-body modalmostrar">'+
+				'<dl class="dl-horizontal">'+
+					'<dt>Preparación:</dt>'+
+					'<dd>&nbsp;'+$('#preparacion').val()+'</dd>'+
+					'<dt>Etiquetas:</dt>'+
+					etiquetasSeleccionadas+
+				'</dl>'+
+				'</div>'+
+				'<div class="modal-footer">'+
+				'<button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>'+
+				'<input type="submit" class="btn btn-primary" value="Grabar receta">'+
+				'</div>'+
+				'</div>').appendTo('form');
+	});
+	//Propagar etiqueta principal
+	$('#etiqueta_principal').on('change',function(){
+		var etiqueta = $(this).find(':selected').data('etiquetaprincipal');
+		$('#mi_etiqueta_principal').html(etiqueta);
+	});
+	//validar formulario
+	//$('#r eceta_crear').validate({
+	$('#receta_crear').validate({
+		rules:{
+			preparacion:{
+					required:true
+					},
+			'etiqueta_seleccionada_[]':{
+					required:true
+					},
+			nombre_es:{
+					required:true
+					}
+		},
+    ignore: "",
+		messages:{
+			nombre_es:'Debe cumplimentar el nombre de la receta',
+			preparacion:'Debe cumplimetar la preparación de la receta'
+		},
+			/*
+			highlight: function(label) {
+			$(label).closest('.control-group').addClass('error');
+			},
+			success: function(label) {
+			label
+			.text('OK!').addClass('valid')
+			.closest('.control-group').addClass('success');
+			}
+			*/
+	});
+	//etiquetas todas
+	$('#etiqueta_todas').click(function () {
+	 $.ajax({
+		url: "index.php?page=receta_crear_etiqueta_ajax_todas&ajax=true",
+		success: function(datos)
+		{
+			$('#contenedor_etiquetas').html(datos);
+		}
+		}); 
+	});
+//busqueda de etiquetas
+	$('#busqueda_etiqueta').keyup(function () {
+	 var valor = $('#busqueda_etiqueta').val();
+	 $.ajax({
+		url: "index.php?page=receta_crear_etiqueta_ajax&ajax=true&busqueda="+valor,
+		success: function(datos)
+		{
+			$('#contenedor_etiquetas').html(datos);
+			//$('#etiquetas_encontradas').html(datos);
+		}
+		}); 
+	});
+	//busqueda de alimentos o ingredientes
+	$('#busqueda').keyup(function () {
+	 var valor = $('#busqueda').val();
+	 $.ajax({
+		url: "index.php?page=receta_crear_ajax&ajax=true&busqueda="+valor,
+		success: function(datos)
+		{
+			$('#encontrados').html(datos);
+		}
+		}); 
+	});
+	//tabs de seguimiento la que se mestra cuando carga la pagina
+	$('#tabrecetas a').click(function (e) { e.preventDefault(); $(this).tab('show'); });
+	$('#tabrecetas li:eq(0) a').tab('show'); 
+	//Botones de seguimiento
+	$('.btnNext').bind("click",function(e){
+		if ($("#receta_crear").valid()) 
+      nextTab();
+    else {
+            //  TODO: doesn't properly scroll to fields on top
+            $.validator.focusInvalid();
+          }
+          return false;
+	});	
+	$('.btnPrev').bind("click",function(e){
+      prevTab();
+	});	
+	$('.btnMostrar').bind('click', function() {
+		/*if ($("#receta_crear").valid()) 
+		 $('#receta_crear').submit();
+		else {
+			$.validator.focusInvalid();
+		}
+		*/
+		return false; 
+	});
+});//fin jquery
+function prevTab() {
+  var e = $('#tabrecetas li.active').prev().find('a[data-toggle="tab"]');  
+  e.tab('show');
+	$(window).scrollTop(0);
+}
+function nextTab() {
+  var e = $('#tabrecetas li.active').next().find('a[data-toggle="tab"]');  
+  e.tab('show');
+	$(window).scrollTop(0);
+}
+//Quitar de la lista de ingredientes seleccionados
+function quitar(id)
+{
+	$('#fila_'+id).remove();
+}
+//Añadir ingredientes a la receta
+function poner(id)
+{
+	var peso = $('#peso_encontrado_'+id).val();
+	var ingrediente = $('#ingrediente_encontrado_'+id).val();
+	if (peso !='')
+	{
+		if (isNaN(peso)== false)
+		{
+		$('#tabla_seleccionados tbody:last').append('<tr id="fila_'+id+'"><td><button class="btn btn-small" type="button"  onclick="javascript:quitar(\''+id+'\')">Quitar</button></td><td>'+ingrediente+'</td><td><div class="input-append"><input name="ingrediente[]" class="" type="hidden" value="'+id+'"><input class="" style="width:40px"  type="text" name="peso[]" value="'+peso+'"><span class="add-on">gr.</span></div></td></tr>');
+		}
+		else
+		{
+			alert('No es un número.');
+		}
+	}
+	else
+	{
+		alert('Debe indicar el peso en gramos del ingrediente.');
+	}
+}
+//Añadir etiqueta la receta
+function poner_etiqueta(id)
+{
+	var etiqueta = $('#etiqueta_encontrada_'+id).val();
+	if (etiqueta !='')
+	{
+		$('#tabla_etiquetas_seleccionadas tbody:last').append('<tr id="fila_'+id+'"><td><button class="btn btn-small" type="button"  onclick="javascript:quitar_etiqueta(\''+id+'\')">Quitar</button></td><td><input type="hidden" id="etiqueta_seleccionada_'+id+'" name="etiqueta_seleccionada_[]" value="'+id+'">'+etiqueta+'</td></tr>');
+	}
+	else
+	{
+		alert('Debe seleccionar alguna etiqueta.');
+	}
+}
+//Quitar de la lista de ingredientes seleccionados
+function quitar_etiqueta(id)
+{
+	$('#fila_'+id).remove();
+}
+</script>
+{/literal}

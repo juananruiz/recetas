@@ -12,11 +12,27 @@ global $usuario;
 
 if (is_object($usuario))
 {
-  $receta = new receta();
-  $recetas = $receta->Find("1 = 1");
+  $recetas = array();
+  $etiqueta_receta = new etiqueta_receta();
+  $recetas["carne"] = $etiqueta_receta->Find_recetas("id_etiqueta = 1");
+  $recetas["pollo"] = $etiqueta_receta->Find_recetas("id_etiqueta = 2");
+  $recetas["verdura"] = $etiqueta_receta->Find_recetas("id_etiqueta = 3");
+  $recetas["arroz"] = $etiqueta_receta->Find_recetas("id_etiqueta = 4");
+  $recetas["legumbre"] = $etiqueta_receta->Find_recetas("id_etiqueta = 5");
+  $recetas["fruta"] = $etiqueta_receta->Find_recetas("id_etiqueta = 6");
+  $recetas["dulce"] = $etiqueta_receta->Find_recetas("id_etiqueta = 7");
+  //$recetas["bebida"] = $etiqueta_receta->Find_recetas("id_etiqueta = 11");
+  $recetas["pescado"] = $etiqueta_receta->Find_recetas("id_etiqueta = 100");
+  $recetas["ensalada"] = $etiqueta_receta->Find_recetas("id_etiqueta = 103");
   $smarty->assign("recetas", $recetas);
 
-  $smarty->assign("_nombre_pagina", "Creando menu");
+  $dia = new dia();
+  $dias = $dia->Find("id > 0 ORDER BY id");
+  $smarty->assign("dias", $dias);
+  $momento = new momento();
+  $momentos = $momento->Find("id > 0 ORDER BY id");
+  $smarty->assign("momentos", $momentos);
+  $smarty->assign("_nombre_pagina", "Diseña tu menú");
   $plantilla = "menu_crear.tpl";
 }
 else

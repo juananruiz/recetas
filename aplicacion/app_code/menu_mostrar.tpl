@@ -1,313 +1,139 @@
-<style>
-  .dia {
-    background:#FFFFCC;
-    float:left;
-    margin:5px;
-    padding:0px;
-    border: 1px solid #FCC000;
-    height:300px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-  }
-
-  .dia h2 {
-    font-size: 1em;
-    color: #333;
-    background:#FFCC00;
-    border: 0px;
-    padding: 3px;
-    margin: 0px;
-    margin-bottom: 5px;
-    line-height: 1em;
-    text-align: center;
-    text-shadow:0px 0px 0px #FFFFCC;
-  }
-  
-  .dia h3 {
-    font-size: 1em;
-    color: #444;
-    margin: 4px 8px;
-    text-shadow:0px 0px 0px #FFFFCC;
-  }
-  
-  #reserva {
-    border: 1px dashed #FFCC00;
-  }
-
-  div.main_container .receta {
-    margin: 3px 4px;
-  }
-
-  .resumen {
-    display: block;
-    color: #333;
-    background: white;
-    border: 1px solid  #FFCC00;
-    width: 210px;
-    padding: 3px;
-    margin: 0px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-
-  .resumen .nombre {
-    color: #555;
-    font-weight: bold;
-  }
-
-  .box .resumen a.grabber {
-    height: 20px;
-    width: 20px;
-  }
-
-  .detalle {
-    display: none;
-    color: #333;
-    background: white;
-    border: 1px solid #FFCC00;
-    border-top: 0;
-    width: 210px;
-    padding: 3px;
-    margin: 0px;
-    z-index: 999;
-  }
-  
-  .descartar {
-    float: left;
-    background: #FFFFCC;
-    color: #FFCC00;
-    font-size: 0.9em;
-    line-height: 1;
-    border:1px solid #FFCC00;
-    padding:2px 4px;
-    margin-right: 5px;
-    text-shadow:0px 0px 0px #FFFFCC;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-
-</style>
-
-<div class="box grid_16 no_titlebar" style="opacity: 1; ">
-  <div class="block lines" style="opacity: 1; ">
-    <div class="columns clearfix">
-      <div class="col_25">
-        <div class="section">
-          <button id="grabar">Grabar menú</button>
-        </div>
-      </div>
-      <div class="col_25">
-        <div class="section">
-          <p>25% content</p>
-        </div>
-      </div>
-      <div class="col_25">
-        <div class="section">
-          <p>25% content</p>
-        </div>
-      </div>
-      <div class="col_25 on_right">
-        <div class="section">
-          <p>25% content</p>
-        </div>
-      </div>
+<!-- Cabecera con botones y resumen nutritivo -->
+<div class="row">
+<div class="span12">
+  <div class="widget">
+    <div class="widget-header">
+      <h3>Menú: <span id="nombre_menu">{$plan_menu.menu->nombre_es}</span></h3>
     </div>
-  </div>
-</div>
---------------------------------------
-{$dia_anterior = 0}
-{$momento_anterior = 0}
-
-{foreach $menus_recetas as $menu_receta}
-  {if $menu_receta->id_dia > 0}
-    {if $dia_anterior != $menu_receta->id_dia}
-      <h3>{$menu_receta->dia->nombre_es}</h3>
-    {/if}
-
-    {if $momento_anterior != $menu_receta->id_momento}
-      <h4>{$menu_receta->momento->nombre_es}</h4>
-    {/if}
-
-      <span class="nombre_receta">{$menu_receta->receta->nombre_es}</span>
-
-    {$dia_anterior = $menu_receta->id_dia}
-    {$momento_anterior = $menu_receta->id_momento}
-  {/if}
-{/foreach}
-------------------------------------
-{$dia_anterior = -1}
-{$momento_anterior = -1}
-<div class="flat grid_16 no_titlebar">
-{foreach $menus_recetas as $menu_receta}
-  {if $menu_receta->id_dia > 0}
-    {if $dia_anterior != $menu_receta->id_dia}
-      <h3>{$menu_receta->dia->nombre_es}</h3>
-    {/if}
-
-    {if $momento_anterior != $menu_receta->id_momento}
-      <h4>{$menu_receta->momento->nombre_es}</h4>
-    {/if}
-
-      <span class="nombre_receta">{$menu_receta->receta->nombre_es}</span>
-
-    {$dia_anterior = $menu_receta->id_dia}
-    {$momento_anterior = $menu_receta->id_momento}
-  {else}
-    {if $dia_anterior != $menu_receta->id_dia}
-      <div class="dia" id="reserva">
-        <h2>RESERVA</h2>
-    {/if}
-      <div class="box receta ui-sortable" id="{$receta->receta->id}">
-        <div class="resumen">
-          <span class="descartar">X</span>
-          <a href="#" class="grabber"></a>
-          <span class="nombre">{$receta->receta->nombre_es}</span>
-        </div>
-        <div class="detalle">
-          <ul>
-            <li>{$receta->receta->descripcion_es}</li>
-            <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
-            <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
-            <li>Grasas: {$receta->receta->grasas}gr</li>
-            <li>Proteínas: {$receta->receta->proteinas}gr</li>
-            <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
-          </ul>
-        </div>
+    <div class="widget-content">
+      <div class="span2">
+        <button class="btn btn-primary btn-xlarge" id="grabar">Grabar menú</button>
+        <a class="btn" href="index.php?page=menu_imprimir&id_menu={$plan_menu.menu->id}" 
+          style="margin-top:10px;"><i class="icon-print"></i> Imprimir</a>
       </div>
-    
-    {$dia_anterior = $menu_receta->id_dia}
-    {$momento_anterior = $menu_receta->id_momento}
-    {if $dia_anterior != $menu_receta->id_dia}
+      <div class="span2">
+          <p>Calorías: 1950 kcal (95% DDR)</p>
       </div>
-    {/if}
-
-    {if $momento_anterior != $menu_receta->id_momento}
+      <div class="span2">
+          <p>Proteinas: 500gr (75% DDR)</p>
       </div>
-    {/if}
-  {/if}
-{/foreach}
-------------------------------------
+      <div class="span2">
+          <p>Carbohidratos: 400 gr (63% DDR)</p>
+      </div>
+      <div class="span2">
+          <p>Grasas: 278 gr (85% DDR)</p>
+      </div>
+    </div><!-- .widget-content -->
+  </div><!-- .widget -->
+  </div><!-- .span12 -->
+</div><!-- .row -->
 
-<div class="flat grid_16 no_titlebar">
-  {foreach $comidas as $dia => $array_momentos}
-    <div class="dia" id="{$dia}">
-      <h2>{$dias[$dia-1]->nombre_es|upper}</h2>
-      {foreach $array_momentos as $momento => $recetas}
-        <div class="momento" id="{$momento}">
-          <h3>{$momentos[$momento-1]->nombre_es}</h3>
+<!-- Dias, momentos y platos -->
+<div class="row">
+{foreach $plan_menu.dias as $id_dia => $momentos}
+  <div class="span2">
+    <div class="widget widget-mini">
+      <div class="widget-header">
+        <h3 id_dia="{$id_dia}">{$lista_dias[$id_dia]->nombre_es}</h3>
+      </div>
+      <div class="widget-content">
+        {foreach $momentos as $id_momento => $recetas}
+          <span id_momento="{$id_momento}">{$lista_momentos[$id_momento]->nombre_es}</span>
           {foreach $recetas as $receta}
-            <div class="box receta ui-sortable" id="{$receta->receta->id}">
-              <div class="resumen">
-                <span class="descartar">X</span>
-                <a href="#" class="grabber"></a>
-                <span class="nombre">{$receta->receta->nombre_es}</span>
+            <div class="plato ui-sortable" id_receta="{$receta->id}">
+              <div class="plato-resumen">
+                <button type="button" class="close" style="line-height:15px;">×</button>
+                <span class="plato-nombre">{$receta->nombre_es}</span>
               </div>
-              <div class="detalle">
-                <ul>
-                  <li>{$receta->receta->descripcion_es}</li>
-                  <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
-                  <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
-                  <li>Grasas: {$receta->receta->grasas}gr</li>
-                  <li>Proteínas: {$receta->receta->proteinas}gr</li>
-                  <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
+              <div class="plato-detalle">
+                  {$receta->descripcion_es}
+                <ul class="unstyled">
+                  <li><b>Calorías:</b> {$receta->kilocalorias}kcal</li>
+                  <li><b>Carbohidratos:</b> {$receta->carbohidratos}gr</li>
+                  <li><b>Grasas:</b> {$receta->grasas}gr</li>
+                  <li><b>Proteínas:</b> {$receta->proteinas}gr</li>
                 </ul>
-              </div>
-            </div>
+                <a href="#recetaModal" role="button" data-toggle="modal">Ver Receta</a>
+                <!-- <a href="index.php?receta_mostrar&id_receta={$receta->id}">Ver receta completa</a> -->
+              </div><!-- .plato-detalle -->
+            </div><!-- .plato ui-sortable-->
           {/foreach}
-        </div>
-      {/foreach}
-    </div>
-  {/foreach}
+        {/foreach}
+      </div><!-- .widget-content -->
+    </div><!-- .widget -->
+  </div><!-- .span2 -->
+{/foreach}
+</div><!-- .row -->
 
-  <div class="dia" id="reserva">
-    <h2>RESERVA</h2>
-    {foreach $reserva as $receta}
-      <div class="box receta ui-sortable" id="{$receta->receta->id}">
-        <div class="resumen">
-          <span class="descartar">X</span>
-          <a href="#" class="grabber"></a>
-          <span class="nombre">{$receta->receta->nombre_es}</span>
-        </div>
-        <div class="detalle">
-          <ul>
-            <li>{$receta->receta->descripcion_es}</li>
-            <li>Calorías: {$receta->receta->kilocalorias}kcal</li>
-            <li>Carbohidratos: {$receta->receta->carbohidratos}gr</li>
-            <li>Grasas: {$receta->receta->grasas}gr</li>
-            <li>Proteínas: {$receta->receta->proteinas}gr</li>
-            <li><a href="index.php?receta_mostrar&id_receta={$receta->receta->id}">Ver receta completa</a></li>
-          </ul>
-        </div>
-      </div>
-    {/foreach}
+<!-- Ventana modal para mostrar una receta -->
+ 
+<!-- Modal -->
+<div id="recetaModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="recetaModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="recetaModalLabel">Nombre Receta</h3>
+  </div>
+  <div class="modal-body">
+    <h4>Ingredientes</h4>
+    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
+
+    <h4>Preparación</h4>
+    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Cerrar</button>
   </div>
 </div>
 
+<!-- Javascript para darle vidilla -->
 {literal}
 <script>
-  $(".resumen span.nombre").click(detallarReceta);
-  $(".descartar").click(descartarReceta);
+  $(".plato-nombre").click(detallarReceta);
+  $(".close").click(descartarReceta);
   $("#grabar").click(grabarMenuJson);
     
   function detallarReceta(){
     $(this).parent().css("border-bottom", "1px solid #EEE");
+    $(this).parent().css("border-bottom", "0px");
     $(this).parent().next().slideToggle("slow");
   }
 
   function descartarReceta(){
     $(this).parent().fadeOut(500);
     $(this).parent().next().fadeOut(500);
-    //$(this).parent().parent().html("<img src='theme/minica/images/icons/large/grey/cloud_lightning.png'>");
     $(this).parent().parent().remove();
   }
 
   // Ahora mismo graba sin tener en cuenta los días, sólo los platos.
   // Espero pronto poder grabarlo todo
   function grabarMenu(){
-    var menuazar = crearAlmacenLocal("menuazar"); 
-    var menuazarAjax = "nombre_es=MenuJuanan";
-    $(".receta").each(function(){
+    var menuazar = crearAlmacenLocal("menu_galatar"); 
+    $(".plato-nombre").each(function(){
       var receta = $(this).attr("id");
       // Resto todo
       menuazar.push(receta); 
       menuazarAjax += "&recetas[]=" + receta;
-      $("#grabar").attr("disabled","disabled");
-      $("#grabar").css("background","silver");
-      $("#grabar").css("border","1px dashed gray");
-      $("#grabar").css("cursor","default");
     });
     // Grabamos en local (por experimentar)
-    localStorage.setItem("menuazar", JSON.stringify(menuazar));
+    localStorage.setItem("menuauto", JSON.stringify(menuazar));
     // Grabamos en remoto (esta es la buena)
     grabarRemoto(menuazarAjax);
   }
 
-  // Esta función graba con JavaScript utilizando Ajax contra un controlador php
-  function grabarRemoto(datos){
-    var request = new XMLHttpRequest();
-    var page = "index.php?page=menu_grabar";
-    request.open("POST", page, true);
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send(datos);
-  }
-  
-  function grabarMenuJson(){
-    var recetas = new Array();
-    $(".receta").each(function(){
-      var receta = {
+  function menuJson(){
+    var platos = new Array();
+    $(".plato-nombre").each(function(){
+      var plato = {
         id_receta:$(this).attr("id"),
         id_momento:$(this).parent().attr("id"),
         id_dia:$(this).parent().parent().attr("id")
       };
-      recetas.push(receta);
+      platos.push(plato);
     });
-    var datos = {nombre_es:"MenuJuananJson", recetas:recetas};
-    grabarRemotoJson(datos);
+    var nombre_menu = $("#nombre_menu").attr("value");
+    var datos = {nombre_es:nombre_menu, recetas:platos};
+    return datos;
   }
 
   function grabarRemotoJson(datos){
