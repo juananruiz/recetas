@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo: Responsive Column Layouts</title>
+
+<style>
+body {
+	background: #fff;
+	color: #666;
+	font: 85%/140% Arial, Helvetica, sans-serif;
+	/*width: 800px;*/
+	max-width: 96%;
+	margin: 0 auto;
+}
+a {
+	color: #69C;
+	text-decoration: none;
+}
+a:hover {
+	color: #F60;
+}
+h1 {
+	font: 1.7em;
+	line-height: 110%;
+	color: #000;
+}
+h1, h2, h3 {
+	color: #000;
+}
+h3 {
+	border-top: solid 1px #eee;
+	padding: 20px 0;
+	margin: 20px 0 0;
+	font-size: 150%;
+}
+p {
+	margin: 0 0 20px;
+}
+
+/* set html5 elements to block */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
+    display: block;
+}
+
+#pagewrap {
+	/*width: 978px;*/
+	max-width: 96%;
+	margin: 0 auto;
+}
+.wrapper {
+	overflow: hidden;
+}
+
+/************************************************************************************
+COLUMN
+*************************************************************************************/
+.col {
+	background: #eee;
+	float: left;
+	margin-left: 3.2%;
+	margin-bottom: 30px;
+}
+.fullwidth .col {
+	float: none;
+	margin-left: 0;
+}
+/* grid4 col */
+.grid4 .col {
+	width: 22.6%;
+}
+/* grid3 col */
+.grid3 .col {
+	width: 31.2%;
+}
+/* grid2 col */
+.grid2 .col {
+	width: 48.4%;
+}
+/* clear col */
+.grid4 .col:nth-of-type(4n+1),
+.grid3 .col:nth-of-type(3n+1),
+.grid2 .col:nth-of-type(2n+1) {
+	margin-left: 0;
+	clear: left;
+}
+
+/************************************************************************************
+MEDIA QUERIES
+*************************************************************************************/
+/* reset cols to 3-column */
+@media screen and (max-width: 740px) {
+	/* grid4 */
+	.grid4 .col {
+		width: 31.2%;
+	}
+	.grid4 .col:nth-of-type(4n+1) {
+		margin-left: 3.2%;
+		clear: none;
+	}
+	.grid4 .col:nth-of-type(3n+1) {
+		margin-left: 0;
+		clear: left;
+	}
+}
+
+/* reset cols to 2-column */
+/* @media screen and (max-width: 600px) { */
+@media screen and (max-width: 741px) {
+	/* grid4 */
+	.grid4 .col {
+		width: 48.4%;
+	}
+	.grid4 .col:nth-of-type(3n+1) {
+		margin-left: 3.2%;
+		clear: none;
+	}
+	.grid4 .col:nth-of-type(2n+1) {
+		margin-left: 0;
+		clear: left;
+	}
+
+	/* grid3 */
+	.grid3 .col {
+		width: 48.4%;
+	}
+	.grid3 .col:nth-of-type(3n+1) {
+		margin-left: 3.2%;
+		clear: none;
+	}
+	.grid3 .col:nth-of-type(2n+1) {
+		margin-left: 0;
+		clear: left;
+	}
+}
+
+/* reset cols to fullwidth */
+/* @media screen and (max-width: 400px) { */
+@media screen and (max-width: 600px) {
+	/* grid4 */
+	.col {
+		width: 100% !important;
+		margin-left: 0 !important;
+		clear: none !important;
+	}
+}
+
+
+</style>
+
+<!--[if lt IE 9]>
+	<script src="js/respond.js"></script>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="http://s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.5-min.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+<div id="pagewrap">
+
+	<h1>Demo: Responsive Column Layouts</h1>
+	<p>Tutorial by <a href="http://twitter.com/nickla">Nick La</a>, <a href="http://webdesignerwall.com">Web Designer Wall</a> (read <a href="http://webdesignerwall.com/tutorials/responsive-column-layouts">Responsive Column Layouts</a>)</p>
+	<p>Resize your browser window to see the columns switch from 4 to 3, then to 2, and full width.</p>
+
+	<h3>Grid4</h3>
+	<div class="wrapper grid4">
+	
+		<article class="col">
+			Column 1
+		</article>
+	
+		<article class="col">
+			Column 2
+		</article>
+	
+		<article class="col">
+			Column 3
+		</article>
+	
+		<article class="col">
+			Column 4
+		</article>
+	
+		<article class="col">
+			Column 5
+		</article>
+	
+		<article class="col">
+			Column 6
+		</article>
+	
+		<article class="col">
+			Column 7
+		</article>
+	
+		<article class="col">
+			Column 8
+		</article>
+	
+	</div>
+	<!-- /wrapper -->
+
+	<h3>Grid3</h3>
+	<div class="wrapper grid3">
+	
+		<article class="col">
+			Column 1
+		</article>
+	
+		<article class="col">
+			Column 2
+		</article>
+	
+		<article class="col">
+			Column 3
+		</article>
+	
+		<article class="col">
+			Column 4
+		</article>
+	
+		<article class="col">
+			Column 5
+		</article>
+	
+		<article class="col">
+			Column 6
+		</article>
+		
+	</div>
+	<!-- /wrapper -->
+
+	<h3>Grid2</h3>
+	<div class="wrapper grid2">
+	
+		<article class="col">
+			Column 1
+		</article>
+	
+		<article class="col">
+			Column 2
+		</article>
+	
+		<article class="col">
+			Column 3
+		</article>
+	
+		<article class="col">
+			Column 4
+		</article>
+		
+	</div>
+	<!-- /wrapper -->
+
+	<h3>Fullwidth</h3>
+	<div class="wrapper fullwidth">
+	
+		<article class="col">
+			Column 1
+		</article>
+	
+	</div>
+	<!-- /wrapper -->
+
+</div>
+<!-- /wrapper -->
+</body>
+</html>
